@@ -1,0 +1,79 @@
+/*!
+ * 2016/08/03 后台页面样式重置
+ */
+
+/* header LOGO */ 
+.logo{
+	display: inline-block;
+}
+.logo img{
+	margin-top: 10px;
+	float: left;
+	max-width: 80px;
+}
+.idx{
+	text-align: center;
+}
+.idx .my-title{
+	font-size: 70px;
+	color: #D2333B;
+}
+.idx .my-logo{
+	max-width: 160px;
+	padding-top:60px;
+	margin-bottom: 30px;
+}
+.form-group .col-lg-1{
+	margin-top: 8px;
+}
+.form-group .col-lg-4{
+	margin-top: 4px;
+}
+.alert1,.alert2{
+	width: 100%;
+	height: 100%;
+	background:rgba(51, 51, 51, 0.8) ;
+	filter:Alpha(opacity=80); 
+	position: absolute;
+	z-index: 50;
+	top: 0;
+	z-index: 10000;
+	display: none;
+}
+.alert1 div,.alert2 div{
+	width: 380px;
+	background-color: #fff;
+	margin: 200px auto 0 auto;
+}
+.alert1 > div h2,.alert2 > div h2{
+	font-size: 18px;
+	text-align: center;
+	padding-top: 10px;
+}
+.alert1 > div span{
+	text-align: center;
+	display: block;
+	color: #ff6666;	
+	border-top: 1px solid #ccc;
+	padding: 6px 0;
+	cursor: pointer;
+}
+.alert2 > div img{
+	padding: 10px 0;
+	max-width: 320px;
+	margin-left: 30px;
+}
+.alert1 .btn,.alert2 .btn{
+	width: 80%;
+	margin: 10px 0 20px 10%;
+}
+.my-logo2{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 20px;
+	margin-right: 20px;
+}
+.my-logo2 img{
+	max-width: 32px;
+}

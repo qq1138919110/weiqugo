@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head> 
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+        <title>jQuery幸运大转盘_jQuery+PHP抽奖程序(下)</title>
+        <meta name="keywords" content="jQuery大转盘,jQuery抽奖" />
+        <meta name="description" content="上一篇讲解了幸运大转盘前端，而本文使用PHP控制抽奖几率并最终实现转盘抽奖。" />
+        <link rel="stylesheet" type="text/css" href="http://www.sucaihuo.com/jquery/css/common.css" />
+        <style type="text/css">
+            .demo{ position:relative;width:417px;}
+            #disk{width:417px; height:417px; background:url(/Public/Admin/image/disk.jpg) no-repeat;}
+            #start{width:163px; height:320px; position:absolute; top:46px; left:130px;}
+            #start img{cursor:pointer}
+        </style>
+    </head>
+    <body>
+        <div class="head">
+            <div class="head_inner">
+                <a class="logo" href="http://www.sucaihuo.com">
+                    <img alt="素材火logo" src="http://www.sucaihuo.com/Public/images/logo.jpg"/>
+                </a>
+            </div>
+        </div>
+        <div class="container">
+            <h2 class="title"><a href="http://www.sucaihuo.com/js/20.html">jQuery幸运大转盘_jQuery+PHP抽奖程序(下)</a></h2>
+            <div class="demo">
+                <div id="disk"></div>
+                <div id="start"><img src="__IMG__start.png" id="startbtn" alt="转盘开启"/></div>
+            </div>  
+        </div>
+        <div class="foot">
+            Powered by sucaihuo.com  本站皆为作者原创，转载请注明原文链接：<a href="http://www.sucaihuo.com" target="_blank">www.sucaihuo.com</a>
+        </div>
+        <script type="text/javascript" src="http://www.sucaihuo.com/Public/js/other/jquery.js"></script>
+        <script type="text/javascript" src="__JS__jQueryRotate.2.2.js"></script>
+        <script type="text/javascript" src="__JS__jquery.easing.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#startbtn").click(function() {
+                    lottery();
+                });
+            });
+            $(function() {
+                $("#startbtn").click(function() {
+                    lottery();
+                });
+            });
+            function lottery() {
+                $.ajax({
+                    type: 'POST',
+                    url: "{:U('Daily/choujiang_ajax')}",
+                    dataType: 'json',
+                    cache: false,
+                    error: function() {
+                        alert('Sorry，出错了！');
+                        return false;
+                    },
+                    success: function(json) {
+                        $("#startbtn").unbind('click').css("cursor", "default");
+                        var angle = json.angle; //指针角度 
+                        var prize = json.prize; //中奖奖项标题 
+                        $("#startbtn").rotate({
+                            duration: 3000, //转动时间 ms
+                            angle: 0, //从0度开始
+                            animateTo: 3600 + angle, //转动角度 
+                            easing: $.easing.easeOutSine, //easing扩展动画效果
+                            callback: function() {
+                                var resulte = confirm('恭喜您中得' + prize + '\n想要继续吗？');
+                                if (resulte) { //若是点击确定，继续抽奖
+                                    lottery();
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        </script>
+
+    </body>
+</html>
+

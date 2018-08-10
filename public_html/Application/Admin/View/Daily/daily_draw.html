@@ -1,0 +1,303 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	
+	    <!-- Page heading ends -->
+
+    <style type ="text/css">
+
+.demo{width:700px;margin:0 auto}
+    .btn:hover{background-color: #e95a00;text-decoration: none}
+    .ul_pics li{float:left;width:160px;height:160px;border:1px solid #ddd;padding:2px;text-align: center;margin:0 5px 5px 0;}
+    .ul_pics li .img{width: 160px;height: 140px;display: table-cell;vertical-align: middle;}
+    .ul_pics li img{max-width: 160px;max-height: 140px;vertical-align: middle;}
+    .progress{position:relative;padding: 1px; border-radius:3px; margin:60px 0 0 0;} 
+    .bar {background-color: green; display:block; width:0%; height:20px; border-radius:3px; } 
+    .percent{position:absolute; height:20px; display:inline-block;top:3px; left:2%; color:#fff } 
+    .img_close{background: transparent url('__IMG__/bg_icon.png') no-repeat scroll -25px 0px; position: absolute; width: 15px; height: 15px; right: -7px; top: -7px}
+</style>
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left">每日抽奖活动</div>
+                
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                     <form class="form-horizontal" role="form">
+                              
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">是否开启每日抽奖活动</label>
+                                  <div class="col-lg-2">
+                                    <select class="form-control" name="is_lucky_draw">
+                                      <option value="1" <if condition="$fifteen['is_lucky_draw'] eq 1">selected="selected"</if>>开启</option>
+                                      <option value="2" <if condition="$fifteen['is_lucky_draw'] eq 2">selected="selected"</if>>关闭</option>
+                                    </select>
+                                  </div>
+                                </div>     
+
+                               <div class="form-group">
+                                  <label class="col-lg-4 control-label">抽奖次数</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="抽奖次数" id="lottery_number" name="lottery_number" value="{$fifteen.lottery_number}">
+                                  </div>
+                                </div>
+                              
+                               <div class="form-group">
+                                  <label class="col-lg-4 control-label">特等奖奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="特等奖奖品" id="grand_prize" name="grand_prize" value="{$fifteen.grand_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">特等奖概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="特等奖概率" id="grand_probability" name="grand_probability" value="{$fifteen.grand_probability}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">大积分奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="大积分奖品" id="large_prize" name="large_prize" value="{$fifteen.large_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">大积分概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="大积分概率" id="large_probability" name="large_probability" value="{$fifteen.large_probability}">
+                                  </div>
+                                </div>
+
+                                   
+                               <div class="form-group">
+                                  <label class="col-lg-4 control-label">一等奖奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="一等奖奖品" id="first_prize" name="first_prize" value="{$fifteen.first_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">一等奖概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="一等奖概率" id="first_probability" name="first_probability" value="{$fifteen.first_probability}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">二等奖奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="二等奖奖品" id="two_prize" name="two_prize" value="{$fifteen.two_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">二等奖概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="二等奖概率" id="two_probability" name="two_probability" value="{$fifteen.two_probability}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">三等奖奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="三等奖奖品" id="three_prize" name="three_prize" value="{$fifteen.three_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">三等奖概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="三等奖概率" id="three_probability" name="three_probability" value="{$fifteen.three_probability}">
+                                  </div>
+                                </div>
+
+
+                                 <div class="form-group">
+                                  <label class="col-lg-4 control-label">谢谢参与奖品</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="谢谢参与奖品" id="not_prize" name="not_prize" value="{$fifteen.not_prize}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">谢谢参与概率</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="谢谢参与概率" id="not_probability" name="not_probability" value="{$fifteen.not_probability}">
+                                  </div>
+                                </div>
+                                
+                                <div class="form-group row">
+                                  <label class="col-lg-1 control-label" style="margin-top:10px;">活动介绍</label>
+                                  <div class="col-lg-8">
+                                      <textarea class="cleditor" name="activity_introduction">{$one.activity_introduction}</textarea>
+                                  </div>
+                                 </div>
+
+                                 <div class="form-group">
+                                  <label class="col-lg-4 control-label">分享标题</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="分享标题" id="share_title" name="share_title" value="{$fifteen.share_title}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">分享描述</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="分享描述" id="share_description" name="share_description" value="{$fifteen.share_description}">
+                                  </div>
+                                </div>
+                                
+
+                                    <div class="form-group row">
+                   <div class="control-group">
+                     <label class="col-lg-3 control-label">分享图片</label>
+                     <div class="controls demo">
+                       <a class="btn" id="btn">上传图片</a> 最大2mb，支持jpg，gif，png格式。
+                       <ul id="ul_pics" class="ul_pics clearfix">
+                       <!-- <notempty name="one.more_img">
+                       <php>$moreimg = explode(',',$one['more_img']);</php>
+                       <volist name="moreimg" id="moree">
+                       <li><div class='img' style='position: relative;'><img src='__UPLOADS__{$moree}'/><span class='img_close'></span><input type='hidden' name='more_img[]' value='{$moree}' /></div><p>{$moree|substr='11'}</p></li>
+                       </volist>
+                       </notempty> -->
+                       </ul>
+                     </div>
+                    </div>
+                 </div>
+
+                                
+                                    <hr />
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+$("form").submit(function(){
+      var self = $(this);
+      $.ajax({
+        url:self.attr("action"),
+        type:"POST",
+        data:self.serialize(),
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+              window.location.href=location;
+          }else if(data==2){
+              alert('服务器延迟,请重新再试');
+              window.location=location;
+          }
+        }
+      });
+      return false;
+     });
+});
+
+</script>
+   <script type="text/javascript" src="__JS__plupload.full.min.js"></script>
+    <script type="text/javascript">
+    var category_add = "{:U('Index/get_son')}";
+    var delete_more = "{:U('Index/delete_more')}";
+    var upload = "__UPLOADS__";
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    
+    var uploader = new plupload.Uploader({
+                //创建实例的构造方法
+                runtimes: 'html5,flash,silverlight,html4', 
+                //上传插件初始化选用那种方式的优先级顺序
+                browse_button: 'btn', // 上传按钮
+                url: "{:U('Shop/more_img')}", //远程上传地址
+                flash_swf_url: '/public/Admin/js/Moxie.swf', //flash文件地址
+                silverlight_xap_url: '/public/Admin/js/Moxie.xap', //silverlight文件地址
+                filters: {
+                    max_file_size: '2mb', //最大上传文件大小（格式100b, 10kb, 10mb, 1gb）
+                    mime_types: [{title: "files", extensions: "jpg,png,gif,jpeg"}]
+                    //允许文件上传类型
+                },
+                multi_selection: false, //true:ctrl多文件上传, false 单文件上传
+                init: {
+                    FilesAdded: function(up, files) { //文件上传前 
+                        if ($("#ul_pics").children("li").length > 0) {
+                            alert("您上传的图片太多了！");
+                            // uploader.destroy();
+                            return false;
+                        } else {
+                            var li = '';
+                            plupload.each(files, function(file) { //遍历文件
+                                li += "<li id='" + file['id'] + "'><div class='progress'><span class='bar'></span><span class='percent'>0%</span></div></li>";
+                            });
+                            $("#ul_pics").append(li);
+                            uploader.start();
+                        }
+                    },
+                    UploadProgress: function(up, file) { //上传中，显示进度条
+                 var percent = file.percent;
+                        $("#" + file.id).find('.bar').css({"width": percent + "%"});
+                        $("#" + file.id).find(".percent").text(percent + "%");
+                    },
+                    FileUploaded: function(up, file, info) { //文件上传成功的时候触发
+                        var data = JSON.parse(info.response);
+                        $("#" + file.id).html("<div class='img' style='position: relative;'><img src='" +"/Uploads/"+ data.path + data.name + "'/><span class='img_close'></span><input type='hidden' name='more_img[]' value='"+ data.path + data.name +"' /></div><p>" + data.name + "</p>");
+                    },
+                    Error: function(up, err) { //上传出错的时候触发
+                        alert(err.message);
+                    }
+                }
+            });
+            uploader.init();
+</script>
+<script type="text/javascript">
+    $(function(){ 
+$(document).on('click','.img_close',function(){
+  $(this).parent().parent('li').remove();
+    });
+    });
+</script>
+<include file="public:footer"/>

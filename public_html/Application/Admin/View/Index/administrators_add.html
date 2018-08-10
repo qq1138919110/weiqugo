@@ -1,0 +1,137 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	 
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                  
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form">
+                              
+                            <div class="form-group row">
+                               <label class="col-lg-1 control-label">账号</label>
+                               <div class="col-lg-4">
+                                  <input type="text" class="form-control" name="username" id="username">
+                               </div>
+                            </div>
+
+                            <div class="form-group row">
+                               <label class="col-lg-1 control-label">密码</label>
+                               <div class="col-lg-4">
+                                  <input type="password" class="form-control" name="password" id="password">
+                               </div>
+                            </div>
+
+                            <div class="form-group row">
+                               <label class="col-lg-1 control-label">确定密码</label>
+                               <div class="col-lg-4">
+                                  <input type="password" class="form-control" name="rpassword" id="rpassword">
+                               </div>
+                            </div>
+
+                            <div class="form-group row">
+                               <label class="col-lg-1 control-label">手机号码</label>
+                               <div class="col-lg-4">
+                                  <input type="text" class="form-control" name="phone" id="phone">
+                               </div>
+                            </div>
+
+                            <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9">
+                                    <button type="button" class="btn btn-primary baobaocuncun">保存</button>
+                                  </div>
+                                </div>
+
+                </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+   $(document).on('click','.baobaocuncun',function(){
+    var username =$('#username').val();
+    if(username==''){
+      alert('管理员账号不能为空');
+      return false;
+    }
+    var password =$('#password').val();
+    if(password==''){
+      alert('管理员密码不能为空');
+      return false;
+    }
+    var rpassword =$('#rpassword').val();
+    if(password!=rpassword){
+      alert('两次密码不一致');
+      return false;
+    }
+    var phone =$('#phone').val();
+         if(phone.match(/^(?:13|15|18|17|14)[0-9]{9}$/)===null){
+          alert('手机号码不正确');
+          return false;
+         }
+     $.ajax({
+      type:"POST",
+      url:"{:U('Index/administrators_add')}",
+      data:{username:username,password:password,phone:phone},
+      dataType:'json',
+      success:function(data){
+        if(data==1){
+          alert('管理员账号已存在');
+          return false;
+        }else if(data==2){
+          alert('管理员手机号码已存在');
+          return false;
+        }else if(data==3){
+          alert('新增管理员成功');
+          window.location="{:U('Index/administrators')}";
+        }else if(data==4){
+          alert('服务器延迟,请重新再试');
+          location =location;
+        }
+      }
+     })
+   });
+  });
+</script>
+<include file="public:footer"/>

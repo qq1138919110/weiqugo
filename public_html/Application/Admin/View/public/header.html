@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <!-- Title and other stuffs -->
+  <title>微趣go</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="">
+  <!-- Stylesheets -->
+  <link href="__CSS__bootstrap.css" rel="stylesheet">
+  <!-- Font awesome icon -->
+  <link rel="stylesheet" href="__CSS__font-awesome.css"> 
+  <!-- jQuery UI -->
+  <link rel="stylesheet" href="__CSS__jquery-ui.css"> 
+  <!-- Calendar -->
+  <link rel="stylesheet" href="__CSS__fullcalendar.css">
+  <!-- prettyPhoto -->
+  <link rel="stylesheet" href="__CSS__prettyPhoto.css">  
+  <!-- Star rating -->
+  <link rel="stylesheet" href="__CSS__rateit.css">
+  <!-- Date picker -->
+  <link rel="stylesheet" href="__CSS__bootstrap-datetimepicker.min.css">
+  <!-- CLEditor -->
+  <link rel="stylesheet" href="__CSS__jquery.cleditor.css"> 
+  <!-- Uniform -->
+  <link rel="stylesheet" href="__CSS__uniform.default.css"> 
+  <!-- Bootstrap toggle -->
+  <link rel="stylesheet" href="__CSS__bootstrap-switch.css">
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="__CSS__style.css">
+  <!-- Widgets stylesheet -->
+  <link rel="stylesheet" href="__CSS__widgets.css">
+  <!-- me.css -->
+  <link rel="stylesheet" href="__CSS__me.css">   
+  
+  <!-- HTML5 Support for IE -->
+  <!--[if lt IE 9]>
+  <script src="__JS__html5shim.js"></script>
+  <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="img/favicon/favicon.png">
+</head>
+
+<body>
+
+<div class="navbar navbar-fixed-top bs-docs-nav" role="banner">
+ 
+
+      <!-- Navigation starts -->
+      <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">         
+
+
+        <!-- LOGO -->
+        <div class="logo clearfix">
+          <img src="__IMG__logo2.png" alt="">
+        </div>
+
+        <!-- Links -->
+        <ul class="nav navbar-nav pull-right">
+          <li class="dropdown pull-right">            
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+              <i class="icon-user"></i> {:session('username')} <b class="caret"></b>              
+            </a>
+            
+            <!-- Dropdown menu -->
+            <ul class="dropdown-menu">
+              <li><a href="{:U('Index/loginout')}"><i class="icon-off"></i> 退出</a></li>
+            </ul>
+          </li>
+          
+        </ul>
+      </nav>
+
+    </div>
+  </div>
+
+
+<!-- Header starts -->
+  
+      <div class="sidebar">
+        <div class="sidebar-dropdown"><a href="#">导航</a></div>
+
+        <!--- Sidebar navigation -->
+        <!-- If the main navigation has sub navigation, then add the class "has_sub" to "li" of main navigation. -->
+        <ul id="nav">
+          <!-- Main menu with font awesome icon -->
+          <li><a href="{:U('Index/index')}" class="open"><i class="icon-home"></i>首页</a>
+            <!-- Sub menu markup 
+            <ul>
+              <li><a href="#">Submenu #1</a></li>
+              <li><a href="#">Submenu #2</a></li>
+              <li><a href="#">Submenu #3</a></li>
+            </ul>-->
+          </li>
+          <li class="has_sub"><a href="#"><i class="icon-certificate"></i> 系统设置  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+               <li><a href="{:U('Index/basic_set')}">客服二维码设置</a></li>
+               <li><a href="{:U('Index/binner_set')}">精选首页bianner设置</a></li>
+               <li><a href="{:U('Index/administrators')}">管理员</a></li>
+            </ul>
+         </li> 
+          
+           <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 精品  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Shop/navigation')}">导航管理</a></li>
+              <li><a href="{:U('Shop/f_classification')}">商品分类管理</a></li>
+              <li><a href="{:U('Shop/commodity')}">商品管理</a></li>
+            </ul>
+           </li>
+
+          
+          <li class="has_sub"><a href="#"><i class="icon-food"></i> 日常任务区  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Daily/Sign')}">每日签到</a></li>
+              <li><a href="{:U('Daily/perfect_information')}">完善资料</a></li>
+              <li><a href="{:U('Shop/f_classification')}">平台分享朋友圈并截图</a></li>
+              <li><a href="{:U('Shop/f_classification')}">产品买家秀图片</a></li>
+              <li><a href="{:U('Shop/f_classification')}">领取产品分享朋友圈</a></li>
+              <li><a href="{:U('Daily/product_evaluation')}">产品评价</a></li>
+              <li><a href="{:U('Daily/invitation_task')}">邀请任务</a></li>
+              <li><a href="{:U('Daily/stop')}">在微取GO(待定)停留30分钟</a></li>
+              <li><a href="{:U('Daily/successful_trial')}">成功兑换一款试用装</a></li>
+              <li><a href="{:U('Daily/success_genuine')}">成功兑换一款正品</a></li>
+              <li><a href="{:U('Shop/f_classification')}">问卷任务</a></li>
+            </ul>
+          </li>
+
+           <li class="has_sub"><a href="#"><i class="icon-food"></i> 平台活动区  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Daily/activity_banner')}">Banner图</a></li>
+              <li><a href="{:U('Daily/registration_integral')}">注册送积分</a></li>
+              <li><a href="{:U('Daily/daily_draw')}">每日抽奖</a></li>
+              <li><a href="{:U('Daily/commodity')}">抢换通道</a></li>
+            </ul>
+          </li>
+          
+          <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 爱心专区  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Love/love_donation')}">爱心捐赠</a></li>
+              <li><a href="{:U('Love/adoption_center')}">领养中心</a></li>
+              <li><a href="{:U('Love/show_love')}">爱心展示</a></li>
+              <li><a href="{:U('Order/search')}">宠物申领</a></li>
+            </ul>
+           </li>
+
+          
+          <li class="has_sub"><a href="#"><i class="icon-file-alt"></i> 订单管理  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Order/index')}">订单管理</a></li>
+              <li><a href="{:U('Order/search')}">订单搜索</a></li>
+            </ul>
+           </li>
+
+            <li class="has_sub"><a href="#"><i class="icon-bar-chart"></i> 统计数据  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+            <ul>
+              <li><a href="{:U('Index/order_statistics')}">订单统计</a></li>
+            </ul>
+          </li>
+
+        
+          <li class="has_sub"><a href="#"><i class="icon-sitemap"></i> 会员管理  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+          <ul>
+              <li><a href="{:U('Customer/member')}">会员</a></li>
+              <li><a href="{:U('Customer/search')}">会员搜索</a></li>
+              <li><a href="{:U('Customer/consumption_record')}">会员消费记录</a></li>
+            </ul>
+           </li>
+           
+            <li class="has_sub"><a href="#"><i class="icon-exchange"></i> 评论管理  <span class="pull-right"><i class="icon-chevron-right"></i></span></a>
+          <ul>
+              <li><a href="{:U('Customer/comment')}">评论管理</a></li>
+            </ul>
+           </li>
+          
+          
+        </ul>
+    </div>
+    

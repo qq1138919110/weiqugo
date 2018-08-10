@@ -1,0 +1,561 @@
+<include file="public:header"/>
+
+    <!-- Sidebar ends -->
+
+    <!-- Main bar -->
+    
+    <style type ="text/css">
+
+.demo{width:700px;margin:0 auto}
+    .btn:hover{background-color: #e95a00;text-decoration: none}
+    .ul_pics li{float:left;width:160px;height:160px;border:1px solid #ddd;padding:2px;text-align: center;margin:0 5px 5px 0;}
+    .ul_pics li .img{width: 160px;height: 140px;display: table-cell;vertical-align: middle;}
+    .ul_pics li img{max-width: 160px;max-height: 140px;vertical-align: middle;}
+    .progress{position:relative;padding: 1px; border-radius:3px; margin:60px 0 0 0;} 
+    .bar {background-color: green; display:block; width:0%; height:20px; border-radius:3px; } 
+    .percent{position:absolute; height:20px; display:inline-block;top:3px; left:2%; color:#fff } 
+    .img_close{background: transparent url('__IMG__/bg_icon.png') no-repeat scroll -25px 0px; position: absolute; width: 15px; height: 15px; right: -7px; top: -7px}
+</style>
+     <link href="__CSS__zyUpload.css" rel="stylesheet">
+     <script type="text/javascript" src="__JS__jedate.js"></script>
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">新建抢换商品</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+         
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container">
+          <div>
+          <form id="info_form" action="{:U('Daily/commodity_add')}" method="post"enctype="multipart/form-data">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#home" role="tab" data-toggle="tab">基本信息</a></li>
+              
+            
+
+            </ul>
+
+            <!-- Tab panes -->
+        <div class="tab-content">
+              <div role="tabpanel" class="tab-pane active" id="home">
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">编号</label>
+                  <div class="col-lg-2">
+                    <input type="text" class="form-control" value="0" name="good_no">
+                  </div>
+                  <div class="col-lg-3" style="margin-left:-18px; margin-top:6px;">（决定展示顺序，编号越小越靠前）</div>
+                </div>
+          
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">商品名称</label>
+                  <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="商品名称" name="good_name" id="good_name">
+                  </div>
+                </div>
+                
+
+               
+
+                
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">原积分</label>
+                  <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="原积分" name="original_price" id="original_price">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">积分</label>
+                  <div class="col-lg-2">
+                    <input type="text" class="form-control" placeholder="积分" name="good_value" id="good_value">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                 <label class="col-lg-1 control-label">商品单位</label>
+                 <div class="col-lg-2">
+                   <input type="text" class="form-control" placeholder="如个、斤、份" name="unit">
+                 </div>
+                </div>
+
+
+
+
+                <div class="form-group row">
+                 <label class="col-lg-1 control-label">商品产地</label>
+                 <div class="col-lg-2">
+                   <input type="text" class="form-control"   placeholder="商品产地" name="goods_producer">
+                 </div>
+                </div>
+
+                 <div class="form-group row">
+                  <label class="col-lg-1 control-label">开始时间</label>
+                  <div class="col-lg-3">
+                    <input class="datainp form-control" id="dateinfo" type="text" placeholder="请选择"  readonly name="start_time">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">结束时间</label>
+                  <div class="col-lg-3">
+                    <p class="datep"><input class="datainp form-control" id="dateinfoooo" type="text" placeholder="请选择"  readonly name="end_time"></p>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">是否开启商品属性</label>
+                  <div class="col-lg-2">
+                    <select class="form-control" name="is_good_attr">
+                    <option selected="selected" value="2">否</option>
+                    <option  value="1">是</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label">商品状态</label>
+                  <div class="col-lg-2">
+                    <select class="form-control" name="good_status">
+                    <option selected="selected" value="1">正常</option>
+                    <option value="2">停售</option>
+                    </select>
+                  </div>
+                </div>
+                
+                  <div class="form-group row">
+                  <label class="col-lg-1 control-label" style="margin-top:10px;">参数</label>
+                  <div class="col-lg-6">
+                   <script id="editorrr" name="parameter" type="text/plain" style="width:800px;height:200px;"></script>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-1 control-label" style="margin-top:10px;">详情</label>
+                  <div class="col-lg-6">
+                     <script id="editor" name="discribe"type="text/plain" style="width:800px;height:300px;"></script>
+                  </div>
+                </div>
+              
+                 <div class="form-group row">
+                   <div class="control-group">
+                     <label class="col-lg-3 control-label">商品封面图</label>
+                        <div class="clearfix demo2">
+                        <div class="convent_choice">
+                          <div class="andArea andArea-me">
+                            <div class="filePicker"></div>
+                            <input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>
+                          </div>
+                        </div>
+                        <div id="demo" class="demo clearfix">
+                          <div class="upload_box">
+                            <div class="upload_main">
+                              <div class="upload_choose"></div>
+                              <div id="preview" class="upload_preview"></div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
+
+               <div class="form-group row">
+                   <div class="control-group">
+                     <label class="col-lg-3 control-label">商品图bianner</label>
+                     <div class="controls demo">
+                       <a class="btn" id="btn">上传图片</a> 最大2mb，支持jpg，gif，png格式。
+                       <ul id="ul_pics" class="ul_pics clearfix">
+                       <!-- <notempty name="one.more_img">
+                       <php>$moreimg = explode(',',$one['more_img']);</php>
+                       <volist name="moreimg" id="moree">
+                       <li><div class='img' style='position: relative;'><img src='__UPLOADS__{$moree}'/><span class='img_close'></span><input type='hidden' name='more_img[]' value='{$moree}' /></div><p>{$moree|substr='11'}</p></li>
+                       </volist>
+                       </notempty> -->
+                       </ul>
+                     </div>
+                    </div>
+                 </div>
+
+
+            </div> 
+
+              
+        
+
+        
+            
+              
+            </div>
+            <div class="col-lg-9">
+            <button type="submit" class="btn btn-primary" id="goodsave">保存</button>
+            </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<script type="text/javascript">
+    jeDate({
+    dateCell:"#dateinfo",
+    format:"YYYY-MM-DD hh:mm:ss",
+    isinitVal:true,
+    isTime:true, //isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){}
+  })
+   jeDate({
+    dateCell:"#dateinfoooo",
+    format:"YYYY-MM-DD hh:mm:ss",
+    isinitVal:true,
+    isTime:true, //isClear:false,
+    minDate:"2014-09-19 00:00:00",
+    okfun:function(val){}
+  }) 
+</script>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script src="__JS__zyFile.js"></script>
+<script src="__JS__zyUpload.js"></script>
+<script src="__JS__jq22.js"></script>
+   <script>
+    $(document).ready(function(){
+      if($(".filePicker").length > 0){
+          $(".filePicker").bind("click", function(e){
+            if ($(".upload_append_list").length < 1) {
+                    $("#fileImage").click();
+                } else if ($(".upload_append_list").length < 2) {
+                  alert('商品封面图只能一张');
+                }
+            })
+        }
+    });
+    </script>
+
+ 
+<script type="text/javascript">
+  $(function(){
+$("form").submit(function(){
+      var good_name =$('#good_name').val();
+    if(good_name==''){
+      alert('商品名称不能为空');
+      return false;
+    }
+    
+       
+        var re = /^[0-9]\d*$/;
+        var good_value =$('#good_value').val();
+        if(!re.test(good_value)){
+          alert('积分只能整数');
+          return false;
+        }
+        var original_price =$('#original_price').val();
+        if(!re.test(original_price)){
+          alert('原积分只能整数');
+          return false;
+        }
+       
+      var self = $(this);
+      $.ajax({
+        url:self.attr("action"),
+        type:"POST",
+        data:self.serialize(),
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+              window.location.href="{:U('Daily/commodity')}";
+          }else if(data==3){
+            alert('开始活动时间不能大于结束活动时间');
+            return false;
+          }else if(data==4){
+            alert('编号只能为数字');
+            return false;
+          }else if(data==2){
+              alert('服务器延迟,请重新再试');
+              window.location=location;
+          }
+        }
+      });
+      return false;
+     });
+});
+
+</script>
+   <script type="text/javascript" src="__JS__plupload.full.min.js"></script>
+    <script type="text/javascript">
+    var category_add = "{:U('Index/get_son')}";
+    var delete_more = "{:U('Index/delete_more')}";
+    var upload = "__UPLOADS__";
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    
+    var uploader = new plupload.Uploader({
+                //创建实例的构造方法
+                runtimes: 'html5,flash,silverlight,html4', 
+                //上传插件初始化选用那种方式的优先级顺序
+                browse_button: 'btn', // 上传按钮
+                url: "{:U('Shop/more_img')}", //远程上传地址
+                flash_swf_url: '/public/Admin/js/Moxie.swf', //flash文件地址
+                silverlight_xap_url: '/public/Admin/js/Moxie.xap', //silverlight文件地址
+                filters: {
+                    max_file_size: '2mb', //最大上传文件大小（格式100b, 10kb, 10mb, 1gb）
+                    mime_types: [{title: "files", extensions: "jpg,png,gif,jpeg"}]
+                    //允许文件上传类型
+                },
+                multi_selection: false, //true:ctrl多文件上传, false 单文件上传
+                init: {
+                    FilesAdded: function(up, files) { //文件上传前 
+                        if ($("#ul_pics").children("li").length > 5) {
+                            alert("您上传的图片太多了！");
+                            // uploader.destroy();
+                            return false;
+                        } else {
+                            var li = '';
+                            plupload.each(files, function(file) { //遍历文件
+                                li += "<li id='" + file['id'] + "'><div class='progress'><span class='bar'></span><span class='percent'>0%</span></div></li>";
+                            });
+                            $("#ul_pics").append(li);
+                            uploader.start();
+                        }
+                    },
+                    UploadProgress: function(up, file) { //上传中，显示进度条
+                 var percent = file.percent;
+                        $("#" + file.id).find('.bar').css({"width": percent + "%"});
+                        $("#" + file.id).find(".percent").text(percent + "%");
+                    },
+                    FileUploaded: function(up, file, info) { //文件上传成功的时候触发
+                        var data = JSON.parse(info.response);
+                        $("#" + file.id).html("<div class='img' style='position: relative;'><img src='" + data.path + data.name + "'/><span class='img_close'></span><input type='hidden' name='more_img[]' value='"+ data.path + data.name +"' /></div><p>" + data.name + "</p>");
+                    },
+                    Error: function(up, err) { //上传出错的时候触发
+                        alert(err.message);
+                    }
+                }
+            });
+            uploader.init();
+</script>
+<script type="text/javascript">
+    $(function(){ 
+$(document).on('click','.img_close',function(){
+  $(this).parent().parent('li').remove();
+    });
+    });
+</script>
+<script type="text/javascript" charset="utf-8" src="__UEDITOR__ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8" src="__UEDITOR__ueditor.all.min.js"></script>
+<script type="text/javascript">
+  //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+    var ueee = UE.getEditor('editorrr');
+</script>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+            <!-- Copyright info -->
+            <p class="copy">Copyright &copy; 2016 | <a href="http://gzguanchi.com/">广州讯广信息科技有限责任公司</a> 版权所有</p>
+      </div>
+    </div>
+  </div>
+</footer>   
+
+<!-- Footer ends -->
+
+<!-- Scroll to top -->
+<span class="totop"><a href="#"><i class="icon-chevron-up"></i></a></span> 
+
+<!-- JS -->
+
+<script src="__JS__bootstrap.js"></script> <!-- Bootstrap -->
+<script src="__JS__jquery-ui-1.9.2.custom.min.js"></script> <!-- jQuery UI -->
+<script src="__JS__fullcalendar.min.js"></script> <!-- Full Google Calendar - Calendar -->
+<script src="__JS__jquery.rateit.min.js"></script> <!-- RateIt - Star rating -->
+<script src="__JS__jquery.prettyPhoto.js"></script> <!-- prettyPhoto -->
+
+<!-- jQuery Flot -->
+<script src="__JS__excanvas.min.js"></script>
+<script src="__JS__jquery.flot.js"></script>
+<script src="__JS__jquery.flot.resize.js"></script>
+<script src="__JS__jquery.flot.pie.js"></script>
+<script src="__JS__jquery.flot.stack.js"></script>
+
+<!-- jQuery Notification - Noty -->
+<script src="__JS__jquery.noty.js"></script> <!-- jQuery Notify -->
+<script src="__JS__default.js"></script> <!-- jQuery Notify -->
+<!-- <script src="__JS__bottom.js"></script> <!-- jQuery Notify -->
+<script src="__JS__topRight.js"></script> <!-- jQuery Notify -->
+<script src="__JS__top.js"></script> <!-- jQuery Notify -->
+<!-- jQuery Notification ends -->
+
+<script src="__JS__sparklines.js"></script> <!-- Sparklines -->
+<script src="__JS__jquery.cleditor.min.js"></script> <!-- CLEditor -->
+<script src="__JS__bootstrap-datetimepicker.min.js"></script> <!-- Date picker -->
+
+<script src="__JS__bootstrap-switch.min.js"></script> <!-- Bootstrap Toggle -->
+<script src="__JS__filter.js"></script> <!-- Filter for support page -->
+<script src="__JS__custom.js"></script> <!-- Custom codes -->
+<script src="__JS__charts.js"></script> <!-- Charts & Graphs -->
+
+
+<!-- Script for this page -->
+<script type="text/javascript">
+$(function () {
+
+    /* Bar Chart starts */
+
+    var d1 = [];
+    for (var i = 0; i <= 20; i += 1)
+        d1.push([i, parseInt(Math.random() * 30)]);
+
+    var d2 = [];
+    for (var i = 0; i <= 20; i += 1)
+        d2.push([i, parseInt(Math.random() * 30)]);
+
+
+    var stack = 0, bars = true, lines = false, steps = false;
+    
+    function plotWithOptions() {
+        $.plot($("#bar-chart"), [ d1, d2 ], {
+            series: {
+                stack: stack,
+                lines: { show: lines, fill: true, steps: steps },
+                bars: { show: bars, barWidth: 0.8 }
+            },
+            grid: {
+                borderWidth: 0, hoverable: true, color: "#777"
+            },
+            colors: ["#ff6c24", "#ff2424"],
+            bars: {
+                  show: true,
+                  lineWidth: 0,
+                  fill: true,
+                  fillColor: { colors: [ { opacity: 0.9 }, { opacity: 0.8 } ] }
+            }
+        });
+    }
+
+    plotWithOptions();
+    
+    $(".stackControls input").click(function (e) {
+        e.preventDefault();
+        stack = $(this).val() == "With stacking" ? true : null;
+        plotWithOptions();
+    });
+    $(".graphControls input").click(function (e) {
+        e.preventDefault();
+        bars = $(this).val().indexOf("Bars") != -1;
+        lines = $(this).val().indexOf("Lines") != -1;
+        steps = $(this).val().indexOf("steps") != -1;
+        plotWithOptions();
+    });
+
+    /* Bar chart ends */
+
+});
+
+
+/* Curve chart starts */
+
+$(function () {
+    var sin = [], cos = [];
+    for (var i = 0; i < 14; i += 0.5) {
+        sin.push([i, Math.sin(i)]);
+        cos.push([i, Math.cos(i)]);
+    }
+
+    var plot = $.plot($("#curve-chart"),
+           [ { data: sin, label: "sin(x)"}, { data: cos, label: "cos(x)" } ], {
+               series: {
+                   lines: { show: true, fill: true},
+                   points: { show: true }
+               },
+               grid: { hoverable: true, clickable: true, borderWidth:0 },
+               yaxis: { min: -1.2, max: 1.2 },
+               colors: ["#1eafed", "#1eafed"]
+             });
+
+    function showTooltip(x, y, contents) {
+        $('<div id="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #000',
+            padding: '2px 8px',
+            color: '#ccc',
+            'background-color': '#000',
+            opacity: 0.9
+        }).appendTo("body").fadeIn(200);
+    }
+
+    var previousPoint = null;
+    $("#curve-chart").bind("plothover", function (event, pos, item) {
+        $("#x").text(pos.x.toFixed(2));
+        $("#y").text(pos.y.toFixed(2));
+
+        if ($("#enableTooltip:checked").length > 0) {
+            if (item) {
+                if (previousPoint != item.dataIndex) {
+                    previousPoint = item.dataIndex;
+                    
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                    
+                    showTooltip(item.pageX, item.pageY, 
+                                item.series.label + " of " + x + " = " + y);
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;            
+            }
+        }
+    }); 
+
+    $("#curve-chart").bind("plotclick", function (event, pos, item) {
+        if (item) {
+            $("#clickdata").text("You clicked point " + item.dataIndex + " in " + item.series.label + ".");
+            plot.highlight(item.series, item.datapoint);
+        }
+    });
+
+});
+
+/* Curve chart ends */
+</script>
+
+</body>
+</html>

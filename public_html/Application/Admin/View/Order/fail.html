@@ -1,0 +1,156 @@
+<include file="public:header"/>
+<link href="__CSS__page.css" rel="stylesheet" type="text/css" />
+
+    <!-- Sidebar ends -->
+
+    <!-- Main bar -->
+    <link rel="stylesheet" type="text/css" href="__CSS__timepicki.css"/>
+    <style type ="text/css">
+    .timetime{padding:8px 5px;width:200px;border-radius:3px;border:1px solid #ddd;outline:none;text-align:center;color:#666;box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.35);}
+.timetime:focus{border-color:#ccc;color:#333;}
+</style>
+    
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left">
+          <!-- page meta -->
+          <span class="page-meta">取消订单</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container">
+          <div>
+         
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" ><a href="{:U('Order/index')}">待发货订单</a></li>
+              <li role="presentation"><a href="{:U('Order/confirmed')}">已发货订单</a></li>
+              <li role="presentation"><a href="{:U('Order/successful')}">成功订单</a></li>
+              <li role="presentation" class="active"><a href="{:U('Order/fail')}">取消订单</a></li>
+              
+
+            </ul>
+
+            <!-- Tab panes -->
+        <div class="tab-content">
+          
+           
+             
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>
+                            <span class="uni">
+                              <input type='checkbox'  id="checkall"/>
+                            </span>
+                          </th>
+                           <th>下单顾客</th>
+                          <th>订单编号</th>
+                          <th>下单时间</th>
+                          <th>支付时间</th>
+                          <th>详情</th>
+                          <th>备注</th>
+                          <th>总价</th>
+                          <th>收货人姓名</th>
+                          <th>收货人电话</th>
+                          <th>收货地址</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name="list" id="order">
+                        <tr>
+                          <td>                            
+                            <span class="uni">
+                              <input type='checkbox'  value="{$order.order_id}" name="order_id[]"/>
+                            </span>
+                          </td>
+                         <td>{$order.uid.user_phone}</td>
+                          <td>{$order.order_no}</td>
+                          <td>{:date('Y-m-d H:i:s',$order['booking_time'])}</td>
+                          <td>{:date('Y-m-d H:i:s',$order['pay_time'])}</td>
+                          <td>
+                          <volist name="order['order_detail']" id="shop_detail">
+                          <?php
+                          if($shop_detail['goods_attr']){
+                            echo $shop_detail['goods_name'].'('.$shop_detail['goods_attr'].')'.'x'.$shop_detail['sales_amount'].',';
+                          }else{
+                            echo $shop_detail['goods_name'].'x'.$shop_detail['sales_amount'].','; 
+                          }
+                          
+                          ?>
+                          </volist>
+                          </td>
+                          <td>{$order.c_remark}</td>
+                          <td>{$order.amount}</td>
+                          <td>{$order.consignee_name}</td>
+                          <td>{$order.consignee_phone}</td>
+                          <td>{$order.address}</td>
+                        </tr>
+                        </volist>
+                      </tbody>
+                    </table>
+                  <div class="widget-foot">
+
+
+                      
+                        <ul class="pagination pull-right">
+                          <div class="sabrosus">{$page}</div>
+                        </ul>
+                      
+                      <div class="clearfix"></div> 
+
+                    </div>
+           
+
+           
+              
+            </div>
+            
+            
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.2.2.min.js"></script>    
+<script type="text/javascript">
+        $(function() {
+           $("#checkall").click(function() {
+                $('input[name="menu[]"]').attr("checked",this.checked); 
+            });
+            var $subBox = $("input[name='menu[]']");
+            $subBox.click(function(){
+                $("#checkall").attr("checked",$subBox.length == $("input[name='menu[]']:checked").length ? true : false);
+            });
+        });
+    </script>
+    <include file="public:footer"/>
+<!-- Content ends -->
+
+<!-- Footer starts -->

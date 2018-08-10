@@ -1,0 +1,143 @@
+<include file="public:header"/>
+<link href="__CSS__page.css" rel="stylesheet" type="text/css" />
+<!-- Header ends -->
+
+<!-- Main content starts -->
+
+
+    <!-- Sidebar ends -->
+
+  	<!-- Main bar -->
+  	<div class="mainbar">
+
+      <!-- Page heading -->
+      <div class="page-head">
+       
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="widget">
+                <div class="widget-head">
+                  <div class="pull-left"><a href="{:U('Shop/f_classification_add')}"><button type="button" class="btn btn-success">新建分类</button></a></div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>  
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget-content medias">
+                  
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          
+                          <th>分类名称</th>
+                          <th>编号</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        <volist name="type" id="type">
+                        <tr>
+                          
+                          <td>{$type.type_name}</td>
+                          <td>{$type.type_no}</td>
+                          
+
+                       
+                         
+                          <td>
+
+                              <a href="{:U('Shop/f_classification_update',array('type_id'=>$type['type_id']))}"><button class="btn btn-xs btn-default"><i class="icon-pencil"></i> </button></a>
+                              <button class="btn btn-xs btn-danger deletegoodstype"><i class="icon-remove"></i> </button>
+                              <input type="hidden" class="typeididid" value="{$type['type_id']}">
+                          
+                          </td>
+                        </tr>
+                      </volist>
+
+                                                                             
+
+                      </tbody>
+                    </table>
+
+                    <div class="widget-foot">
+
+
+                      
+                        <ul class="pagination pull-right">
+                          <div class="sabrosus">{$page}</div>
+                        </ul>
+                      
+                      <div class="clearfix"></div> 
+
+                    </div>
+
+                </div>
+              </div>  
+              
+            </div>
+          </div>
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $(document).on('click','.deletegoodstype',function(){
+      var type_id =$(this).next('input').val();
+      if(type_id==''){
+        alert('非法操作');
+        location=location;
+      }
+      $.ajax({
+        type:'POST',
+        url:"{:U('Shop/f_classification_delete')}",
+        data:{type_id:type_id},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            alert('非法操作');
+          }else if(data==2){
+            alert('该分类下面，还有商品无法删除')
+            location=location;
+          }else if(data==3){
+            location=location;
+          }else if(data==4){
+            alert('服务器延迟，请刷新后再试');
+            location=location;
+          }
+        }
+      })
+    });
+  });
+
+</script>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<include file="public:footer"/>

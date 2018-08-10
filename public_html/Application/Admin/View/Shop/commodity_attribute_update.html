@@ -1,0 +1,251 @@
+<include file="public:header"/>
+
+    <!-- Sidebar ends -->
+
+  	<!-- Main bar -->
+     <style type ="text/css">
+ .attr_close{background: transparent url('__IMG__bg_icon.png')no-repeat scroll -25px 0;position:absolute;width:15px;height:15px;right:2px;top:28px;}
+</style>
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+         
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left">修改商品属性</div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                    <!-- Form starts.  -->
+                      <form class="form-horizontal" role="form" method="post" action="{:U('Shop/commodity_attribute_update')}">
+                      
+                    <div class="form-group" style="margin-left:5px;">
+                    <label class="col-lg-2 control-label"><button type="button" class="btn btn-success addshuxing">添加商品属性</button></label>
+                  </div>
+
+                      <div class="form-group">
+                       <div id="shuxing_add" style="margin-left:10px;">
+                       <volist name="goods_attr" id="goods_a">
+                       <?php
+                       $attr_symbol_path =explode(',',$goods_a['attr_symbol_path']);
+                       ?>
+                       <div>
+                       <br />
+                        <volist name="attr" id="at">
+                         <div class="col-lg-2">
+                          <span >{$at.attr_name}:</span>
+                          <select class="form-control" name="{$at.attr_key_id}[]">
+                          <volist name="at.value" id="att">
+                          <option  value="{$att.symbol}" <?php
+                     if (in_array($att['symbol'],$attr_symbol_path)) {
+                   echo "selected=selected";
+                    }
+                  ?>>{$att.attr_value}</option>
+                          </volist>
+                          </select>
+                         </div>
+                        </volist> 
+
+                      <div class="col-lg-2">
+                      <span >积分</span>
+                        <input type="text" class="form-control" placeholder="积分" name="money[]" id="money" value="{$goods_a.money}">
+                      </div>
+
+                      <div class="col-lg-2">
+                      <span >库存量</span>
+                        <input type="text" class="form-control" placeholder="库存量" name="number[]" id="number" value="{$goods_a.number}">
+                      </div>
+                      <input type="hidden" name="sku_id[]" value="{$goods_a.sku_id}">
+                      <button type="button" class="btn btn-danger xxxxxx" style="margin-top:22px">删除</button>
+                     <!--  <div class="col-lg-4" style="margin-left:-18px; margin-top:6px;">（如颜色，尺寸）</div> -->
+                      </div>
+                      </volist>
+                      </div>
+                      </div>
+
+                   
+                    
+
+
+
+                     
+
+                                             
+                
+                      <div class="form-group">
+                      <div class="col-lg-9">
+                      <input type="hidden"  class="good_id" name="good_id" value="{:I('get.good_id')}">
+                      <button type="submit" class="btn btn-primary">保存</button>
+                      </div>
+                      </div>
+                      </form>
+                        <!--      开始      !-->
+                      
+                      <span id="naocan" style="display:none;">
+                        <div>
+                        <br />
+                        <volist name="attr" id="at">
+                         <div class="col-lg-2">
+                          <span >{$at.attr_name}:</span>
+                          <select class="form-control" name="{$at.attr_key_id}[]">
+                          <volist name="at.value" id="att">
+                          <option  value="{$att.symbol}">{$att.attr_value}</option>
+                          </volist>
+                          </select>
+                         </div>
+                        </volist> 
+
+                      <div class="col-lg-2">
+                      <span >积分</span>
+                        <input type="text" class="form-control" placeholder="积分" name="money[]" id="money">
+                      </div>
+
+                      <div class="col-lg-2">
+                      <span >库存量</span>
+                        <input type="text" class="form-control" placeholder="库存量" name="number[]" id="number">
+                      </div>
+                      <button type="button" class="btn btn-danger xxxxxx" style="margin-top:22px">删除</button>
+                     <!--  <div class="col-lg-4" style="margin-left:-18px; margin-top:6px;">（如颜色，尺寸）</div> -->
+                      </div>
+                    </span>  
+                  
+                  <!--              结束            !-->
+
+                      </div>
+                      </div>
+                      <div class="widget-foot">
+                      <!-- Footer goes here -->
+                      </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+ $(document).on('click','.addshuxing',function(){
+ var good_id =$('.good_id').val();
+    if(good_id==''){
+      location=location;
+    }
+    $.ajax({
+      type:'get',
+      url:"{:U('Shop/get_goods_attr')}",
+      data:{good_id:good_id},
+      dataType:'json',
+      success:function(data){
+        if(data.status==1){
+          var naocan = $('#naocan').html();//获取这个id的内容
+          $('#shuxing_add').append(naocan); //在这id的最后面追加一个元素
+        }else{
+          alert(data.msg);
+          window.location.href="{:U('Shop/commodity')}";
+        }
+      }
+    })
+  });
+  $(document).on('click','.xxxxxx',function(){
+      if(confirm('确定要删除')){
+   $(this).parent('div').remove();
+
+    var id =$(this).prev('input').val();//获取这个id的value
+    $.ajax({
+     url:"{:U('Shop/commodity_attribute_delete')}",
+    type:'post',
+    data:{id:id},
+    dataType:'json',
+    success:function(res){
+      if(res == 1){
+        alert('删除成功');
+      }else{
+        alert('删除失败');
+      }
+     }
+    });
+   }
+   
+  });
+});
+</script>
+<script type="text/javascript">
+  $(function(){
+
+$("form").submit(function(){
+     
+      var good_id =$('.good_id').val();
+      if(good_id==''){
+        location=location;
+      }
+      var self = $(this);
+      $.ajax({
+        url:self.attr("action"),
+        type:"POST",
+        data:self.serialize(),
+        dataType:'json',
+        success:function(data){
+        if(data.status==0){
+          alert(data.msg);
+          return false;
+        }else if(data.status==1){
+          alert(data.msg);
+          window.location.href="{:U('Shop/commodity')}";
+        }
+        }
+      });
+      return false;
+     });
+  })
+</script>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<include file="public:footer"/>

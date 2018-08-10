@@ -1,0 +1,171 @@
+<include file="public:header"/>
+<link href="__CSS__page.css" rel="stylesheet" type="text/css" />
+<!-- Header ends -->
+
+<!-- Main content starts -->
+
+
+    <!-- Sidebar ends -->
+
+  	<!-- Main bar -->
+  	<div class="mainbar">
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+
+              <div class="widget">
+                <div class="widget-head">
+                  <div class="pull-left"><a href="#"><button type="button" class="btn btn-success xinzenghuihuiyuanyuan">新增会员</button></a></div>
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>  
+                  <div class="clearfix"></div>
+                </div>
+                <div class="widget-content medias">
+                  
+                  <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                         
+                          <th>管理员名称</th>
+                          <th>管理员电话</th>
+                          <th>创建时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                       <volist name="user" id="user">
+                        <tr>
+                          <td>{$user.username}</td>
+                          <td>{$user.phone}</td>
+                          <td>{:date('Y-m-d H:i:s',$user['create_time'])}</td>
+                          <td>
+                          <if condition="$uid eq 1">
+                              <a href="{:U('Index/administrators_update',array('uid'=>$user['id']))}"><button class="btn btn-xs btn-default"><i class="icon-pencil"></i> </button></a>
+                              <if condition="$user['id'] neq 1">
+                             <button class="btn btn-xs btn-danger delete_administrators"><i class="icon-remove"></i> </button>
+                             <input type="hidden" value="{$user['id']}">
+                             </if>
+                              <else />
+                              <if condition="$uid eq $user['id']">
+                              <a href="{:U('Index/administrators_update',array('uid'=>$user['id']))}"><button class="btn btn-xs btn-default"><i class="icon-pencil"></i> </button></a>
+                              </if>
+                              </if>
+                          </td>
+                        </tr>
+                      </volist>
+
+                                                                          
+
+                      </tbody>
+                    </table>
+
+                    <div class="widget-foot">
+
+
+                      
+                        <ul class="pagination pull-right">
+                         <div class="sabrosus">{$page}</div>
+                        </ul>
+                      
+                      <div class="clearfix"></div> 
+
+                    </div>
+
+                </div>
+              </div>  
+              
+            </div>
+          </div>
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+
+   
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){ 
+      $(".make-switch").click(function(event) {
+        /* Act on the event */
+        alert($(this).siblings('input').val());
+      });
+
+      $(".oBtn1").click(function(event) {
+        $(".alert1").show();
+      });
+      $(".alert1 .btn").click(function(event) {
+        $(".alert1").hide();
+      });
+      $(".oBtn2").click(function(event) {
+        $(".alert2").show();
+      });
+      $(".alert2 .btn").click(function(event) {
+        $(".alert2").hide();
+      });
+    });
+</script>
+<script type="text/javascript">
+  $(function(){
+   $(document).on('click','.xinzenghuihuiyuanyuan',function(){
+    $.ajax({
+      url:"{:U('Index/judge')}",
+      type:'POST',
+      dataType:'json',
+      success:function(data){
+        if(data==1){
+          window.location.href="{:U('Index/administrators_add')}";
+        }else{
+          alert('只有最高管理员才能添加管理员');
+          return false;
+        }
+      }
+    })
+   })
+   $(document).on('click','.delete_administrators',function(){
+    var id =$(this).next('input').val();
+    if(id==''){
+      location=location;
+    }
+    $.ajax({
+      type:"POST",
+      url:"{:U('Index/delete_administrators')}",
+      data:{id:id},
+      dataType:'json',
+      success:function(data){
+        if(data==1){
+          alert('只有最高管理员才能删除管理员');
+          location=location;
+        }else if(data==2){
+          location=location;
+        }else if(data==3){
+          location=location;
+        }else if(data==4){
+          alert('服务器延迟，请刷新后再试');
+          location=location;
+        }
+      }
+    });
+   });
+  });
+
+</script>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<include file="public:footer"/>

@@ -1,0 +1,112 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left">在微取GO(待定)停留30分钟</div>
+                
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                     <form class="form-horizontal" role="form">
+                              
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">是否开启在微取GO(待定)停留30分钟送积分</label>
+                                  <div class="col-lg-2">
+                                    <select class="form-control" name="active_opening">
+                                      <option value="1" <if condition="$eight['active_opening'] eq 1">selected="selected"</if>>开启</option>
+                                      <option value="2" <if condition="$eight['active_opening'] eq 2">selected="selected"</if>>关闭</option>
+                                    </select>
+                                  </div>
+                                </div>     
+
+                               <div class="form-group">
+                                  <label class="col-lg-4 control-label">送多少积分</label>
+                                  <div class="col-lg-2">
+                                    <input type="text" class="form-control" placeholder="积分" id="integral" name="integral" value="{$eight.integral}">
+                                  </div>
+                                </div>
+                             
+                                
+                                    <hr />
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9">
+                                    <button type="submit" class="btn btn-primary">保存</button>
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+$("form").submit(function(){
+        var re = /^[0-9]\d*$/;
+        var integral =$('#integral').val();
+        if(!re.test(integral)){
+          alert('积分只能整数');
+          return false;
+        }
+      var self = $(this);
+      $.ajax({
+        url:self.attr("action"),
+        type:"POST",
+        data:self.serialize(),
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+              window.location.href=location;
+          }else if(data==2){
+              alert('服务器延迟,请重新再试');
+              window.location=location;
+          }
+        }
+      });
+      return false;
+     });
+});
+
+</script>
+<include file="public:footer"/>

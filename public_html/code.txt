@@ -1,0 +1,1 @@
+https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxb5e50fea3e72762d&redirect_uri=http%3A%2F%2Fw.gzguanchi.com%2Findex.php%3Fs%3D%2FHome%2FOrder%2Fcart%26puid%3D4&response_type=code&scope=snsapi_base&state=123#wechat_redirect

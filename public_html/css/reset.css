@@ -1,0 +1,132 @@
+/* 重置CSS */
+html{
+	-webkit-top-highlight-color :rgba(0,0,0,0);
+}
+html, body, div, span, applet, object, iframe, 
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, 
+a, abbr, acronym, address, big, cite, code, 
+del, dfn, em, img, ins, kbd, q, s, samp, 
+small, strike, strong, sub, sup, tt, var, 
+b, u, i, center, 
+dl, dt, dd, ol, ul, li, 
+fieldset, form, label, legend, 
+table, caption, tbody, tfoot, thead, tr, th, td, 
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary, 
+time, mark, audio, video { 
+	margin: 0; 
+	padding: 0; 
+	border: 0; 
+	font-size: 100%; 
+	font: inherit; 
+	vertical-align: baseline; 
+}
+body { 
+	font-size:14px; 
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	line-height: 1; 
+	color: #000 !important;
+	max-width: 640px;
+	margin: 0 auto;
+	overflow-x: hidden;
+}
+a{
+	text-decoration: none;
+}
+input,
+textarea {
+    border: 0; 
+    -webkit-appearance: none; 
+    padding-right: 0;
+    outline: none !important; 
+}
+
+/* HTML5 display-role reset for older browsers */ 
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { 
+	display: block; 
+} 
+ol, ul { 
+	list-style: none; 
+} 
+blockquote, q { 
+	quotes: none; 
+} 
+blockquote:before, blockquote:after, 
+q:before, q:after { 
+	content: ''; 
+	content: none; 
+} 
+table { 
+	border-collapse: collapse; 
+	border-spacing: 0; 
+}
+button{
+	background: none;
+	border: none;
+}
+/* bootstrap */ 
+.clearfix:after {
+	content: "."; 
+	display: block; 
+	height:0; 
+	clear:both; 
+	visibility: hidden;
+}
+.clearfix { 
+	*zoom:1; 
+}
+.img-responsive {
+	display:block;
+	max-width:100%;
+	height:auto
+}
+.center-block {
+	display:block;
+	margin-left:auto;
+	margin-right:auto
+}
+.pull-right {
+	float: right !important;
+}
+.pull-left {
+	float: left !important;
+}
+.hide {
+	display:none !important;
+}
+.show {
+	display:block !important;
+}
+
+/* iconfont */ 
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1482206391478'); /* IE9*/
+  src: url('../fonts/iconfont.eot?t=1482206391478#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1482206391478') format('woff'), /* chrome, firefox */
+  url('../fonts/iconfont.ttf?t=1482206391478') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('../fonts/iconfont.svg?t=1482206391478#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*弹出通知效果*/
+.alert-notice{
+    position: fixed;
+    top: 0;
+    display: none;
+}
+.alert-notice p{
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 10px;
+}

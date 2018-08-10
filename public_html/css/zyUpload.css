@@ -1,0 +1,155 @@
+.demo2{
+	margin-bottom: 30px;
+}
+.upload_append_list{
+	height:100%; 
+	float: left; 
+	position:relative; 
+	margin-left:30px;
+}
+.upload_append_list:hover{
+	cursor:pointer;
+}
+.filePicker{
+	background: url(../images/send.png);
+	width: 80px;
+	height: 80px;
+	display: block;
+	float: left;
+	cursor: pointer;
+	margin-bottom: 10px;
+	margin-top: 4px;
+}
+#fileImage{
+	display: none;
+}
+.info{
+	float: left;
+	color:#666666;
+	display: inline-block;
+}
+.btns{
+	position: fixed;
+	line-height: 30px;
+    bottom: 0;
+	width: 96%;
+	text-align: center;
+	margin-left: 2%;
+}
+.webuploader_pick:hover{
+	border: 1px solid #BBB;
+}
+.upload_btn{
+    background: none repeat scroll 0 0 #d9534f;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    font-size: 14px;
+    padding: 0 18px;
+    position: relative;
+    line-height: 34px;
+    transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-webkit-transition: background 0.2s;
+	-o-transition: background 0.2s;
+	width: 100%;
+}
+/* 每个图片上的操作bar */
+.file_bar{
+	margin: 0;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    top: 0px;
+    height:0px;
+    padding:0px;
+    margin: 0;
+    opacity: 0.8;
+    color:#fff;
+    background: none repeat scroll 0 0 #000000;
+    transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-o-transition: all 0.5s;
+	overflow: hidden;
+}
+.file_bar a{
+	color: #FFFFFF;
+    position: absolute;
+    right: 10px;
+}
+.file_hover{
+	height:30px;
+	cursor:pointer;
+}
+.uploadImg{
+	margin:0px;
+}
+.file_progress{
+	display: none;
+	margin: 0;
+	position: absolute;
+	bottom:0px;
+	height:8px;
+	left:0px;
+	right:0px;
+	background: none repeat scroll 0 0 #00B7EE;
+	text-align:center;
+	width: 0%;
+}
+.file_failure{
+	display: none;
+	margin: 0;
+	position: absolute;
+	bottom:0px;
+	height:24px;
+	left:0px;
+	right:0px;
+	background: none repeat scroll 0 0 red;
+	color:#fff;
+	text-align:center;
+}
+.file_name{
+	margin:0px;
+	white-space: nowrap;
+    width: 66%;                  /* IE6 需要定义宽度 */
+    overflow: hidden;            
+    -o-text-overflow: ellipsis;    /* Opera */
+    text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
+    float: left;
+}
+.file_del{
+	background: url("../images/del.png") no-repeat scroll 0 0 transparent;
+	width:18px;
+	height:18px;
+	display: inline;
+	-moz-user-select: none;
+	position: absolute;
+	right: 2px;
+}
+/* 设置图片等比例缩放 并且垂直居中*/
+.upload_append_list a {
+	display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #DFDFDF;
+}
+.upload_append_list img {
+	border: solid 1px #66f;
+	vertical-align: middle; /*图片垂直居中*/
+}
+.uploadImg {
+	margin: auto;
+}
+.uploadImg img{
+	border:none;
+	height: 80px;
+	width: 80px;
+}
+.upload_append_list{
+	height: 110px;
+	margin-top: 4px;
+}
+
+

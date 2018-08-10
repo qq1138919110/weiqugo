@@ -1,0 +1,12 @@
+#filters{margin:1%;padding:0;list-style:none;}
+#filters li{float:left;}
+#filters li span{display:block;padding:5px 20px;text-decoration:none;color:#666;cursor:pointer;}
+#filters li span.active{background:#e95a44;color:#fff;}
+#portfoliolist .portfolio{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;width:23%;*width:22%;margin:1%;display:none;float:left;overflow:hidden;}
+.portfolio-wrapper{overflow:hidden;position:relative!important;background:#666;cursor:pointer;}
+.portfolio img{max-width:100%;position:relative;}
+.portfolio .label{position:absolute;width:100%;height:30px;bottom:-30px;left:0;}
+.portfolio .label-bg{background:#E95A44;width:100%;height:100%;position:absolute;top:0;left:0;}
+.portfolio .label-text{color:#fff;position:relative;z-index:500;padding:5px 8px; font-size: 12px;}
+.portfolio .text-category{display:block; margin-top: 2px;}
+

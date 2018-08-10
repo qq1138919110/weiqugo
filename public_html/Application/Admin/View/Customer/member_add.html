@@ -1,0 +1,174 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">新建会员</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+        
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"></div>
+                
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form">
+                              
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">编号</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="number" value="0">
+                                  </div>
+                                  <div class="col-lg-3" style="margin-left:-18px; margin-top:6px;">（决定展示顺序，编号越小越靠前）</div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">账号</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="username" >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">姓名</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="name">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">性别</label>
+                                  <div class="col-lg-8">
+                                    
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="1"  class="sex" checked>
+                                       男
+                                    
+                                   
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="2" class="sex" >
+                                        女
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">电话</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="phone">
+                                  </div>
+                                  <div class="col-lg-3" style="margin-left:-18px; margin-top:6px;">（找回密码）</div>
+                                </div>
+                                
+                                
+                            
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9" style="margin-left:110px;">
+                                   
+                                    <button type="button" class="btn btn-primary huihuiyuan">保存</button>
+                                   
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+   <script type="text/javascript">
+   $(function(){
+    $(document).on('click','.huihuiyuan',function(){
+
+      var number  =$('#number').val();
+      var username  =$('#username').val();
+      if(username==''){
+        alert('账号不能为空');
+        return false;
+      }
+      var name=$('#name').val();
+      if(name==''){
+        alert('姓名不能为空');
+        return false;
+      }
+      var sex =$('input[name="optionsRadios"]:checked').val();
+      var phone =$('#phone').val();
+         if(phone.match(/^(?:13|15|18|17|14)[0-9]{9}$/)===null){
+          alert('手机号码不正确');
+          return false;
+         }
+      $.ajax({
+        type:"POST",
+        url:"{:U('Customer/member_add')}",
+        data:{number:number,username:username,name:name,sex:sex,phone:phone},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            alert('账号已注册过');
+            return false;
+          }else if(data==2){
+            alert('手机号已存在');
+            return false;
+          }else if(data==3){
+            alert('编号只能为数字');
+            return false;
+          }else if(data==4){
+              window.location="{:U('Customer/member')}";
+          }else if(data==5){
+            alert('服务器延迟，请刷新后再试');
+            window.location=location;
+          }
+        }
+      })
+    });
+
+ });
+
+    </script>
+</div>
+<include file="public:footer"/>

@@ -1,0 +1,193 @@
+<include file="public:header"/>
+    <!-- Sidebar ends -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <link href="__CSS__bootstrap.css" rel="stylesheet">
+    <link href="__CSS__index.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+  <body>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">评论详情</span>
+        </h2>
+
+        <!-- Breadcrumb -->
+       
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"></div>
+                  <div class="widget-icons pull-right">
+                
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        
+                        <tr>
+                         
+                          
+                          <tr><td>顾客名称</td>  <td>{$comment.uid.user_name}</td> </tr>
+                          <tr><td>评论商品名</td> <td>{$comment.goods.good_name}</td></tr>
+                          <tr><td>评论内容</td> <td>{$comment.comment}</td></tr>
+                          <tr><td>评论图片</td> <td>
+                          <notempty name="comment.img">
+                          <php>$moreimg = explode(',',$comment['img']);</php>
+                          <volist name="moreimg" id="moree">
+                          <img src='{$moree}'/>
+                          </volist>
+                          </notempty>
+                       </td></tr>
+                          <tr><td>评论时间</td>  <td>{:date('Y-m-d H:i:s',$comment['add_time'])}</td></tr>
+                          <tr><td>是否审核</td>  <td><if condition="$comment['status'] eq 0">未审核<else />已审核</if></td></tr>
+                          <tr><td>是否通过</td>  <td><if condition="$comment['is_display'] eq 0">未通过<else />已通过</if></td></tr>
+                          <!-- <tr><td>回复内容</td>  <td><if condition="$comment['is_answer'] eq 0">未回复<else />{$comment.answer}
+                          </if></td></tr>
+                          <tr><td>回复时间</td>  <td><if condition="$comment['is_answer'] eq 0">未回复<else />{:date('Y-m-d H:i:s',$comment['answer_time'])}</if></td></tr> -->
+
+                        </tr>
+                        
+                      </thead>
+                    
+              </table>
+                    <!-- Form starts.  -->
+                    <br />
+                <!--     <if condition="$comment['is_answer'] eq 0">
+                     <form class="form-horizontal" role="form">
+ 
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">店家回复:</label><br/>
+                               <div class="col-lg-8">
+                                   <textarea class="form-control" rows="3"id="comments"></textarea>
+                                 </div>  
+ 
+                                </div>    
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9">
+                                  <input type="hidden" id="ididid" value="{$comment['comment_id']}"> 
+                                    <button type="button" class="btn btn-primary"id="commit">提交回复</button>
+                                  </div>
+
+                               </div>
+                      </form>
+                      <else />
+                      </if> -->
+
+ 
+        
+
+                </div>
+
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<script src="__JS__jquery-2.1.1.min.js"></script>
+   <script type="text/javascript">
+   $(function(){
+    $(document).on('click','#commit',function(){
+      
+       var comments =$('#comments').val();
+       var id =$('#ididid').val();
+       if(id==''){
+         alert('非法操作');
+         window.location=location;
+       }
+
+       if(comments==''){
+        alert('回复内容不能为空');
+        return false;
+       }
+
+     $.ajax({
+      type:'POST',
+      url :"{:U('Customer/comment_ajax')}",
+      data:{comments:comments,id:id},
+      dataType:'json',
+      success : function(data){
+     
+        if(data==1){
+    
+        window.location="{:U('Customer/comment')}";
+       }
+       if(data==2){
+        alert('服务器延迟，请刷新后重试');
+        window.location=location;
+       }
+       if(data==3){
+        alert('非法操作');
+        window.location=location;
+       }
+
+
+      }
+
+     })
+    
+
+    });
+
+ });
+
+    </script>
+
+<include file="public:footer"/>

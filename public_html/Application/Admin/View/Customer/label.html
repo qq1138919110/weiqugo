@@ -1,0 +1,133 @@
+<include file="public:header"/>
+
+    <!-- Sidebar ends -->
+
+    <!-- Main bar -->
+    <link rel="stylesheet" type="text/css" href="__CSS__timepicki.css"/>
+    <style type ="text/css">
+    .timetime{padding:8px 5px;width:200px;border-radius:3px;border:1px solid #ddd;outline:none;text-align:center;color:#666;box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.35);}
+.timetime:focus{border-color:#ccc;color:#333;}
+</style>
+    
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">顾客标签管理</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container">
+          <div>
+         
+            <!-- Nav tabs -->
+           
+
+            <!-- Tab panes -->
+        <div class="tab-content">
+         
+              
+              <div class="form-group">
+                
+                 <a href="{:U('Customer/label_add')}"><button type="button" class="btn btn-success">新建标签</button></a>
+                 
+                 
+              </div>
+                 
+               <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          
+                          <th>标签名</th>
+                          
+                          <th >操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      <volist name="list" id="list">
+                        <tr>
+                          
+                          
+                          <td>{$list.label_name}</td>
+                          <td>
+                              <a href="{:U('Customer/label_update',array('label_no'=>$list['label_no']))}"><button class="btn btn-xs btn-default"><i class="icon-pencil"></i> </button></a>
+                              <input type="hidden" value="{$list.label_no}">
+                              <button class="btn btn-xs btn-danger deletelabel"><i class="icon-remove">
+                              </i> </button>
+                             
+                          
+                          </td>
+                        </tr>
+                        </volist>
+                      </tbody>
+                    </table>
+
+           
+
+              
+            
+              
+            </div>
+            
+            
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+  $(document).on('click','.deletelabel',function(){
+    var id =$(this).prev('input').val();
+    if(id==''){
+      alert('非法操作');
+      return false;
+    }
+    $.ajax({
+      url:"{:U('Customer/label_delete')}",
+      type:'GET',
+      data:{id:id},
+      dataType:'json',
+      success:function(data){
+        if(data==1){
+          window.location=location;
+        }else if(data==2){
+          alert('删除失败,请刷新页面后重试');
+          window.location=location;
+        }else if(data==3){
+          alert('删除失败,请刷新页面后重试');
+          window.location=location;
+        }
+      }
+    })
+  });
+  });
+</script>
+</div>
+
+<!-- Content ends -->
+
+<!-- Footer starts -->
+<include file="public:footer"/>

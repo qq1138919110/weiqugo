@@ -1,0 +1,130 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">用户评论审核</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+       
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"></div>
+                  
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                 
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form">
+                              
+                                
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-4 control-label">显示</label>
+                                  <div class="col-lg-2">
+                                    <select class="form-control is_examination">
+                                      <option value="0" <if condition="$comments['is_examination'] eq 0">selected="selected"</if>>不显示</option>
+                                      <option value="1" <if condition="$comments['is_examination'] eq 1">selected="selected"</if>>显示</option>
+                                    </select>
+                                  </div>
+                                </div>     
+
+                                
+
+                                                             
+                                
+                                    <hr />
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9">
+                                  <input type="hidden" class="comment_id" value="{$comments['comment_id']}">
+                                    <button type="button" class="btn btn-primary saveexamination">保存</button>
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+    $(document).on('click','.saveexamination',function(){
+      var is_examination =$('.is_examination').val();
+       if(is_examination==''){
+        alert('非法操作');
+        location=location;
+       }
+       var comment_id =$('.comment_id').val();
+       if(comment_id==''){
+        alert('非法操作');
+        location=location;
+       }
+       $.ajax({
+        type:"POST",
+        url:"{:U('Customer/comment_examination')}",
+        data:{is_examination:is_examination,comment_id:comment_id},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            alert('非法操作');
+            location =location;
+          }else if(data==2){
+            window.location="{:U('Customer/comment')}";
+          }else if(data==3){
+            alert('服务器延迟，请刷新后重试');
+            location=location;
+          }
+        }
+       })
+    });
+  });
+
+</script>
+<include file="public:footer"/>

@@ -1,0 +1,116 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">添加标签</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+        
+          
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"></div>
+                
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form">
+                              
+                                <div class="form-group">
+                                  <label class="col-lg-1" style="margin-top:14px;">标签名</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="name">
+                                  </div>
+                                </div>
+                                
+                            
+                                <div class="form-group">
+                                  <div class="col-lg-9">
+                                   
+                                    <button type="button" class="btn btn-primary addd">保存</button>
+                                   
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+  $(document).on('click','.addd',function(){
+    var name =$('#name').val();
+    if(name ==''){
+      alert('标签名不能空');
+      return false;
+    }
+    $.ajax({
+      type:'GET',
+      url:"{:U('Customer/label_ajax')}",
+      data:{name:name},
+      dataType:'json',
+      success:function(data){
+        if(data==1){
+          window.location="{:U('Customer/label')}";
+        }else{
+          alert('新建标签失败,请刷新页面后重试');
+          window.location=location;
+        }
+      }
+    })
+  })
+  });
+</script>
+</div>
+<include file="public:footer"/>

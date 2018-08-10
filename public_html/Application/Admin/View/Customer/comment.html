@@ -1,0 +1,244 @@
+<include file="public:header"/>
+<link href="__CSS__page.css" rel="stylesheet" type="text/css" />
+
+    <!-- Sidebar ends -->
+
+    <!-- Main bar -->
+    <link rel="stylesheet" type="text/css" href="__CSS__timepicki.css"/>
+    <style type ="text/css">
+    .timetime{padding:8px 5px;width:200px;border-radius:3px;border:1px solid #ddd;outline:none;text-align:center;color:#666;box-shadow: 2px 2px 5px 0px rgba(50, 50, 50, 0.35);}
+.timetime:focus{border-color:#ccc;color:#333;}
+</style>
+    
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+         <h2 class="pull-left">
+          <!-- page meta -->
+          <span class="page-meta">未审核评论</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+        </div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container">
+          <div>
+         
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="{:U('Customer/comment')}">未审核评论</a></li>
+              <li role="presentation"><a href="{:U('Customer/adopt_comment')}" >通过精选</a></li>
+              <li role="presentation"><a href="{:U('Customer/not_through_comment')}">不通过</a></li>
+
+            </ul>
+
+            <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="untreated">
+              
+              <div class="form-group">
+                 <button type="button" class="btn btn-success batch_adopt">批量通过精选</button>
+                 <button type="button" class="btn btn-danger batch_not_through">批量不通过</button>
+              </div>
+                 
+               <table class="table table-striped table-bordered table-hover">
+                      <thead>
+                        <tr>
+                          <th>
+                            <span class="uni">
+                              <input type='checkbox'  id="checkall"/>
+                            </span>
+                          </th>
+                          <th>顾客名称</th>
+                          <th>评论商品名</th>
+                          <th style="width:300px;">评论内容</th>
+                          <th>评论的时间</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <volist name="list" id="list">
+                        <tr>
+                          <td>                            
+                            <span class="uni">
+                              <input type='checkbox'  value="{$list.id}" name="id[]"/>
+                            </span>
+                          </td>
+                          <td>{$list.uid.user_name}</td>
+                          <td>{$list.goods.good_name}</td>
+                          <td>{$list.comment}</td>
+                          <td>{:date('Y-m-d H:i:s',$list['add_time'])}</td>
+                          <td>
+                           <a href="{:U('Customer/reply_comment',array('comment_id'=>$list['id']))}"><button type="button" class="btn btn-primary">详情</button></a> 
+                            <button type="button" class="btn btn-success adopt">通过精选</button>
+                            <input type="hidden" value="{$list.id}">
+                            <button type="button" class="btn btn-danger not_through">不通过</button>
+                          </td>
+                        </tr>
+                        </volist>
+                      </tbody>
+                    </table>
+                  <div class="widget-foot">
+
+
+                      
+                        <ul class="pagination pull-right">
+                          <div class="sabrosus">{$page}</div>
+                        </ul>
+                      
+                      <div class="clearfix"></div> 
+
+                    </div>
+            </div> 
+
+              
+            
+              
+            </div>
+            
+            
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->        
+   <div class="clearfix"></div>
+
+</div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+        $(function() {
+           $("#checkall").click(function(){
+          if($("#checkall").is(":checked")== true){
+              $('input[name="id[]"]').each(function(){
+                this.checked = true;
+              });
+          }else{
+              $('input[name="id[]"]').each(function(){
+                this.checked = false;
+              });
+          }
+          });
+           $(document).on('click','.adopt',function(){
+                var comment_id =$(this).next('input').val();
+                if(comment_id==''){
+                  location =location;
+                }
+                $.ajax({
+                  type:"post",
+                  url:"{:U('Customer/adopt_comment_ajax')}",
+                  data:{comment_id:comment_id},
+                  dataType:'json',
+                  success:function(data){
+                    if(data==1){
+                      alert('非法操作');
+                      location=location;
+                    }else if(data==2){
+                      location=location;
+                    }else if(data==3){
+                      alert('服务器延迟，请刷新后重试');
+                      location=location;
+                    }
+                  }
+                })
+           });
+           $(document).on('click','.not_through',function(){
+                var comment_id =$(this).prev('input').val();
+                if(comment_id==''){
+                  location =location;
+                }
+                $.ajax({
+                  type:"post",
+                  url:"{:U('Customer/not_through_comment_ajax')}",
+                  data:{comment_id:comment_id},
+                  dataType:'json',
+                  success:function(data){
+                    if(data==1){
+                      alert('非法操作');
+                      location=location;
+                    }else if(data==2){
+                      location=location;
+                    }else if(data==3){
+                      alert('服务器延迟，请刷新后重试');
+                      location=location;
+                    }
+                  }
+                })
+           });
+           $(document).on('click','.batch_adopt',function(){
+              var obj=document.getElementsByName('id[]'); //选择所有name="'test'"的对象，返回数组
+              //取到对象数组后，我们来循环检测它是不是被选中
+              var s='';
+              for(var i=0; i<obj.length; i++){
+              if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
+              }
+              if(s==''){
+              alert('你还没有选择任何内容！');
+              return false;
+              }
+              $.ajax({
+                type:"post",
+                url:"{:U('Customer/batch_adopt_comment')}",
+                data:{comment_id:s},
+                dataType:'json',
+                success:function(data){
+                  if(data==1){
+                window.location=location;
+               }else{
+                alert('服务器延迟，请刷新后再试');
+                window.location=location;
+               }
+                }
+              })
+           });
+           $(document).on('click','.batch_not_through',function(){
+              var obj=document.getElementsByName('id[]'); //选择所有name="'test'"的对象，返回数组
+              //取到对象数组后，我们来循环检测它是不是被选中
+              var s='';
+              for(var i=0; i<obj.length; i++){
+              if(obj[i].checked) s+=obj[i].value+','; //如果选中，将value添加到变量s中
+              }
+              if(s==''){
+              alert('你还没有选择任何内容！');
+              return false;
+              }
+              $.ajax({
+                type:"post",
+                url:"{:U('Customer/batch_not_through_comment')}",
+                data:{comment_id:s},
+                dataType:'json',
+                success:function(data){
+                  if(data==1){
+                window.location=location;
+               }else{
+                alert('服务器延迟，请刷新后再试');
+                window.location=location;
+               }
+                }
+              })
+           });
+        });
+    </script>
+    <include file="public:footer"/>
+<!-- Content ends -->
+
+<!-- Footer starts -->

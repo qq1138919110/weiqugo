@@ -1,0 +1,147 @@
+<include file="public:header"/>
+  	<!-- Main bar -->
+  	<div class="mainbar">
+      
+	    <!-- Page heading -->
+	    <div class="page-head">
+        <!-- Page heading -->
+	      <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">修改会员</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right">
+        
+         
+        </div>
+
+        <div class="clearfix"></div>
+
+	    </div>
+	    <!-- Page heading ends -->
+
+
+
+	    <!-- Matter -->
+
+	    <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="pull-left"></div>
+                
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                   
+                    <!-- Form starts.  -->
+                     <form class="form-horizontal" role="form">
+                              
+                              
+
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">姓名</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="name" value="{$user.user_name}">
+                                  </div>
+                                </div>
+
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">电话</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="phone" value="{$user.user_phone}">
+                                  </div>
+                                  <div class="col-lg-3" style="margin-left:-18px; margin-top:6px;">（找回密码）</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                  <label class="col-lg-1 control-label">微信</label>
+                                  <div class="col-lg-4">
+                                    <input type="text" class="form-control" id="weixin" value="{$user.user_weixin}">
+                                  </div>
+                                </div>
+
+                            
+                                <div class="form-group">
+                                  <div class="col-lg-offset-1 col-lg-9" style="margin-left:110px;">
+                                    <input type="hidden" id="uiduiduid" value="{$user['id']}">
+                                    <button type="button" class="btn btn-primary huihuiyuan">保存</button>
+                                   
+                                  </div>
+                                </div>
+                              </form>
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+		  </div>
+
+		<!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->	    	
+   <div class="clearfix"></div>
+<script src="__JS__jquery-2.1.1.min.js"></script>
+   <script type="text/javascript">
+   $(function(){
+    $(document).on('click','.huihuiyuan',function(){
+      var uid =$('#uiduiduid').val();
+      if(uid==''){
+        alert('非法操作');
+        location=location;
+      }
+      var name=$('#name').val();
+      var phone =$('#phone').val();
+      var weixin =$('#weixin').val();
+         if(phone.match(/^(?:13|15|18|17|14)[0-9]{9}$/)===null){
+          alert('手机号码不正确');
+          return false;
+         }
+      $.ajax({
+        type:"POST",
+        url:"{:U('Customer/member_update')}",
+        data:{uid:uid,name:name,phone:phone,weixin:weixin},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            alert('非法操作');
+            location=location;
+          }else if(data==2){
+            alert('手机号已存在');
+            return false;
+          }else if(data==4){
+              window.location="{:U('Customer/member')}";
+          }else if(data==5){
+            alert('服务器延迟，请刷新后再试');
+            window.location=location;
+          }
+        }
+      })
+    });
+
+ });
+
+    </script>
+</div>
+<include file="public:footer"/>

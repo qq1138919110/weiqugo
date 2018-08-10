@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-充值π币</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Personal/vip')}"><i class="iconfont">&#xe601;</i></a>
+        <span>充值π币</span>
+        <a href="javascript:void(0)">&nbsp;</a>
+      </div>
+    </div>
+
+    <ul class="vip-list text-name">
+      <li>
+        <input id="pay-pai" type="text" placeholder="请输入充值的π币金额" class="price" />
+      </li>
+      <li>
+        <input id="pay-rmb" type="text" placeholder="需要支付的人民币金额" disabled="disabled" />
+      </li> 
+    </ul>
+    
+    <div class="appointment-instructions">
+      <p>充值说明：</p>
+      <p>1、1π币等于10元人民币。</p>
+      <p>2、当您输入需要充值的π币金额时，下方会自动算好你所需要支付的人民币金额。</p>
+      <p>3、默认使用微信支付。</p>
+    </div>
+
+    <div class="login-btn"><input type="button" value="确认充值" class="recharge"></div>
+
+    <div class="static-footer">— {$set.copyright} —</div>
+    <div class="alert-message">
+      <p></p>
+    </div>
+
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script type="text/javascript">
+    $(function(){
+         //3秒后弹窗关闭
+    function alert_time() {
+      $(".alert-message").show();
+      setTimeout(function () {
+        $(".alert-message").hide();
+      }, 3000)
+    }
+      $(document).on('click','.recharge',function(){
+         var price =$('.price').val();
+      if(price.match(/^(([1-9]\d*)|\d)(\.\d{1,2})?$/)===null){
+         alert_time();
+        $(".alert-message p").text('余额格式不正确');
+        return false;
+      }
+      if(price==0){
+        alert_time();
+        $(".alert-message p").text('充值π币要大于0得数');
+        return false;
+      }
+      $.ajax({
+        type:'POST',
+        url:"{:U('Personal/recharge_ajax')}",
+        data:{price:price},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            location =location;
+          }else if(data==3){
+            alert('服务器延迟，请重新再试');
+            location =location;
+          }else{
+            window.location.href="{:U('Wxpay/new_pay')}?order_id="+data.order_id;
+          }
+        }
+      });
+      });
+    });
+    </script>
+  </body>
+</html>

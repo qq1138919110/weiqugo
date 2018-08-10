@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>微趣GO</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="container-idx">
+      <!-- 顶部滑动导航 -->
+      <div class="slide-nav slide-fixed">
+        <ul id="slider1" class="clearfix">
+          <volist name="goods_type" id="vo" key="key">
+            <li><a <?php if(i('type_id')==$vo['type_id']){ echo  'class="active"'; }  ?> href="index.php?s=/Home/Selected/type_detail_two&type_id={$vo.type_id}<?php echo $GLOBALS['puid_url'];   ?>">{$vo.type_name}</a></li>
+          </volist>
+        </ul>
+      </div>
+
+      <!-- 搜索框 -->
+        <div class="search search-input">
+          <input type="text" value="" id="search-input" />
+          <div><img src="images/search.png"><span>搜索</span></div>
+        </div>
+
+      <div class="container-gray container-find">
+        <!-- 详情开始 -->
+        <div class="find-detail">
+          <ul class="clearfix">
+            <volist name="data" id="vo" >
+              <li>
+              <a href="index.php?s=/Home/Selected/goods_info&good_id={$vo.good_id}<?php echo $GLOBALS['puid_url'];   ?>">
+                <img src="{$vo.good_cover}" alt="">
+              </a>
+                <h2>{$vo.good_name}</h2>
+                <p>{$vo.goods_producer} </p>
+                <span>{$vo.good_value}积分</span>
+
+              <img src="images/gouwuche1.png" alt="">
+            </li>
+            </volist>
+            <!--
+            <li>
+              <a href="">
+                <img src="images/11.jpg" alt="">
+                <h2>饼干零食糕点</h2>
+                <p>越南进口越南进口越南进口越南进口越南进口越南进口 </p>
+                <span>30积分</span>
+              </a>
+              <img src="images/gouwuche1.png" alt="">
+            </li>
+            <li>
+              <a href="">
+                <img src="images/11.jpg" alt="">
+                <h2>饼干零食糕点</h2>
+                <p>越南进口越南进口越南进口越南进口越南进口越南进口 </p>
+                <span>30积分</span>
+              </a>
+              <img src="images/gouwuche1.png" alt="">
+            </li>
+            <li>
+              <a href="">
+                <img src="images/11.jpg" alt="">
+                <h2>饼干零食糕点</h2>
+                <p>越南进口越南进口越南进口越南进口越南进口越南进口 </p>
+                <span>30积分</span>
+              </a>
+              <img src="images/gouwuche1.png" alt="">
+            </li>
+            <li>
+              <a href="">
+                <img src="images/11.jpg" alt="">
+                <h2>饼干零食糕点</h2>
+                <p>越南进口 </p>
+                <span>30积分</span>
+              </a>
+              <img src="images/gouwuche1.png" alt="">
+            </li>-->
+          </ul>
+        </div>
+        <!-- 详情结束 -->
+
+        <!-- 页脚 -->
+        <div class="footer footer-max clearfix">
+          <?php  include "./Application/Home/View/Public/footer.php"; ?>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <!-- 滑动导航 -->
+    <script type="text/javascript" src="js/touchslider.js"></script>
+    <script type="text/javascript">
+      var t11 = new TouchSlider('slider1',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});
+      goTop ();
+      cart_choice();
+      indexJs();
+    </script>
+
+  </body>
+</html>

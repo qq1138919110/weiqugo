@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>注册冠驰π</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Login/login')}"><i class="iconfont">&#xe601;</i></a>
+        <span>注册冠驰π</span>
+        <a href="javascript:void(0)">&nbsp;</a>
+      </div>
+    </div>
+    <div class="res-pd"></div>
+    <div class="personal-data clearfix">
+      <p class="clearfix"><span>账号：</span><input type="text" class="username"></p>
+      <p class="clearfix"><span>密码：</span><input type="password" class="password"></p>
+      <p class="clearfix"><span>确认密码：</span><input type="password" class="determine_password"></p>
+      <p class="clearfix"><span>真实姓名：</span><input type="text" class="name"></p>
+      <p class="clearfix"><span>身份证：</span><input type="text" class="identity"></p>
+      <p class="clearfix"><span>微信号：</span><input type="text" class="weixin"></p>
+      <p class="clearfix">
+        <span>性别：</span>
+        <input type="radio" value="1" name="sex" class="sex" checked="checked"><label>男</label>
+        <input type="radio" value="2" name="sex" class="sex"><label>女</label>
+      </p> 
+      <p class="clearfix phone"><span>手机号：</span><input type="text" class="phone" id="phonephone"></p>
+      <p class="clearfix send-code"><span>验证码：</span><input type="text" class="code"><button type="button" class="btn" id="send-codecode">发送验证码</button></p>
+    </div>
+    
+    <div class="login-btn"><input type="button" value="确认注册" class="determine_register"></div>
+    <input type="hidden" id="send_param"value="{:U('send_param')}">
+    <div class="alert-message">
+      <p></p>
+    </div>
+  
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script type="text/javascript">
+    $(function(){
+       function alert_time() {
+      $(".alert-message").show();
+      setTimeout(function () {
+        $(".alert-message").hide();
+      }, 2000)
+    }
+    $('#send-codecode').click(function(event) {
+      var phone =$('#phonephone').val();
+       if(phone.match(/^(?:13|15|18|17|14)[0-9]{9}$/)===null){
+        alert_time();
+        $(".alert-message p").text('手机号码不正确');
+        return false;
+       }
+      $.ajax({
+        type:"POST",
+        url:"{:U('Login/send_messages')}",
+        data:{phone:phone},
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+            location =location;
+          }else if(data==2){
+            alert_time();
+            $(".alert-message p").text('手机号已存在');
+          }else if(data==3){
+            alert_time();
+           $(".alert-message p").text('不能频繁发送');
+          }else if(data==4){
+            alert_time();
+           $(".alert-message p").text('发送成功');
+          }else if(data==5){
+             alert_time();
+           $(".alert-message p").text('服务器延迟，请刷新后再试');
+          }else if(data==6){
+            alert_time();
+           $(".alert-message p").text('发送失败，请刷新后重试');
+          }
+        }
+      })
+      var sum = 60;
+      var stop;
+      stop = setInterval(function () {
+      sum--;
+        if (sum!=0){
+          $('#send-codecode').attr('disabled', true);
+          $('#send-codecode').text('（'+sum+'）秒后再次获取');
+        }else {
+          clearInterval(stop);
+          $('#send-codecode').attr('disabled', false);
+          $('#send-codecode').text('获取手机验证码');
+        }
+      }, 1000);
+    });
+
+      $(document).on('click','.determine_register',function(){
+        var username =$('.username').val();
+        if(username==''){
+          alert_time();
+          $(".alert-message p").text('账号不能为空');
+          return false;
+        }
+        if(username.match(/^[a-zA-Z][a-zA-Z0-9_]{5,15}$/)===null){
+          alert_time();
+          $(".alert-message p").text('账号必须由6-16位字母a-z或数字组成,且开头必须为字母');
+          return false;
+      }
+        var password =$('.password').val();
+        if(password==''){
+          alert_time();
+          $(".alert-message p").text('密码不能为空');
+          return false;
+        }
+        if(password.match(/^[a-zA-Z][a-zA-Z0-9_]{5,19}$/)===null){
+          alert_time();
+          $(".alert-message p").text('密码必须由6-20位字母a-z或数字组成,且开头必须为字母');
+        return false;
+      }
+        var determine_password =$('.determine_password').val();
+        if(determine_password!=password){
+          alert_time();
+          $(".alert-message p").text('两次密码不一致');
+          return false;
+        }
+        var name=$('.name').val();
+        if(name==''){
+          alert_time();
+          $(".alert-message p").text('真实姓名不能为空');
+          return false;
+        }
+        var identity =$('.identity').val();
+        if(identity.match(/^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/) ===null){
+          alert_time();
+          $(".alert-message p").text('身份证号码不正确');
+          return false;
+         }
+         var weixin =$('.weixin').val();
+        if(weixin==''){
+          alert_time();
+          $(".alert-message p").text('微信不能为空');
+          return false;
+        }
+         var sex =$('input[name="sex"]:checked').val();
+         var phone =$('#phonephone').val();
+         if(phone.match(/^(?:13|15|18|17|14)[0-9]{9}$/)===null){
+          alert_time();
+          $(".alert-message p").text('手机号码不正确');
+          return false;
+         }
+         var code =$('.code').val();
+         if(code==''){
+          alert_time();
+          $(".alert-message p").text('验证码不能为空');
+          return false;
+        }
+        $.ajax({
+          type:"POST",
+          url:"{:U('Login/registered_ajax')}",
+          data:{username:username,password:password,name:name,identity:identity,weixin:weixin,sex:sex,phone:phone,code:code},
+          dataType:'json',
+          success:function(data){
+            if(data==1){
+              location =location;
+            }else if(data==2){
+              alert_time();
+              $(".alert-message p").text('账号已存在');
+              return false;
+            }else if(data==3){
+               alert_time();
+              $(".alert-message p").text('手机号已存在');
+              return false;
+            }else if(data==4){
+               alert_time();
+              $(".alert-message p").text('身份证已存在');
+              return false;
+            }else if(data==5){
+               alert_time();
+              $(".alert-message p").text('请点击发送验证码');
+              return false;
+            }else if(data==6){
+               alert_time();
+              $(".alert-message p").text('验证时间过期');
+              return false;
+            }else if(data==7){
+               alert_time();
+              $(".alert-message p").text('验证码不正确');
+              return false;
+            }else if(data==8){
+              window.location.href="{:U('Login/login')}";
+            }else if(data==9){
+              alert_time();
+              $(".alert-message p").text('服务器延迟，请刷新后再试');
+              return false;
+            }
+          }
+        })
+      });
+    });
+    </script>
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+  // 注意：所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+  // 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+//  通过config接口注入权限验证配置
+
+  wx.config({
+      debug: false,
+        appId: '{$signPackage.appId}',
+        timestamp: {$signPackage.timestamp},
+        nonceStr: '{$signPackage.nonceStr}',
+        signature: '{$signPackage.signature}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+      ]
+  });
+//通过ready接口处理成功验证
+  wx.ready(function () {
+    //判断当前客户端版本是否支持指定JS接口
+      wx.checkJsApi({
+        jsApiList: ['onMenuShareTimeline,onMenuShareAppMessage,onMenuShareQQ,onMenuShareWeibo'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+        success: function(res) {
+            // 以键值对的形式返回，可用的api值true，不可用为false
+            // 如：{"checkResult":{"chooseImage":true},"errMsg":"checkJsApi:ok"}
+        }
+    });
+      //分享到朋友圈
+     wx.onMenuShareTimeline({
+        title: '{$set.share_title}', // 分享标题
+        link: "http://"+window.location.host+'/index.php/Home/Login/registered.html', // 分享链接
+        imgUrl: "http://"+window.location.host+"__UPLOADS__{$set['share_images']}", // 分享图标
+        success: function () { 
+            // 用户确认分享后执行的回调函数
+        },
+        cancel: function () { 
+            // 用户取消分享后执行的回调函数
+        }
+    });
+     //分享到朋友
+wx.onMenuShareAppMessage({
+    title: '{$set.share_title}', // 分享标题
+    desc: '{$set.share_title}', // 分享描述
+    link:"http://"+window.location.host+'/index.php/Home/Login/registered.html', // 分享链接
+    imgUrl: "http://"+window.location.host+"__UPLOADS__{$set['share_images']}", // 分享图标
+    type: '', // 分享类型,music、video或link，不填默认为link
+    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+    success: function () { 
+        // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+//分享到微博
+wx.onMenuShareWeibo({
+    title: '{$set.share_title}', // 分享标题
+    desc: '{$set.share_title}', // 分享描述
+    link: "http://"+window.location.host+'/index.php/Home/Login/registered.html', // 分享链接
+    imgUrl: "http://"+window.location.host+"__UPLOADS__{$set['share_images']}", // 分享图标
+    success: function () { 
+       // 用户确认分享后执行的回调函数
+    },
+    cancel: function () { 
+        // 用户取消分享后执行的回调函数
+    }
+});
+    });
+  //error接口处理失败验证
+    wx.error(function (res) {
+    });
+</script>
+  </body>
+</html>

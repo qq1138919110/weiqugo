@@ -1,0 +1,1793 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <script>
+			var module_inits = [];
+
+			function load_init_modules()
+			{
+			    for(var i=0; i<module_inits.length; i++)
+			    {
+			        module_inits[i]();
+			    }
+			}
+
+			function call_me(fun)
+			{
+			    module_inits.push(fun);
+			}
+
+			var ua = navigator.userAgent.toLowerCase();  
+
+			if(ua.match(/MicroMessenger/i) == 'micromessenger')
+			{  
+			    wx.ready(load_init_modules);
+			}
+			else
+			{
+			    onload = load_init_modules;
+			}
+			</script> <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+			
+        		<script>
+	            wx.config({
+	                debug     : true,
+	                appId     : '{$signPackage.appId}',
+	                timestamp : {$signPackage.timestamp},
+	                nonceStr  : '{$signPackage.nonceStr}',
+	                signature : '{$signPackage.signature}',
+	                jsApiList : ["onMenuShareTimeline","onMenuShareAppMessage","chooseImage","uploadImage"]
+	                });
+				</script><script type="text/javascript">
+        function wx_share_init()
+        {
+            wx.onMenuShareAppMessage({
+                title   : '来我的相册里发张你的照片吧！',
+                desc    : '希望我的相册和未来，都有你~',
+                link    : 'http://katerina.noope.cn/nap/doc/bzxc/show.php?wxid=snyt&book=XoLxyeDAUIDH4TRYh96hnhjuoZCMaZeT',
+                imgUrl  : 'http://wx.qlogo.cn/mmopen/L5VicoKBbCjceO5oVicmiaqWI0Xb7Mbut89BPFBHibM1FUAg0RosXhIHslticpl9gZod1Q2ScUpeciaJrPX4R92ET5pPqd3sqvKTbk/0',
+                type    : 'link',
+                success: function () { 
+                    
+        var ajax = new XMLHttpRequest();
+        var method = 'get';
+        var URL = 'sharesave.php?book=XoLxyeDAUIDH4TRYh96hnhjuoZCMaZeT&wxid=snyt';
+        var data = '';
+        var ref = 0;
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) { 
+                if (ref != 1) {
+                    window.location.href = 'http://mp.weixin.qq.com/s/E4eM19NIEHTjCwVmywV-dA';            
+                } 
+            }
+        };
+        ajax.open(method, URL, true);
+        ajax.setRequestHeader('Content-type', 'application/json');
+        ajax.send(data);
+      
+                },
+                cancel: function () { 
+                }
+            });
+
+            wx.onMenuShareTimeline({
+                title  : '来我的相册里发张你的照片吧！',
+                link   : 'http://katerina.noope.cn/nap/doc/bzxc/show.php?wxid=snyt&book=XoLxyeDAUIDH4TRYh96hnhjuoZCMaZeT',
+                imgUrl : 'http://wx.qlogo.cn/mmopen/L5VicoKBbCjceO5oVicmiaqWI0Xb7Mbut89BPFBHibM1FUAg0RosXhIHslticpl9gZod1Q2ScUpeciaJrPX4R92ET5pPqd3sqvKTbk/0',
+                success: function () { 
+                    
+        var ajax = new XMLHttpRequest();
+        var method = 'get';
+        var URL = 'sharesave.php?book=XoLxyeDAUIDH4TRYh96hnhjuoZCMaZeT&wxid=snyt';
+        var data = '';
+        var ref = 0;
+        ajax.onreadystatechange = function() {
+            if (ajax.readyState == 4 && ajax.status == 200) { 
+                if (ref != 1) {
+                    window.location.href = 'http://mp.weixin.qq.com/s/E4eM19NIEHTjCwVmywV-dA';            
+                } 
+            }
+        };
+        ajax.open(method, URL, true);
+        ajax.setRequestHeader('Content-type', 'application/json');
+        ajax.send(data);
+      
+                },
+                cancel: function () { 
+                }
+            });
+        }
+
+        call_me(wx_share_init);
+        
+    </script>
+<meta charset="utf-8">
+
+	        <script>
+
+	        function init_viewport()
+	        {
+	            if(/Android (\d+\.\d+)/.test(navigator.userAgent))
+	            {
+	                var version = parseFloat(RegExp.$1);
+
+	                if(version>2.3)
+	                {
+	                    var width = window.outerWidth == 0 ? window.screen.width : window.outerWidth;
+	                    var phoneScale = parseInt(width)/500;
+	                    document.write('<meta name="viewport" content="width=500, minimum-scale = '+ phoneScale +', maximum-scale = '+ phoneScale +', target-densitydpi=device-dpi">');
+	                }
+	                else
+	                {
+	                    document.write('<meta name="viewport" content="width=500, target-densitydpi=device-dpi">');    
+	                }
+	            }
+	            else if(navigator.userAgent.indexOf('iPhone') != -1)
+	            {
+	                var phoneScale = parseInt(window.screen.width)/500;
+	                document.write('<meta name="viewport" content="width=500; height=750; initial-scale=' + phoneScale +'; user-scalable=no" /> ');         //0.75   0.82
+	            }
+	            else 
+	            {
+	                document.write('<meta name="viewport" content="width=500, height=750,initial-scale=0.64" /> ');         //0.75   0.82
+
+	            }
+	        }
+
+	        init_viewport();
+
+	        </script><meta name="viewport" content="width=500, height=750,initial-scale=0.64"> 
+	    <script>
+        var images = [{"id":"450715752902","nick":"\u0e53\u20af\u33af\u3395l.\u261eEric","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjcO3qKa2cTQq7TTvJibyZ7ywyLJY65GYcdHWhPLeQkTh2RpatzYZ1N9EJyu6KWHOiau733SwUVpSwGLwYGf6AJgcR\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/450715752902","text":"\u94c1\u5305\u94f6\u8d35\u5bbe\u501f\u914d\uff0c\u4ef7\u683c\u79c1\u804a\u3002","openid":"ohp30vvlfl8WeiqazykBSrCdD53I"},{"id":"449328218601","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/449328218601","text":"\u52a0\u6211\u5427","openid":"ohp30vokhI6SJN-aSkC4aHYjeWD8"},{"id":"443165414448","nick":"Jannifer","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1l3S4EmcLcHNIOz7Tayt7WiaoaP3uibGgDR7tPmzIfDW8E7HcYT31xrUbXA1B2NP0vuRSCcPx27jKI6jctZFz8HCC\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/443165414448","text":"","openid":"ohp30vmCdOzrmSqH9mPZ2vxlpH4E"},{"id":"441553931871","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/441553931871","text":"","openid":"ohp30vhkvPcweo14Kyi-pS7ILFn0"},{"id":"441263081899","nick":"[\u8036]kaiming","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvwxvvC4icW1lJSamuFNW3ibaeqlSf6Zo0BxOoFckGULHN0LeZ6wl4RibVD3bxK548WHobnNHBqTgO7rTpMeJedLIPs\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/441263081899","text":"","openid":"ohp30vhr8dUyI5ioUDKkZNeFkyBg"},{"id":"440782671188","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/440782671188","text":"\u7f8e\u7f8e\u54d2~","openid":"ohp30vpoltvdKvY21heUcbz5PSGw"},{"id":"440750839490","nick":"\u6d45\u6db5","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1mjddyjxwVVhz0eG91yO55bDib5K3uz64bDLmIXk9HwfSBxWV1pcHhLbBfFs64s55dic3F96SZ96JbFEX1weE60YV\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/440750839490","text":"\u261e\u67f3\u67f3\u4f1a\u73a9","openid":"ohp30viRxEkzbO3wPerVCRpyWzkY"},{"id":"440120279641","nick":"\u674e\u5fd7\u626c","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvwLIdfOdwzFI51cvySES5c8ibmWaA1RiaJXMNZjnibM1TnojxOwPEfpmUiayCbmZWqdC22Zq0ISRofwcg\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/440120279641","text":"\u56de\u5fc6\uff01\uff01\uff01","openid":"ohp30vkAV9Fd52uKd9SCJ65vXUec"},{"id":"440091306921","nick":"\u2714\u10da(\u2022\u0300 _ \u2022\u0301 \u10da)","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvxcic5mR0gMH9ib69jO4ia2DImmqCKaekT402wVTMAN41dIuj9Th1icVM1U3IsfCDWEyDbNHXz2La7Wmj981Gh5m06e\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/440091306921","text":"","openid":"ohp30vpxabLMLc41tp6KsiTtlElc"},{"id":"439703068253","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439703068253","text":"","openid":"ohp30vpj2Vg5N-oDrYgTZaU9zCzo"},{"id":"439635141899","nick":"KaKa\u76d0\u76d0","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjcO3qKa2cTQq5V2bxa3y6OZ1vy8q2DC1h2vIibEvEVFB02aXlicOslwo8WLAkjANBz3JWxVhjf6Gib0jhpw3g2ibwyc\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439635141899","text":"\u6700\u7231\u67f3\u59d0\u59d0","openid":"ohp30viZsHJAHg1Gqn-lInvKb36M"},{"id":"439630988019","nick":"L.S.Y.","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgyXbA8jBLB6wzmgwsXspBKawSgY3YakE5ibfXjibHWf5Nm7Kq5apxVfRftygUQnP7fgRoFT5SCYhbDGMmpnz9ZnZl\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439630988019","text":"","openid":"ohp30vmZbOh0x1RtUOF3CTWc_r_Y"},{"id":"439587305304","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439587305304","text":"\u732b\u54e5","openid":"ohp30vtdyyhN0bii8i0ucVVKU2Bk"},{"id":"439525703609","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439525703609","text":"\u5c0fA","openid":"ohp30vtdyyhN0bii8i0ucVVKU2Bk"},{"id":"439246929916","nick":"healer","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/A3XGv5NtHKYicyx5qbd5uE589gsGHghicCd7Cv2lhFT5vUXxqqiaUvpfYOibaAfEq0Sega3f9JxMUyIID3wvbiaQphlJ0XtJdMu8K\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439246929916","text":"\u54ce\u5440\uff0c\u4ee5\u540e\u65e9\u4e0a\u8981\u8d77\u65e9\u70b9","openid":"ohp30vvJvxJjGO04IRnwhRVes7yU"},{"id":"439208059928","nick":"[\u673a\u667a]DMT","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvwxvvC4icW1lJaJDbYCWyTGJoJ3DjKmzWzyNjxrHGl5L57HlFSic22f4jXF9yUPtjJd4bDRcb7TicU6IsVGcCbwqZT\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439208059928","text":"\u5475\u5475\u5475","openid":"ohp30vpnM8f9TtCHSn_ceUl17318"},{"id":"439178386554","nick":"\u4e1f\u4e0d\u6389\u7684\u60c5\u7dd2","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/NEGxqQibyibIk8xmhwdvFtJqLz5ibkqNPrILHGicXEYMZ3P4Gia9MKzT414E91Cr87KicB6slLkibugibynBW5wSjzm7Uceyuy4WGmdu\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439178386554","text":"","openid":"ohp30vu47gXleuCPYl0bXdKWTDqk"},{"id":"439145056814","nick":"\u3001","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjceO5oVicmiaqWIyZpgLeKYR68hohFeDxbagD0AWJLSN9EpLbFibGb8E5WeyibgAIvACDm9m7XaXvWxE8v4UkMaq8vQ\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439145056814","text":"","openid":"ohp30vvoHGWcxRAhCnNsBHGnDZZ0"},{"id":"439139251629","nick":"\u5954\u8dd1\u5427 \u554a\u59da\u2122\ud83d\udc9e","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/U9wOLUkdPmwWskAiaic67iaeR5Eh0CpXwFHTwAlZa1U63POg4xawXxdOkXSpoZ5g2lKMsicLic0nV3TGu9xRxMms1DlfiaaBgRFoK7\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/439139251629","text":"\u751f\u4e2a\u5b69\u5b50\u7ed9\u6211\u73a9","openid":"ohp30vrV3jCx3t9PlFB0L10dfgE8"},{"id":"438991185857","nick":"\u6843\u5b50","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgwOAzibrFGhPlgtdjZOicc8jb0Ifeuly79rj4zxZZKAbqE5FibxcKxFBicVRja2nfFB5SwwvXO8eS1HICl27YLhUnMx\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438991185857","text":"","openid":"ohp30vgO6DyXYqYoNR2uaygPbISE"},{"id":"438886143505","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438886143505","text":"","openid":"ohp30vmi_tITB9umATWjUpNF3Ffk"},{"id":"438870472146","nick":"\u4e91\u5f71\u6708\u591c","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1mh1gXQK7kJDbucdT9HNfbfEKqdm0FrKOz5vcmwJhqFCCwmrTeTVMrzRBKPFzLxwzTjtBy3Jw3ZAF3gFgl5LJBs\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438870472146","text":"\u59d0\uff0c\u53ea\u9700\u4e00\u5f20\u4fa7\u8138\uff0c\u5c31\u8db3\u4ee5\u8ff7\u6b7b\u4e00\u5e2e\u81ed\u7537\u4eba\ue004\u3002\u560e\u560e(*\u02d8\ufe36\u02d8*).\uff61.:*\u2661","openid":"ohp30voLzCV52rS28MCyxzsNljcU"},{"id":"438538543323","nick":"\u706b\u7130\ud83d\udd25","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1nRyr036flfJNIiaKtQqicw1ibKUkU6rzfZHKeiaiaADXudCzXAA0Xo1vibeuuEPfPkAJFGYWWBOkyB0MsaSGSKlwBOLf\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438538543323","text":"\u73a9\u73a9","openid":"ohp30vh6TMrku_md4XAzmyw-vOvw"},{"id":"438490422938","nick":"\u90a3\u4e2a\u7537\u4eba","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgw64Ee99PH76WyU39KIusAeIneP4tv9Tia21hciblQicCnH2lXq2YHKhe2pVc9hesadOibAEWAvmPFwvVAy2aN13lCo\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438490422938","text":"","openid":"ohp30vmxq0UZqxk3XDbGcKHzjYqs"},{"id":"438377673871","nick":"\u71d5\u4f0a\u5475\u5475","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/PiajxSqBRaEI0xwo8ibxic13EbyVkpFYjIncQast1weFl7iaSyFQ5v1IrASXjozlYKO7yIeTzoISqXjQdiaianQH66WQ\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438377673871","text":"","openid":"ohp30vpwruVo6nGvC8dWIR9e9cpE"},{"id":"438285899703","nick":"Sara\u6069\u4ed4\ue409","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzyWDVhJF3lfLwTpRgPQIibETZaOGrHzIo8rFRhYicFUq9cVq0vNzGKwNXlEiaqh3fd5J95icAFVicroAe9opx5Be9Y5\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438285899703","text":"\ue002\ue002\ue002","openid":"ohp30vvnVRtPg6UgGaT_CzGnWugw"},{"id":"438230571789","nick":"Jessica","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgyKOQ7xZwNPP767CvqEo61tLW42KeIBuicldUaWZJibvibVIbLskibZM0YUxJvjzGdIibyvA7bw1kyz4uab2GUTjBr5Z\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/438230571789","text":"\u54c8\u54c8\ud83d\ude04","openid":"ohp30vmAVuVOijA5CqB4eGpVvsAM"},{"id":"437941037178","nick":"\u8587\u8587","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/Q3auHgzwzM5Tk9a5Y3BzWrg6KRuZNvJibAlKXibLv2Q1LFmuHPa2dicVFsCZ0nBIxpWyDYSaVmMJXViazpxic5e24812VPf5iaU47OfCiaKCE5HxMs\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437941037178","text":"","openid":"ohp30vvNRD3LsJPnZHWo5zbDUVpU"},{"id":"437915938136","nick":"\u6817\u5b50\u8272","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjeZnZbExichFFxNlYwMbN9GicJ4icT5xnjibcEQf2uOXkQHiaIuHPOfj0v7NQrLanw0FVELI5yIPZD3sT2PknCV8rsPy\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437915938136","text":"","openid":"ohp30vq5X-9GI_ZxwYv7AEDV3XQY"},{"id":"437886342621","nick":"\u5bf6\u5bf6BoA","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzyWDVhJF3lfGVDCxgyyt9ZXLKPibatZdnZY6uOHlxUFt12mNPFXqUzaYpYIn5aicxhUHrwd6c8vAMseqrS8v2ejp\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437886342621","text":"","openid":"ohp30vrd4ss-DyTCcK2mCclMChEQ"},{"id":"437650125734","nick":"[\u6342\u8138]\u7b49\u4e2d\u901d","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjfJicl3N3yIl2ichqryrclic5BxAqhZO42Jjy0iafFVwGMsQqCvia1V5Cu3kvic97jibaTZMQ0XO534tib9W50PVelrhBsN\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437650125734","text":"","openid":"ohp30vmnRSqJ4ZR5u4XPZZGNU8PY"},{"id":"437635225767","nick":"Ewen","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzEhPMlHz7ymWLKABprnFmFK1rwCW3BM06q3w40z5enuEz8G21JXzZHEI1BdK7VuwG7tNAe8RDcVt6U2boyYCoA\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437635225767","text":"45\u5ea6","openid":"ohp30vjwNVYCLZ7VIRKc3jEvI0uo"},{"id":"437622575091","nick":"\u8339\ud83d\udc93Alina","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzyWDVhJF3lfGxtPnhFmiaNWWSevdaOpOMvO5OFDalK3viaT8xHpG1sl7ic5qxxCxCmyJ8gxAzenhJicBGT72na3x17\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437622575091","text":"","openid":"ohp30vuvrRRjHw5WA250kgqLAFI0"},{"id":"437403686899","nick":"\u732b\u5c0f\u59d0\ue11b","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1kCV4dacTIicKvdIqbYK4ugwicCxn6gOum286PHWckb2JY9ZPIHia3w0JcaR9LiaoIGicDMuXfpKJujqoetlv3UuGaVX\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437403686899","text":"","openid":"ohp30vm0ggnyuQ0aS3L3BB1fcD68"},{"id":"437306913931","nick":"\u5434\u534e\u71d5","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgxr75cVb468zBjBTqAysF7Q4VI0dYknq4ibmTltXZItrOdAuvAlsuAjKQ0621DKNhHrkCqBOMYyVaOcjhuZ7lF4p\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437306913931","text":"","openid":"ohp30vu9rb1y1l2uXW8UdT9ygVZQ"},{"id":"437290092830","nick":"\u5b81\u72ec\u9521\u548c\u620e","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/PiajxSqBRaEJibyibCDXsBfLI3pQb1O77T4USPsibI3Tya74WBXzOKcISgRyibma7xNTQHlD5gVEOnibHibX4ia5qGbgfw\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437290092830","text":"","openid":"ohp30vtVAXaQ2CpfPrgnx2Dw6Acs"},{"id":"437288262204","nick":"\u4f59\u5728","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/dOPZ4oBuB9TabzccOVbsicCrlFIh4deib1g4VGdHpfVNSWW9NhJmRuZ8BRhrLiccn331Nr3ibH81YYkfVQIqddP0aHhlpiaE9ibuWic\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437288262204","text":"","openid":"ohp30vsDYTZvrdQeOGbMNHhade5Y"},{"id":"437139748758","nick":"\u5c0f\u9759\u738b","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1l3S4EmcLcHNOlRlVUe1uIj2vfAsR3WUwAtkCEhqkaGLfBHJ066KMnvp1ep6H3cLGwaGbicD9PZsibH1HdHp10hOY\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/437139748758","text":"\u82b1\u513f\u771f\u7f8e","openid":"ohp30voeouB6p02-5G4XbQ5orhSE"},{"id":"436734316448","nick":"\u9648\u601d\u534e","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1kEice11h1U2R2KuJgc6T3IEjkTepdGwhFwhLBwXHNdcEiaicMcSibiaolRMyzdOUpqfrU9SeN2j4ZbYEKOcLUNB7RiaO\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/436734316448","text":"","openid":"ohp30vsvxkXy8PcEQa7i_XMqMu-I"},{"id":"436625026792","nick":"\u6797\u8000\u94e8","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1nqb7MLBmwicHwThh2INMDKfibjH24WsuIvPDbGNC0djlopPTZlOVKOVsgn89RPpqtkTZssWb0qsq1PcMdGicia1v92\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/436625026792","text":"","openid":"ohp30vnQyJS9AxBgrje5ofrgz4es"},{"id":"436591768450","nick":"cui\u82b3\ud83d\udc95","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzyWDVhJF3lfOIz8MFShboW98X2yea9512Fw7vL1aroLp96YkXAISNlSaepiaicJjoEcFpFmSXIiawTbd3NRKpZmh1\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/436591768450","text":"","openid":"ohp30vmiZtqzpyr2DpKVSDuPMjwk"},{"id":"436359087249","nick":"\u9e25\u5a9bc","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1nPOHjic7lL7IztU6QAA8GdicyJibEKdx4mAqjIS1Wv0MSU2hqHCd18WDnQBsSzUe4FDVk7icZafUfNH96wJhNNexcE\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/436359087249","text":"\ud83d\ude39\ud83d\ude39","openid":"ohp30vuZs2EIA7XZHjFaM8K5DIvA"},{"id":"436022448982","nick":"\u8010\u6495","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgzyWDVhJF3lfGxHSmzJUUSZywoqsaRxHjJKsDjRSibEkqwtxH0N3PtSmq2hicR9osTia6OAcuzNc29BaAkKzPkb2yS\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/436022448982","text":"\u4e0d\u8981\u7834","openid":"ohp30vuuck_b-OOMMgHd_dOe4Qy8"},{"id":"434901825817","nick":"\u82cf\u5e7f\u5cb3","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjceO5oVicmiaqWCFDI27400sC0Miby1GY9XULyibtSRVxNPicFqcGVOOerLEu2Ar5k8yRRjSOvz6NEafEReGuASM097I\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434901825817","text":"","openid":"ohp30voYV7JhNUeRXImiRmjotfRM"},{"id":"434643941764","nick":"Evaille","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjcO3qKa2cTQq7PDJ8op85EyXH5oZlUp0pASkCOyo0s6GEnQeaZInJQ3wokmptSjnQwelBiawCPMJb5zCgYGMics6a\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434643941764","text":"","openid":"ohp30vkqtdWzC_ocpC4fo-1-tsXM"},{"id":"434611556159","nick":"\u3002","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvzUeibeBeYcsMtupch2nOfGbicOJvew6xKZL5hoKcfGJ9Pn8eogw5icd0kkrTevM1LWnrRUm7Aia13m7ZTaE6lfJltl\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434611556159","text":"","openid":"ohp30vlGmfzx1LV1-q_Lo_2BkLJE"},{"id":"434597767007","nick":"\u535a\u4fca","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/C6nnRGnPbvwxvvC4icW1lJU37ZdppKbwTNBHUhqISZFmMkR2icYaoWs2wL6jicCJxmw7qzJicKbrXRXnmt1WfTPlbloqk9nsYhqH\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434597767007","text":"\u535a\u4fca","openid":"ohp30vtFkiH7BAGoHVPYn-MUP1_M"},{"id":"434595774841","nick":"R\u8a89","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgz1ubfUlk2k79KRH6mMQicf5rVRThvk520we9MS7zVRWE1vDJbJ9NX2N3iclH8ECG6FDCRxhUcbvS9W5ibvXibryPGl\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434595774841","text":"","openid":"ohp30vk92OIt2_VqlculUWLbAWZs"},{"id":"434533364488","nick":"\u5c81\u6708\u5982\u6b4c","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/60meUv6po1k9ibxpqRnNkc1HRjnuBhpegrOvlUDXhYd397ibVG71OsHibTvEpdLvqFv9qj66G8MLWu2CETaPYIpkiboR9tofX73u\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434533364488","text":"","openid":"ohp30vjBlShFn1ZAt3vgaOorqBH0"},{"id":"434517536407","nick":"Evaille","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjcO3qKa2cTQq7PDJ8op85EyXH5oZlUp0pASkCOyo0s6GEnQeaZInJQ3wokmptSjnQwelBiawCPMJb5zCgYGMics6a\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434517536407","text":"","openid":"ohp30vkqtdWzC_ocpC4fo-1-tsXM"},{"id":"434489295150","nick":"\u67d0\u5403\u74dc\u7fa4\u4f17","headimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/icon\/niming2.png","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434489295150","text":"","openid":"ohp30voC7-F5QeSj5k6pa0iJ_Hik"},{"id":"434457661068","nick":"Winnie\ud83c\udf38\u610f","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/icHMPeu1qDgwfLTpYzsWAH7Yy1yJibDbgv9Oib98ETBRp7vdhO7pu6721QgUnVyMo4ozrIDdNBz6FUqDsHYkkU0r87EaALyBDMc\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434457661068","text":"","openid":"ohp30vnWc9IvntOgRk4r14cN3n5E"},{"id":"434133102961","nick":"[\u563f\u54c8]\u7834\u59d0","headimg":"http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjceO5oVicmiaqWI0Xb7Mbut89BPFBHibM1FUAg0RosXhIHslticpl9gZod1Q2ScUpeciaJrPX4R92ET5pPqd3sqvKTbk\/0","showimg":"http:\/\/resnap.weiuxiu.cn\/bzxc\/image\/434133102961","text":"\u6211\u5708\u5b50\u91cc\u7684\u5e05\u54e5\u7f8e\u5973\u5c55\u793a\u5899\uff0c\u770b\u5bf9\u773c\u7684\u79c1\u804a\ud83d\ude0f","openid":"ohp30vrVVF4qkKbYjm7zkczoadsA"}];
+        var title = "\u7ed9[\u563f\u54c8]\u7834\u59d0\u7684\u76f8\u518c\u6dfb\u4e00\u5f20\u4f60\u7684\u7167\u7247\uff01";
+        var imgurl = "";
+        var nick = "";
+        var book = "XoLxyeDAUIDH4TRYh96hnhjuoZCMaZeT";
+        var newurl = "http:\/\/katerina.noope.cn\/nap\/doc\/bzxc\/show.php?wxid=snyt";
+        var openid = "ohp30vlXBPTqwHBANHwq6OtW3khk";
+        var ownerimgurl = "http:\/\/wx.qlogo.cn\/mmopen\/L5VicoKBbCjceO5oVicmiaqWI0Xb7Mbut89BPFBHibM1FUAg0RosXhIHslticpl9gZod1Q2ScUpeciaJrPX4R92ET5pPqd3sqvKTbk\/0";
+        var uploadid = "liti";
+        var ownerflag = false;
+        var baseflag = true;
+        var wxid = "snyt";
+    </script>
+    
+	<!-- <meta charset="utf-8"> -->
+	<style>
+
+		body
+		{
+			width: 100%;
+			height: 100%;
+			margin: 0;
+			background-image: url("huodong/womenbg1.png");
+			background-size: 100% 100%;
+		}
+		.personInfo
+		{
+		    width: 100%;
+		    height: 50px;
+		    position: absolute;
+		    left: 0;
+		    top: 64px;
+		}
+		#headimg
+		{
+			width: 50px;
+		    height: 50px;
+		    border-radius: 50px;
+		    border: 1px solid rgb(238, 238, 238);
+		    position: absolute;
+		    left: 100px;
+		    top: 0;
+		    background-size: 100% 100%;
+		}
+		.personInfo span
+		{
+			color: white;
+			font: 20px/50px arial,sans-serif;
+		    position: absolute;
+		    left: 166px;
+		    top: 0;
+		}
+		.showInfo
+		{
+			width: 100%;
+		    height: 400px;
+		    position: absolute;
+		    left: 0;
+		    top: 120px;
+		}
+		.showInfo img
+		{
+			border: 8px solid #ded5d5;
+		    position: absolute;
+		    top: 0;
+		    left: 42px;
+		    width: 400px;
+		    height: 400px;
+		}
+		.showTxtOut
+		{
+		    position: absolute;
+		    left: 50px;
+		    top: 424px;
+		    display: table;
+		}
+		.showTxtIn
+		{
+			color: rgb(89, 89, 89);
+
+			height: 100px;
+		    width: 400px;
+		    text-align: center;
+		    display: table-cell;
+		    vertical-align: middle;
+		    font: 20px/30px arial,sans-serif;
+		    word-break: break-all;
+		    word-wrap: break-word;
+		}
+		.addPhoto
+		{
+			color: white;
+			width: 150px;
+			height: 48px;
+			background-color: #678768;
+			border: 1px solid #678768;
+			border-radius: 5px;
+			font: 20px/48px arial,sans-serif;
+			text-align: center;
+			position: absolute;
+			top: 715px;
+			left: 32px;
+		}
+		.newPhoto
+		{
+			color: #678768;
+			width: 270px;
+			height: 48px;
+			border: 1px solid #678768;
+			border-radius: 5px;
+			font: 20px/48px arial,sans-serif;
+			text-align: center;
+			position: absolute;
+			top: 715px;
+			left: 198px;
+		}
+		.showAdd
+		{
+		    height: 600px;
+		    width: 440px;
+		    background-color: white;
+		    /*position: absolute;*/
+		    margin:0 auto;
+		    top: 64px;
+		    border-radius: 10px;
+		}
+		.showAddBg
+		{
+			width: 100%;
+		    height: 100%;
+		    background-color: rgba(0,0,0,0.5);
+		    display: none;
+		    position: absolute;
+			top: 0;
+			left: 0;
+		}
+		.showAddPhoto
+		{
+			width: 100%;
+			height: 360px;
+			position: absolute;
+			/*left: 0;*/
+			top: 0;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+			border-bottom: 1px solid rgb(183, 180, 180);
+		}
+		.showAddHead
+		{
+			height: 60px;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: -1px;
+			text-align: center;
+			font: 24px/60px arial,sans-serif;
+			background-image: -webkit-gradient(linear, 50% -25%, 50% 100%,from(#000000), to(rgba(30,30,30,0)));
+			/*z-index: 1;*/
+			color: white;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+		.showAddDiv
+		{
+			height: 30px;
+			width: 100%;
+			position: absolute;
+			left: 0;
+			top: 252px;
+			text-align: center;
+			color: #537887;
+			font: 24px/30px arial,sans-serif;
+		}
+		.showAddImg
+		{
+			display: none;
+			width: 100%;
+			height: 361px;
+			position: absolute;
+		    left: 0;
+		    top: 0;
+		    background-position: center;
+			background-size: cover;
+			border-top-left-radius: 10px;
+			border-top-right-radius: 10px;
+		}
+		.showAddAdd
+		{
+			position: absolute;
+			left: 170px;
+			top: 130px;
+			width: 100px;
+			height: 100px;
+			background-image: url("huodong/add.png");
+			background-size: 100% 100%;
+		}
+		.showAddTxt
+		{
+			position: absolute;
+		    top: 360px;
+		    left: 0;
+		   /* border-bottom: 1px solid black;*/
+		    height: 184px;
+		    width: 100%;
+		}
+		#Niming
+		{
+			width: 80px;
+			height: 30px;
+			position: absolute;
+			bottom: 16px;
+			left: 350px;
+		}
+		.showAddNiming
+		{
+			width: 50px;
+			height: 22px;
+			position: absolute;
+			top: 4px;
+			left: 32px;
+			font: 20px/22px arial,sans-serif;
+			color: #537887;
+		}
+		.showAddBottom
+		{
+			position: absolute;
+		    top: 544px;
+		    left: 0;
+		    height: 56px;
+		    width: 100%;
+		    font: 24px/56px arial,sans-serif;
+		    text-align: center;
+		    /*border-top: 1px solid black;*/
+		}
+		.showAddNo
+		{
+			position: absolute;
+		    top: 0;
+		    right: 0;
+		    height: 100%;
+		    width: 50%;
+		    background-color: white;
+        	color: #2b5f75;
+        	border-bottom-right-radius: 10px;
+        	border-top: 1px solid #2b5f75;
+		}
+		.showAddOk
+		{
+			position: absolute;
+		    top: 0;
+		    left: 0;
+		    height: 100%;
+		    width: 50%;
+		    border-top: 1px solid #2b5f75;
+		    border-right: 1px solid #2b5f75;
+		    background-color: #2b5f75;
+        	color: white;
+        	border-bottom-left-radius: 10px;
+		}
+
+
+		#swiper {
+			position: absolute;
+		    top: 130px;
+		    left: 0;
+		    width: 500px;
+		    height: 400px;
+		    /*background-color: #ccc;*/
+		    overflow: hidden;
+		}
+		#swiper div{
+			position: absolute;
+			width: 300px;
+			height: 90%;
+			background-position: center;
+			background-size: cover;
+			left: 50%;
+			margin-left: -150px;
+			top:5%;
+			/*border: 2px solid white;*/
+			box-shadow: 0 0 1px rgb(212, 206, 206),0 0 10px white;
+		}
+		.swiper-center {
+			/*z-index: 2;*/
+			-webkit-transform:scale(1) translate(0, 0) translateZ(0);
+		}
+		.swiper-left {
+			/*z-index: 1;*/
+			-webkit-transform:scale(0.8) translate(-400px, 0) translateZ(0);
+		}
+		.swiper-right {
+			/*z-index: 1;*/
+			-webkit-transform:scale(0.8) translate(400px, 0) translateZ(0);
+		}
+		.swiper-waitleft {
+			-webkit-transform:scale(0.8) translate(-800px, 0) translateZ(0);
+		}
+		.swiper-waitright {
+			-webkit-transform:scale(0.8) translate(800px, 0) translateZ(0);
+		}
+
+		@-webkit-keyframes centerLeft {
+			to{
+				-webkit-transform:scale(0.8) translate(-400px, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes leftLeft {
+			to{
+				-webkit-transform:scale(0.8) translate(-800px, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes rightLeft {
+			to {
+				-webkit-transform:scale(1) translate(0, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes waitRightLeft{
+			to {
+				-webkit-transform:scale(0.8) translate(400px, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes centerRight {
+			to{
+				-webkit-transform:scale(0.8) translate(400px, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes leftRight {
+			to{
+				-webkit-transform:scale(1) translate(0, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes rightRight {
+			to {
+				-webkit-transform:scale(0.8) translate(800px, 0) translateZ(0);
+			}
+		}
+		@-webkit-keyframes waitLeftRight{
+			to {
+				-webkit-transform:scale(0.8) translate(-400px, 0) translateZ(0);
+			}
+		}
+		.hintin
+	    {
+	        -webkit-transform-origin:50%;
+	        -webkit-animation:hintin .3s linear forwards;
+	    }
+
+	    @-webkit-keyframes hintin
+	    {
+	        0%{ -webkit-transform:scale(0.5);opacity: 0;}
+	        100%{ -webkit-transform:scale(1);opacity: 1;}
+	    }
+	    .hintout
+	    {
+	        -webkit-transform-origin:50%;
+	        -webkit-animation:hintout .3s linear forwards;
+	    }
+
+	    @-webkit-keyframes hintout
+	    {
+	        0%{ -webkit-transform:scale(1);opacity: 1;}
+	        100%{ -webkit-transform:scale(0.5);opacity: 0;}
+	    }
+	    .hintbgin
+	    {
+	        -webkit-transform-origin:50%;
+	        -webkit-animation:hintbgin .3s linear forwards;
+	    }
+
+	    @-webkit-keyframes hintbgin
+	    {
+	        0%{ -webkit-transform: translateZ(0);opacity: 0;}
+	        100%{ -webkit-transform: translateZ(0);opacity: 1;}
+	    }
+	    .hintbgout
+	    {
+	        -webkit-transform-origin:50%;
+	        -webkit-animation:hintbgout .2s linear forwards;
+	    }
+
+	    @-webkit-keyframes hintbgout
+	    {
+	        0%{ -webkit-transform: translateZ(0);opacity: 1;}
+	        100%{ -webkit-transform: translateZ(0);opacity: 0;}
+	    }
+	    .bigPhoto
+	    {
+	    	width: 100%;
+		    height: 100%;
+		    overflow: hidden;
+	    	position: absolute;
+			top: 0;
+			left: 0;
+    		background-color: rgba(10, 10, 10, 0.8);
+    		z-index: 10;
+	    }
+	    
+	    #bigPhotoShow
+	    {
+	    	width: 100%;
+			position: absolute;
+			top: 50%;
+			left: 0;
+			-webkit-transform: translateY(-50%);
+	    }
+	    .bigPhotoClose
+	    {
+			cursor: pointer;
+		    color: #FFF;
+		    position: absolute;
+		    top: 4px;
+		    right: 8px;
+	    }
+	    #bigPhotoTxt
+	    {
+	    	width: 100%;
+	    	height: 36px;
+	    	font: 24px/36px arial,sans-serif;
+	    	background-color: rgba(10, 10, 10, 0.8);
+	    	color: white;
+	    	position: absolute;
+	    	left: 0;
+	    	bottom: 0;
+	    	text-align: center;
+	    }
+	    #inputTxt
+	    {
+			height: 135px;
+			width: 408px;
+			border: 0;
+			position: absolute;
+			top: 1px;
+			left: 0;
+			padding: 16px;
+			font: 20px/24px arial,sans-serif;
+			color: rgb(77, 77, 77);
+	    }
+	    #inputCheck
+	    {
+			width: 22px;
+			height: 22px;
+			position: absolute;
+			top: 4px;
+			left: 4px;
+			margin: 0;
+	    }
+	    .showHead
+	    {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left: 0;
+			top: 0;
+			display: none;
+	    }
+	    .showHeadImg
+	    {
+	    	height: 180px;
+			width: 180px;
+			position: absolute;
+			left: 160px;
+			top: 140px;
+			border-radius: 100%;
+			background-size: 100% 100%;
+	    }
+	    .showHeadAdd
+	    {
+			color: white;
+			width: 200px;
+			height: 48px;
+			background-color: #678768;
+			border-radius: 5px;
+			font: 20px/48px arial,sans-serif;
+			text-align: center;
+			position: absolute;
+			top: 365px;
+			left: 152px;
+	    }
+	    .showHeadTips
+	    {
+			position: absolute;
+			left: 105px;
+			top: 448px;
+			height: 250px;
+			width: 300px;
+			opacity: 0;
+			font: 18px/36px arial,sans-serif;
+			color: rgb(89, 89, 89);
+	    }
+	    .showHeadNew
+	    {
+			color: #678768;
+			width: 428px;
+			height: 48px;
+			border: 1px solid #678768;
+			border-radius: 5px;
+			font: 24px/48px arial,sans-serif;
+			text-align: center;
+			position: absolute;
+			top: 700px;
+			left: 36px;
+	    }
+	    .showHeadTip1
+	    {
+			position: absolute;
+			top: 0;
+			left: 16px;
+			
+	    }
+	    .showHeadTip2
+	    {
+	    	position: absolute;
+			top: 36px;
+			left: 16px;
+			
+	    }
+	    .showHeadTip3
+	    {
+	    	position: absolute;
+			top: 72px;
+			left: 16px;
+			
+	    }
+	    .showHeadTip4
+	    {
+	    	position: absolute;
+			top: 108px;
+			left: 16px;
+			
+	    }
+	    .showHeadTip5
+	    {
+	    	position: absolute;
+			top: 144px;
+			left: 16px;
+
+	    }
+	    .showHeadTip6
+	    {
+	    	position: absolute;
+			top: 180px;
+			left: 16px;
+	    }
+	    .showHeadHelp
+	    {
+			width: 36px;
+			height: 36px;
+			background-image: url("huodong/helpbtn.png");
+			background-size: 100% 100%;
+			position: absolute;
+			top: 380px;
+			left: 369px;
+	    }
+	    @-webkit-keyframes zhuan
+    	{
+      		0%
+      		{
+        		-webkit-transform:rotate(0deg) translateZ(0);
+      		}
+      		100%
+      		{
+        		-webkit-transform:rotate(360deg) translateZ(0);
+      		}
+    	}
+    	.tipsin
+	    {
+	        -webkit-transform-origin:100% 0%;
+	        -webkit-animation:tipsin .3s linear forwards;
+	    }
+
+	    @-webkit-keyframes tipsin
+	    {
+	        0%{ -webkit-transform:scale(0.5);opacity: 0;}
+	        100%{ -webkit-transform:scale(1);opacity: 1;}
+	    }
+	    .tipsout
+	    {
+	        -webkit-transform-origin:0% 100%;
+	        -webkit-animation:tipsout .3s linear forwards;
+	    }
+
+	    @-webkit-keyframes tipsout
+	    {
+	        0%{ -webkit-transform:scale(1);opacity: 1;}
+	        100%{ -webkit-transform:scale(0.5);opacity: 0;}
+	    }
+	    #thank
+        {
+            height: 30px;
+            width: 200px;
+            border-radius: 5px;
+            font: 20px/30px arial,sans-serif;
+            text-align: center;
+            position:absolute;
+            left: 150px;
+            top: 673px;
+            background-color:rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #FCFAF7;
+            display: none;
+        }
+        .thankin
+        {
+            -webkit-transform-origin:50%;
+            -webkit-animation:thankin .3s linear forwards;
+        }
+
+        @-webkit-keyframes thankin
+        {
+            0%{ -webkit-transform:scale(0.5);opacity: 0;}
+            100%{ -webkit-transform:scale(1);opacity: 1;}
+        }
+        .thankout
+        {
+            -webkit-transform-origin:50%;
+            -webkit-animation:thankout .3s linear forwards;
+        }
+
+        @-webkit-keyframes thankout
+        {
+            0%{ -webkit-transform:scale(1);opacity: 1;}
+            100%{ -webkit-transform:scale(0.5);opacity: 0;}
+        }
+        #canvasBg
+        {
+        	pointer-events:none;
+        }
+        #loginTips
+	    {
+	        opacity: 0;
+	        width: 400px;
+	        height: 275px;
+	        position: absolute;
+	        top: 191px;
+	        left: 50px;
+	        background: #F2E5CA;
+	        font-weight: 700;
+	        border-radius: 5px;
+	        color: rgb(91, 90, 90);
+	        outline: 1px solid transparent;
+	    }
+	    
+	    .scaleshow{
+	        /*display: block;*/
+	        -webkit-animation-name: animScaleIn;
+	        animation-name: animScaleIn;
+	        -webkit-animation-duration: 0.25s;
+	        animation-duration: 0.25s;
+	        -webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+	    }
+	    .scalehide {
+	        -webkit-animation-name: animScaleOut;
+	        animation-name: animScaleOut;
+	        -webkit-animation-duration: 0.25s;
+	        animation-duration: 0.25s;
+	        -webkit-animation-fill-mode: forwards;
+	        animation-fill-mode: forwards;
+	    }
+
+	    @-webkit-keyframes animScaleIn {
+	        0% { opacity: 0; -webkit-transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); }
+	        100% { opacity: 1; -webkit-transform: translate3d(0,0,0) scale3d(1,1,1); }
+	    }
+
+	    @keyframes animScaleIn {
+	        0% { opacity: 0; -webkit-transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); }
+	        100% { opacity: 1; -webkit-transform: translate3d(0,0,0) scale3d(1,1,1); transform: translate3d(0,0,0) scale3d(1,1,1); }
+	    }
+	    @-webkit-keyframes animScaleOut {
+	        0% { opacity: 1; -webkit-transform: translate3d(0,0,0) scale3d(1,1,1); }
+	        100% { opacity: 0; -webkit-transform: translate3d(0,40px,0) scale3d(0.1,0.6,1);}
+	    }
+
+	    @keyframes animScaleOut {
+	        0% { opacity: 1; -webkit-transform: translate3d(0,0,0) scale3d(1,1,1); transform: translate3d(0,0,0) scale3d(1,1,1); }
+	        100% { opacity: 0; -webkit-transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); transform: translate3d(0,40px,0) scale3d(0.1,0.6,1); }
+	    }
+
+	    
+	    #loginTxt
+	    {
+	        font: 20px/35px arial,sans-serif;
+	        position: absolute;
+	        top: 36px;
+	        left: 0;
+	        padding: 0 56px;
+	    }
+	    #loginTipsbtn
+	    {
+	        width: 30px;
+	        height: 30px;
+	        background-image: url("huodong/logintip.png");
+	        background-size: 100% 100%;
+	        position: absolute;
+	        top: 645px;
+	        left: 16px;
+	        -webkit-transform-origin: 50% 0;
+	        -webkit-animation: yyhh .5s linear 1s infinite;
+	    }
+
+	    @-webkit-keyframes yyhh
+	    {
+	        /*0%{ -webkit-transform:rotate(0deg);}
+	        15%{ -webkit-transform:rotate(-15deg);}
+	        30%{ -webkit-transform:rotate(0deg);}
+	        45%{ -webkit-transform:rotate(15deg);}
+	        60%{ -webkit-transform:rotate(0deg);}
+	        100%{ -webkit-transform:rotate(0deg);}*/
+	        0%{ -webkit-transform:rotate(0deg);}
+	        25%{ -webkit-transform:rotate(-15deg);}
+	        50%{ -webkit-transform:rotate(0deg);}
+	        75%{ -webkit-transform:rotate(15deg);}
+	        100%{ -webkit-transform:rotate(0deg);}
+	    }
+	    #loginTipsBg
+	    {
+	        width: 100%;
+	        height: 100%;
+	        background-color: rgba(0,0,0,0.5);
+	        display: none;
+	        position: absolute;
+	        top: 0;
+	        left: 0;
+	    }
+	    #loginTipsClose
+	    {
+	        position: absolute;
+	        top: 11px;
+	        right: 8px;
+	        width: 30px;
+	        height: 30px;
+	    }
+	    .showHeadImgbg
+	    {
+	    	position: absolute;
+			top: 38px;
+			left: 64px;
+			width: 370px;
+			height: 370px;
+			background-image: url("huodong/headout2.png");
+			background-size: 100% 100%;
+	    }
+
+	    #delImage
+	    {
+	    	display: none;
+	    	position: absolute;
+			bottom: 22px;
+			left: 150px;
+			width: 200px;
+			height: 48px;
+			font: 20px/48px arial,sans-serif;
+			text-align: center;
+			/* border: 1px solid white; */
+			border-radius: 5px;
+			color: white;
+			background-color: #EA1C26;
+			border: 1px solid #EA1C26;
+	    }
+	    #label_hint
+	    {
+	        width: 100%;
+	        height: 100%;
+	        z-index: 5;
+	        background-color: rgba(0,0,0,0.4);
+	        position: absolute;
+	        left: 0px;
+	        top: 0px;
+	        display: none;
+	    }
+	    #label_hint_contain
+	    {
+	        width: 390px;
+	        height: 212px;
+	        border: 0;
+	        border-radius: 5px;
+	        background-color: white;
+	        color: rgb(61, 59, 59);
+	        position: absolute;
+	        left: 56px;
+	        top: 254px;
+	    }
+	    #label_hint_ok
+	    {
+	        font: 22px/30px arial,sans-serif;
+	        color: rgb(12, 223, 12);
+	        position: absolute;
+	        bottom: 30px;
+	        right: 48px;
+	    }
+	    #label_hint_no
+	    {
+	      font: 22px/30px arial,sans-serif;
+	      color: rgb(126, 134, 126);
+	      position: absolute;
+	      bottom: 30px;
+	      right: 140px;
+	    }
+	    #label_hint_txt
+	    {
+	        font: 22px/30px arial,sans-serif;
+			text-align: left;
+			position: absolute;
+			top: 56px;
+			left: 40px;
+			width: 329px;
+	    }
+	   
+	</style>
+	<!-- <div id="bgimage"> -->
+	<!-- <canvas id="canvasBg" width="500" height="750"></canvas> -->
+	<!-- </div> -->
+	<title>给[嘿哈]破姐的相册添一张你的照片！</title></head><body style="width: 1382px; height: 269.175px;"><div class="snow-container" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"><canvas width="1349" height="603"></canvas></div>
+	<div class="contentPage">
+		<div class="personInfo">
+		    <div id="headimg" style="background-image: url(&quot;http://wx.qlogo.cn/mmopen/L5VicoKBbCjcO3qKa2cTQq7TTvJibyZ7ywyLJY65GYcdHWhPLeQkTh2RpatzYZ1N9EJyu6KWHOiau733SwUVpSwGLwYGf6AJgcR/0&quot;);"></div>
+		    <span id="nick">๓₯㎯㎕l.☞Eric</span>
+		</div>
+		<div class="showInfo">
+		    <!-- <img src="http://resnap.weiuxiu.cn/photo/1159720.jpg" /> -->
+		    <div class="showTxtOut"><div id="text" class="showTxtIn">铁包银贵宾借配，价格私聊。</div></div>
+		</div>
+	</div>
+	<div id="swiper">
+		<div style="background-image: url(&quot;http://resnap.weiuxiu.cn/bzxc/image/434457661068&quot;);" class="swiper-waitleft"></div>
+		<div style="background-image: url(&quot;http://resnap.weiuxiu.cn/bzxc/image/434133102961&quot;);" class="swiper-left"></div>
+		<div style="background-image: url(&quot;http://resnap.weiuxiu.cn/bzxc/image/450715752902&quot;);" class="swiper-center"></div><!-- id="swiperCenter" -->
+		<div style="background-image: url(&quot;http://resnap.weiuxiu.cn/bzxc/image/449328218601&quot;);" class="swiper-right"></div>
+		<div style="background-image: url(&quot;http://resnap.weiuxiu.cn/bzxc/image/443165414448&quot;);" class="swiper-waitright"></div>
+	</div>
+	<div class="showHead">
+		<div class="showHeadImgbg"></div>
+		<div class="showHeadImg"></div>
+		<div class="showHeadAdd">添加照片</div>
+		<div class="showHeadHelp" data-flag="0"></div>
+		<div class="showHeadTips">
+			<span class="showHeadTip1">添加照片时需要先登录不要惊慌！</span>
+			<span class="showHeadTip2">可以添加自己的自拍！</span>
+			<span class="showHeadTip3">你和主人的合照也可以！</span>
+			<span class="showHeadTip4">偷拍的主人照片也可以！</span>
+		</div>
+		<div class="showHeadNew" onclick="newclick()">创建自己的朋友相册</div>
+	</div>
+	<div class="addPhoto">添加照片</div>
+	<div class="newPhoto" onclick="newclick()">创建自己的朋友相册</div>
+	
+	<div class="showAddBg">
+		<div class="showAdd">
+			<div class="showAddPhoto">
+				<div class="showAddDiv">点此添加照片</div>
+				<div class="showAddAdd"></div>
+				<div class="showAddImg"></div>
+				<div class="showAddHead">添加照片</div>
+			</div>
+			<div class="showAddTxt">
+				<textarea id="inputTxt" type="text" maxlength="100" placeholder="说些什么吧..."></textarea>
+				<div id="Niming" data-target="0" onclick="niClick()">
+					<input id="inputCheck" type="checkbox">
+					<div class="showAddNiming">匿名</div>
+				</div>
+			</div>
+			<div class="showAddBottom">
+				<div class="showAddNo">取消</div>
+				<div class="showAddOk">确定</div>
+			</div>
+		</div>
+		<div id="thank"></div>
+	</div>
+	<div id="bigPhoto" class="bigPhoto" style="display: none;">
+  		<img id="bigPhotoShow" class="bigPhotoShow">
+  		<!-- <div id="bigPhotoTxt">长按可保存照片</div> -->
+  		<div class="bigPhotoClose">
+			<svg width="30" height="30"><g stroke="rgb(255, 255, 255)" stroke-width="4"><line x1="5" y1="5" x2="25" y2="25"></line><line x1="5" y1="25" x2="25" y2="5"></line></g></svg>
+		</div>
+		<div id="delImage">删除照片</div>
+		<div id="label_hint">
+		    <div id="label_hint_contain">
+		        <div id="label_hint_txt"></div>
+		        <div id="label_hint_ok">确定</div>
+		        <div id="label_hint_no">取消</div>
+		    </div>
+		</div>
+	</div>
+<!-- <button onclick="next()">next</button> -->
+<script type="text/javascript" src="huodong/jquery.js"></script>
+<script type="text/javascript" src="huodong/snow.js"></script>
+
+<script type="text/javascript">
+
+	var objid = function(id) {
+		return document.getElementById(id);
+	}
+	var objimg = objid("headimg");
+	var objnick = objid("nick");
+	var objtext = objid("text");
+
+	var index = 0;
+	document.title = title;
+
+	;(function(w){
+		// var objid = function(id) {
+		// 	return document.getElementById(id);
+		// }
+
+		var classes = [
+			"swiper-waitleft",
+			"swiper-left",
+			"swiper-center",
+			"swiper-right",
+			"swiper-waitright"
+		];
+
+		var leftKeyframes = [
+			"none",
+			"leftLeft",
+			"centerLeft",
+			"rightLeft",
+			"waitRightLeft"
+		]
+
+		var rightKeyframes = [
+			"waitLeftRight",
+			"leftRight",
+			"centerRight",
+			"rightRight",
+			"none"
+		]
+
+		w.Swiper = function(id, images, nextCB, lastCB){
+			this.id = id;
+			this.images = images;
+			this.nextCB = nextCB;
+			this.lastCB = lastCB;
+
+			this._init();
+		}
+		w.Swiper.prototype = {
+			_init: function() {
+				this.dom = objid(this.id);
+				this.divs = this.dom.children;
+				this.animating = false;
+				this.bTouch = false;
+				this.isMove = false;
+				this.index =  0;
+
+				if(this.images.length) {
+					for(var i = 0;i<this.divs.length;i++) {
+						this.divs[i].style.backgroundImage = "url(" + this.images[(i-1 +this.images.length-1)%this.images.length]["showimg"] + ")";
+						this.divs[i].className = classes[i];
+					}
+
+					objimg.style.backgroundImage= "url(" + this.images[(this.images.length)%this.images.length]["headimg"] + ")";
+					objnick.innerHTML= this.images[(this.images.length)%this.images.length]["nick"];
+					objtext.innerHTML= this.images[(this.images.length)%this.images.length]["text"];
+
+					this.dom.ontouchstart = this.dom.onmousedown = this._touchstart.bind(this);
+					this.dom.ontouchmove = this.dom.onmousemove = this._touchmove.bind(this);
+					this.dom.ontouchend = this.dom.onmouseup = this._touchend.bind(this);
+				}
+				else
+				{
+					$(".contentPage").css("display",'none');
+					$("#swiper").css("display",'none');
+					$(".addPhoto").css("display","none");
+					$(".newPhoto").css("display","none");
+					$(".showHead").css("display","inline");
+					$(".showHeadImg").css("background-image","url("+ownerimgurl+")");
+				}
+			},
+			_update: function(idx) {
+				this.index = idx;
+				if (this.images.length == 0) {
+					$(".contentPage").css("display",'none');
+					$("#swiper").css("display",'none');
+					$(".addPhoto").css("display","none");
+					$(".newPhoto").css("display","none");
+					$(".showHead").css("display","inline");
+					$(".showHeadImg").css("background-image","url("+ownerimgurl+")");
+				}
+				else
+				{
+					if (this.images.length == 1) {
+						$(".contentPage").css("display",'inline');
+						$("#swiper").css("display",'inline');
+						$(".newPhoto").css("display","inline");
+						$(".addPhoto").css("display","inline");
+						$(".showHead").css("display","none");
+
+						this.dom.ontouchstart = this.dom.onmousedown = this._touchstart.bind(this);
+						this.dom.ontouchmove = this.dom.onmousemove = this._touchmove.bind(this);
+						this.dom.ontouchend = this.dom.onmouseup = this._touchend.bind(this);
+					}
+					for(var i = 0;i<this.divs.length;i++) {
+						this.divs[i].style.backgroundImage = "url(" + this.images[(i-1+this.images.length-1+idx)%this.images.length]["showimg"] + ")";
+						this.divs[i].className = classes[i];
+						// this.divs[i].setAttribute("data-id",this.images[(i-1 +this.images.length-1)%this.images.length]["id"]);
+					}
+
+					objimg.style.backgroundImage= "url(" + this.images[(this.images.length+idx)%this.images.length]["headimg"] + ")";
+					objnick.innerHTML= this.images[(this.images.length+idx)%this.images.length]["nick"];
+					objtext.innerHTML= this.images[(this.images.length+idx)%this.images.length]["text"];
+				}
+			},
+			_touchstart: function(event) {
+				event.preventDefault();
+				if(this.animating) {
+					return;
+				}
+				this.startX = event.touches ? event.touches[0].pageX : event.pageX;
+				this.bTouch = true;
+				this.isMove = false;
+				
+			},
+			_touchmove: function(event) {
+				event.preventDefault();
+				this.isMove = true;
+				this.endX = event.touches ? event.touches[0].pageX : event.pageX;
+
+				if(this.animating || this.bTouch == false) {
+					// console.log(this.animating+" "+this.bTouch);
+					return;
+				}
+
+				
+
+				var dec = this.endX - this.startX;
+				var absDec = Math.abs(dec);
+				var speed = 0.2/400;
+
+				var scales = [0.8, 0.8, 1, 0.8, 0.8];
+				scales[0] = dec >= 400 ? (dec-400)*speed + 0.8 : 0.8;
+				scales[0] > 1 ? scales[0] = 1 : true;
+
+				scales[1] = dec > 0 ? dec*speed + 0.8 : 0.8;
+				dec > 400 ? scales[1] = 1 - (dec-400)*speed : true;
+				
+				scales[2] = 1-speed*absDec;
+				scales[2] < 0.8 ? scales[2] = 0.8 : true;
+
+				scales[3] = dec < 0 ? -dec*speed + 0.8 : 0.8;
+				// dec < -400 ? scales[3] = 1 + (dec - 400)*speed : true;
+				dec < -400 ? scales[3] = 1 + (dec + 400)*speed : true;
+
+
+				scales[4] = dec <= -400 ? (400-dec)*speed + 0.8 : 0.8;
+				scales[4] > 1 ? scales[4] = 0.8 : true;
+
+				var trans = [-800 + dec, -400 + dec, dec, 400+dec, 800+dec];
+				for(var i=0;i<this.divs.length;i++) {
+					// console.log(scales);
+					this.divs[i].style.webkitTransform = "scale(" + scales[i] + ") translate(" + trans[i] + "px, 0) translateZ(0)";
+				}
+
+				
+			},
+			_touchend: function(event) {
+				event.preventDefault();
+				this.bTouch = false;
+				// console.log(this.endX +" "+this.startX);
+				if ( (!this.isMove&&this.endX==0) || this.endX==undefined || this.endX==this.startX) {
+					if (this.startX<100) {
+						this._turnRight(180);
+					}
+					else if(this.startX>400) {
+						this._turnLeft(180);
+					}
+					else
+					{
+						picClick();
+					}
+				}
+				else
+				{
+					var dec = this.endX - this.startX;
+					var absDec = Math.abs(dec);
+					if(dec > 60) {
+						this._turnRight(180);
+					}
+					else if(dec > -60) {
+						this.animating = true;
+
+						for(var i=0;i<this.divs.length;i++) {
+							this.divs[i].style.webkitTransition = "transform 0.1s ease-out";
+						}
+						setTimeout(function(){
+							for(var i=0;i<this.divs.length;i++) {
+								this.divs[i].style.webkitTransform = "";
+							}	
+							setTimeout(function(){
+								for(var i=0;i<this.divs.length;i++) {
+									this.divs[i].style.webkitTransition = "";
+								}
+								this.animating = false;
+							}.bind(this), 180);
+						}.bind(this), 100);
+					}
+					else {
+						this._turnLeft(180);
+					}
+					this.endX = 0;
+				}
+				
+			},
+			_turnLeft: function(time) {
+				if(this.animating) {
+					return;
+				}
+				time == undefined ? time = 360 : true;
+				this.animating = true;
+
+				for(var i = 0;i<this.divs.length;i++) {
+					this.divs[i].style.webkitAnimation = leftKeyframes[i] + " " + time/1000 + "s ease-out 0s 1 both";
+				}
+				// this.index++;
+				setTimeout(function(){
+					this.index = (this.index + 1) % this.images.length;
+					// this.index++;
+					this.dom.insertBefore(this.divs[0], null);
+
+					for(var i = 0;i<this.divs.length;i++) {
+						this.divs[i].style.backgroundImage = "url(" + this.images[(i-1+this.images.length-1 + this.index)%this.images.length]["showimg"] + ")";
+						this.divs[i].className = classes[i];
+						this.divs[i].style.webkitAnimation = "";
+						this.divs[i].style.webkitTransform = "";
+					}
+					this.animating = false;
+
+					index = this.index;
+					this.nextCB && this.nextCB(this.index);
+				}.bind(this), time + 100);
+
+				// this.nextCB && this.nextCB(this.index);
+			},
+			_turnRight: function(time) {
+				if(this.animating) {
+					return;
+				}
+				time == undefined ? time = 360 : true;
+				this.animating = true;
+
+				for(var i = 0;i<this.divs.length;i++) {
+					this.divs[i].style.webkitAnimation = rightKeyframes[i] + " " + time/1000 + "s ease-out 0s 1 both";
+				}
+				// this.index = (this.index - 1 + this.images.length) % this.images.length;
+				setTimeout(function(){
+					this.index = (this.index - 1 + this.images.length) % this.images.length;
+					this.dom.insertBefore(this.divs[this.divs.length-1], this.divs[0]);
+
+					for(var i = 0;i<this.divs.length;i++) {
+						this.divs[i].style.backgroundImage = "url(" + this.images[(i-1+this.images.length-1 + this.index)%this.images.length]["showimg"] + ")";
+						this.divs[i].className = classes[i];
+						this.divs[i].style.webkitAnimation = "";
+						this.divs[i].style.webkitTransform = "";
+					}
+					this.animating = false;
+
+					index = this.index;
+					this.lastCB && this.lastCB(this.index);
+				}.bind(this), time + 100);
+				// this.lastCB && this.lastCB(this.index);
+			}
+		}
+	})(window);
+
+	function nextCB(index) {
+		var m = (images.length+index)%images.length;
+		objimg.style.backgroundImage= "url(" + images[m]["headimg"] + ")";
+		objnick.className = "hintbgout";
+		objtext.className = "showTxtIn hintbgout";
+		setTimeout(function(){
+			objnick.innerHTML= images[m]["nick"];
+			objnick.className = "hintbgin";
+			objtext.innerHTML= images[m]["text"];
+			objtext.className = "showTxtIn hintbgin";
+		}.bind(this),200);
+
+		// objimg.style.backgroundImage= "url(" + images[(images.length+ index)%images.length]["headimg"] + ")";
+		// objnick.style.webkitAnimation = "hintbgout .2s linear forwards";
+		// objtext.style.webkitAnimation = "hintbgout .2s linear forwards";
+
+		// // objimg.style.webkitAnimation = "hintbgout .2s linear forwards";
+		// setTimeout(function(){
+		// 	// objimg.style.backgroundImage= "url(" + images[(images.length+ index)%images.length]["headimg"] + ")";
+		// 	// objimg.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// 	objnick.innerHTML= images[(images.length+ index)%images.length]["nick"];
+		// 	// objnick.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// 	objtext.innerHTML= images[(images.length+ index)%images.length]["text"];
+		// 	// objtext.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// }.bind(this),200);
+	}
+
+	function lastCB(index) {
+		var m = (images.length+index)%images.length;
+		objimg.style.backgroundImage= "url(" + images[m]["headimg"] + ")";
+		objnick.className = "hintbgout";
+		objtext.className = "showTxtIn hintbgout";
+		setTimeout(function(){
+			objnick.innerHTML= images[m]["nick"];
+			objnick.className = "hintbgin";
+			objtext.innerHTML= images[m]["text"];
+			objtext.className = "showTxtIn hintbgin";
+		}.bind(this),200);
+		// objimg.style.backgroundImage= "url(" + images[(images.length+ index)%images.length]["headimg"] + ")";
+		// objnick.style.webkitAnimation = "hintbgout .2s linear forwards";
+		// objtext.style.webkitAnimation = "hintbgout .2s linear forwards";
+
+		// // objimg.style.webkitAnimation = "hintbgout .2s linear forwards";
+		// setTimeout(function(){
+		// 	// objimg.style.backgroundImage= "url(" + images[(images.length+ index)%images.length]["headimg"] + ")";
+		// 	// objimg.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// 	objnick.innerHTML= images[(images.length+ index)%images.length]["nick"];
+		// 	// objnick.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// 	objtext.innerHTML= images[(images.length+ index)%images.length]["text"];
+		// 	// objtext.style.webkitAnimation = "hintbgin .3s linear forwards";
+		// }.bind(this),200);
+	}
+	function picClick() {
+		var src = $(".swiper-center").css("backgroundImage");
+      	src = src.slice(4,-1);
+      	src = src.replace(/\"/g,"");
+      	$("#bigPhotoShow").attr("src", src);
+      	$(".bigPhoto").fadeIn( 200 );
+      	var srcid = src.replace("http://resnap.weiuxiu.cn/bzxc/image/","");
+      	if (ownerflag) {
+      		$("#delImage").attr("data-id", srcid);
+      		$("#delImage").css("display","inline");
+      	}
+      	else
+      	{
+      		for(var key in images) 
+            {
+                if (parseInt(images[key]["id"]) == parseInt(srcid)||src.indexOf("resnap.weiuxiu.cn")==-1) {
+                	if(images[key]["openid"] == openid){
+                		$("#delImage").attr("data-id", srcid);
+      					$("#delImage").css("display","inline");
+      					break;
+                	}
+                }
+            }
+      	}
+	}
+
+	function niClick()
+    {
+      	if (parseInt($('#Niming').attr('data-target'))==0) {
+	        $('#inputCheck').prop('checked', true);
+	        $('#Niming').attr('data-target',1);
+      	}
+      	else
+      	{
+	        $('#inputCheck').prop('checked', false);
+	        $('#Niming').attr('data-target',0);
+      	}
+    }
+
+	function trim(str) {
+        return str.replace(/(^\s+)|(\s+$)/g, "");
+    }
+	var sw = new Swiper("swiper", images, nextCB, lastCB);
+	
+</script>
+<script>
+  var e_music_url = 'http://ws.stream.qqmusic.qq.com/1702048.m4a?fromtag=46';
+  var e_music_player = new Audio();
+
+  if(typeof(objid) == 'undefined')
+  {
+    var objid = function(id) {
+      return document.getElementById(id);
+    }
+  }
+
+  function play_music()
+  {
+      if(e_music_url == '')
+      {
+          return ;
+      }
+
+      e_music_player.src  = e_music_url;
+      e_music_player.loop = 'loop';
+      e_music_player.play();
+      
+      if(objid('sound_image'))
+      {
+          objid('sound_image').style.webkitAnimation     = "zhuan 1s linear infinite";
+      }
+      
+  }
+
+  function create_music()
+  {
+      if(e_music_url == '')
+      {
+          return ;
+      }
+      
+      play_music();
+
+      sound_div = document.createElement("div");
+      sound_div.setAttribute("ID", "cardsound");
+      sound_div.style.cssText = "position:fixed;right:20px;top:26px;z-index:5;visibility:visible;";
+      sound_div.onclick = switchsound;
+
+      bg_htm  = "<img id='sound_image' src='http://resnap.weiuxiu.cn/photo/music_note_big.png' style='-webkit-animation:zhuan 1s linear infinite;width:36px;'>";
+      txt_htm = "<div id='music_txt' style='color:white;position:absolute;left:-40px;top:30px;width:60px'></div>"
+
+      sound_div.innerHTML = bg_htm  + txt_htm;
+
+      document.body.appendChild(sound_div);
+  }            
+  
+  function switchsound()
+  {
+  	
+      au = e_music_player;
+      ai = objid('sound_image');
+      if(au.paused)
+      {
+          au.play();
+          ai.style.webkitAnimation     = "zhuan 1s linear infinite";
+          objid("music_txt").innerHTML = "打开";
+          objid("music_txt").style.visibility = "visible";
+          setTimeout(function(){objid("music_txt").style.visibility="hidden"}, 2500);
+      }
+      else
+      {
+          au.pause();
+          ai.style.webkitAnimation     = "";
+          objid("music_txt").innerHTML = "关闭";
+          objid("music_txt").style.visibility = "visible";
+          setTimeout(function(){objid("music_txt").style.visibility="hidden"}, 2500);
+      }
+  }
+  create_music();
+</script><div id="cardsound" style="position: fixed; right: 20px; top: 26px; z-index: 5; visibility: visible;"><!--<img id="sound_image" src="huodong/music_note_big.png" style="-webkit-animation:zhuan 1s linear infinite;width:36px;">!--><div id="music_txt" style="color:white;position:absolute;left:-40px;top:30px;width:60px"></div></div>
+
+        <div id="loginTipsbtn" onclick="loginClick()"></div>
+        <div id="loginTipsBg">
+            <div id="loginTips">
+                <div id="loginTipsClose">
+                    <svg width="25" height="25"><g stroke="rgb(255, 255, 255)" stroke-width="4"><line x1="5" y1="5" x2="20" y2="20"></line><line x1="5" y1="20" x2="20" y2="5"></line></g></svg>
+                </div>
+                <div id="loginTxt">
+                    添加照片时需要登录不要惊慌！<br>
+                    添加的照片可以是：<br>
+                    1.忘记晒的活动照片 <br>
+                    2.主人自己都没见过的照片 <br>
+                    3.久远并具有纪念意义的照片 <br>
+                    PS：偷拍了人家就好好表白好吗
+                </div>
+            </div>
+        </div>
+
+<script type="text/javascript">
+    
+    var localId = '';
+    var imgsrc = '';
+    $(document).ready(function(){
+
+        var x_out = window.outerWidth == 0 ? window.screen.width : window.outerWidth;
+        var height = window.outerHeight == 0 ? window.screen.height : window.outerHeight;
+        var y_out = 500/x_out*height;
+        // document.getElementById('body').style.width = x_out + 'px';
+        // document.getElementById('body').style.height = y_out + 'px';
+        $('body').css("width",x_out);
+        $('body').css("height",y_out);
+
+        // if (ownerflag) {
+        //     $(".showHeadNew").css("display","none");
+        //     $(".newPhoto").css("display","none");
+        // }
+        $(".addPhoto").click(function(){
+        	//添加图片按钮
+        	var  baseflag =''
+            if (baseflag) {
+                window.location.href = "show.php?wxid="+wxid+"&book="+book+"&log=1";
+            }
+            else
+            {
+                $('.showAddBg').css('display','block');
+                $('.showAddBg').removeClass('hintbgout').addClass('hintbgin');
+                $('.showAdd').removeClass('hintout').addClass('hintin');
+            }
+        });
+        $(".showHeadAdd").click(function(){
+            if (baseflag) {
+                window.location.href = "show.php?wxid="+wxid+"&book="+book+"&log=1";
+            }
+            else
+            {
+                $('.showAddBg').css('display','block');
+                $('.showAddBg').removeClass('hintbgout').addClass('hintbgin');
+                $('.showAdd').removeClass('hintout').addClass('hintin');
+            }
+        });
+
+        $("#loginTipsbtn").click(function(){
+            $('#loginTipsBg').css('display','block');
+            $('#loginTipsBg').removeClass('hintbgout').addClass('hintbgin');
+            $('#loginTips').removeClass('scalehide').addClass('scaleshow');
+            $('#loginTipsbtn').css('display','none');
+        });
+        $("#loginTipsClose").click(function(){
+            $('#loginTips').removeClass('scaleshow').addClass('scalehide');
+            $('#loginTipsBg').removeClass('hintbgin').addClass('hintbgout');
+            setTimeout(function(){
+                $('#loginTipsBg').css('display','none');
+            },500);
+        });
+        $(".showAddNo").click(function(){
+            localId = "";
+            $('#inputTxt').val("");
+            $('#inputCheck').prop('checked', false);
+            $('#Niming').attr('data-target',0);
+
+            $("#thank").css('display','none');
+
+            $('.showAddImg').css('display','none');
+            $('.showAdd').removeClass('hintin').addClass('hintout');
+            $('.showAddBg').removeClass('hintbgin').addClass('hintbgout');
+            setTimeout(function(){
+                $('.showAddBg').css('display','none');
+            },400);
+        });
+        $(".showAddOk").click(function(){
+            var ni = 0;
+            if (parseInt($('#Niming').attr('data-target'))==1) {
+               ni = 1;
+            }
+            var inputtxt = $('#inputTxt').val();
+            inputtxt = trim(inputtxt);
+            if (localId!="") {
+                // console.log(localId);
+                var data = new Object();
+                if (ni == 1) {
+                    data.nick = "某吃瓜群众";
+                    data.headimg = "http://resnap.weiuxiu.cn/bzxc/icon/niming2.png";
+                }
+                else
+                {
+                    data.nick = nick;
+                    data.headimg = imgurl;
+                }
+                data.showimg = imgsrc;
+                data.text = inputtxt;
+                data.openid = openid;
+                data.id = localId;
+               
+                images.push(data);
+                for(var i=images.length-1;i>index;i--) {
+                    images[i] = images[i-1];
+                }
+                images[index] = data;
+                sw._update(index);
+
+                $.ajax({
+                    type:'POST',
+                    url:'savetxt.php',
+                    dataType:'json',
+                    data:'book='+book+'&openid='+openid+'&txt='+inputtxt+'&sid='+localId+'&flag='+ni,
+                    success:function(data){
+                        localId = "";
+                        imgsrc = "";
+                        $('#inputTxt').val("");
+                        $('#inputCheck').prop('checked', false);
+                        $('#Niming').attr('data-target',0);
+                    }
+                });
+
+                $('.showAdd').removeClass('hintin').addClass('hintout');
+                $('.showAddBg').removeClass('hintbgin').addClass('hintbgout');
+                setTimeout(function(){
+                    $('.showAddBg').css('display','none');
+                    $('.showAddImg').css('display','none');
+                },400);
+            }
+            else
+            {
+                // 提示
+                $("#thank").css('display','inline');
+
+                $("#thank").html("咦你没有选择照片哦");
+                $("#thank").removeClass('thankout').addClass('thankin');
+                setTimeout(function(){
+                    $("#thank").removeClass('thankin').addClass('thankout');
+                },2000);
+            }
+        });
+        $(".showAddPhoto").click(function(){
+            chooseImage();
+        });
+
+        var bigphoto = $(".bigPhoto");
+
+        // $("#swiper").click( function(e){
+        //   var src = $(this).find(".swiper-center").css("background-image");
+        //   src = src.slice(4,-1);
+        //   src = src.replace(/\"/g,"");  
+        //   $("#bigPhotoShow").attr("src", src);
+        //   bigphoto.fadeIn( 200 );
+        // });
+
+        $(".bigPhotoClose").click( function(e){
+            $("#delImage").attr("data-id", "");
+            $("#delImage").css("display","none");
+            $("#bigPhotoShow").attr("src", "");
+            bigphoto.fadeOut( 200 );
+
+        });
+        $("#bigPhotoShow").click( function(e){
+            $("#delImage").attr("data-id", "");
+            $("#delImage").css("display","none");
+            $("#bigPhotoShow").attr("src", "");
+            bigphoto.fadeOut( 200 );
+        });
+        $(".showHeadHelp").click(function(){
+            if (parseInt($('.showHeadHelp').attr('data-flag'))==1) {
+                $('.showHeadTips').removeClass('tipsin').addClass('tipsout');
+                $('.showHeadHelp').attr('data-flag',0);
+            }
+            else
+            {
+                $('.showHeadTips').removeClass('tipsout').addClass('tipsin');
+                $('.showHeadHelp').attr('data-flag',1);
+            }
+        });
+        $('#delImage').click(function(){
+            $('#label_hint').css('display','inline');
+            $('#label_hint_contain').removeClass().addClass('hintin');
+            $('#label_hint').removeClass().addClass('hintbgin');
+            $('#label_hint_txt').html('当前照片删除后无法恢复，确定删除吗？');
+        });
+        $("#label_hint_no").click(function(){
+            $('#label_hint_contain').removeClass().addClass('hintout');
+            $('#label_hint').removeClass().addClass('hintbgout');
+            setTimeout(function(){
+                $("#label_hint").css("display","none");
+            },400);
+        });
+        $("#label_hint_ok").click(function(){
+            var src = $(".swiper-center").css("backgroundImage");
+            src = src.slice(4,-1);
+            src = src.replace(/\"/g,"");
+            // if (ownerflag) {
+                if (src.indexOf("resnap.weiuxiu.cn")==-1) {
+                    src = images[index]["id"];
+                }
+                else
+                {
+                    src = src.replace("http://resnap.weiuxiu.cn/bzxc/image/","");
+                }
+                var id = parseInt(src);
+                $.ajax({
+                    type:'POST',
+                    url:'deltxtonline2.php',
+                    dataType:'json',
+                    data:"id="+id+"&openid="+openid,
+                    success:function(data){
+                        // console.log(data.htm);
+                        // console.log(JSON.stringify(images));
+                        // images.pop();
+                        // alert(data.htm);
+                        for(var key in images) 
+                        {
+                            if (parseInt(images[key]["id"]) == parseInt(data.htm)) {
+                                for(var i=key;i<images.length-1;i++) {
+                                    var j = parseInt(i)+1;
+                                    images[i] = images[j];
+                                }
+                                images.pop();
+                                // delete images[key];
+                                // images['length'] = images['length'] - 1;
+                            }
+                        }
+                        // console.log(images);
+                        index = (index + 1) % images.length;
+                        sw._update(index);
+                        $("#delImage").attr("data-id", "");
+                        $("#delImage").css("display","none");
+                        $("#bigPhotoShow").attr("src", "");
+                        bigphoto.fadeOut( 200 );
+                    }
+                });
+                $('#label_hint_contain').removeClass().addClass('hintout');
+                $('#label_hint').removeClass().addClass('hintbgout');
+                setTimeout(function(){
+                    $("#label_hint").css("display","none");
+                },400);
+            // }
+      });
+    });
+    function newclick()
+    {
+    	//创建自己的朋友相册
+        window.location.href = newurl;
+    }
+    function chooseImage()
+    {	
+        wx.chooseImage({
+            count: 1, // 默认9
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                var localIds = res.localIds; // 返回选定照片的本地ID列表，localId可以作为img标签的src属性显示图片
+                localId = localIds[0];
+
+                wx.uploadImage({
+                    localId: localId, // 需要上传的图片的本地ID，由chooseImage接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        var sid = res.serverId; // 返回图片的服务器端ID
+                        $.ajax({
+                            type:'POST',
+                            url:'uploadimg.php',
+                            dataType:'json',
+                            data:'sid='+sid+'&upid='+uploadid,
+                            success:function(data){
+                                imgsrc = "http://resnap.weiuxiu.cn/bzxc/image/" + data.txtid;
+                                localId = data.txtid;
+                                setTimeout(function(){
+                                    $('.showAddImg').css('background-image',"url('"+imgsrc+"')");
+                                    $('.showAddImg').css('display','inline');
+                                },500);
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    function isObjectValueEqual(a, b) {
+        var aProps = Object.getOwnPropertyNames(a);
+        var bProps = Object.getOwnPropertyNames(b);
+ 
+        if (aProps.length != bProps.length) {
+            return false;
+        }
+        for (var i = 0; i < aProps.length; i++) {
+            var propName = aProps[i];
+            if (propName != "id"){
+                if (a[propName] !== b[propName]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+</script>
+</body></html>

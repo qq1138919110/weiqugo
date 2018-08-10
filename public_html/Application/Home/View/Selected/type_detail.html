@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>微趣GO</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="container-idx">
+
+      <!-- 顶部滑动导航 -->
+      <div class="slide-nav slide-fixed">
+        <ul id="slider1" class="clearfix">
+          <li><a class="" href="index.php?s=/Home/Selected<?php echo $GLOBALS['puid_url'];   ?>">推荐</a></li>
+          <volist name="navigation" id="vo" key="key">
+            <li><a <?php if(i('get.navigation_id')==$vo['navigation_id']){ echo  'class="active"'; }  ?> href="index.php?s=/Home/Selected/type_detail&navigation_id=<?php echo $vo['navigation_id'];  ?><?php echo $GLOBALS['puid_url'];   ?>">{$vo.navigation_name}</a></li>
+          </volist>
+          <?php if(isset($_POST['search']) and (!isset($_GET['navigation_id']))){  ?>
+            <li><a class="active" href="index.php?s=/Home/Selected<?php echo $GLOBALS['puid_url'];   ?>">搜索</a></li>
+          <?php }else if($_GET['navigation_id']==""){ ?>
+            <li><a class="active" href="index.php?s=/Home/Selected<?php echo $GLOBALS['puid_url'];   ?>">搜索</a></li>
+            <?php  }  ?>
+        </ul>
+      </div>
+
+      <!-- 搜索框 -->
+        <div class="search search-input">
+          <FORM METHOD=POST ACTION="index.php?s=/Home/Selected/type_detail&navigation_id=<?php  echo i('navigation_id');  ?><?php echo $GLOBALS["puid_url"];   ?>" >
+          <input type="text" value="" id="search-input" name="search" />
+          <div><img src="images/search.png"><span>搜索</span></div>
+          <input type="submit" style="display:none">
+          </FORM>
+        </div>
+      <div class="container-gray container-find">
+	  <!-- 搜索框 -->
+      <!-- <div class="search">
+        <FORM METHOD=POST ACTION="index.php?s=/Home/Selected/type_detail&navigation_id=<?php  echo i('navigation_id');  ?><?php echo $GLOBALS["puid_url"];   ?>" >
+          <input type="text" value="" id="search-input" name="search" />
+          <div><img src="images/search.png"><span>搜索 </span></div>
+        </FORM>
+
+      </div> -->
+        <!-- 详情开始y -->
+        <div class="find-detail">
+          <ul class="clearfix">
+          <notempty name="goods_lists">
+            <volist name="goods_lists" id="vo" >
+              <li>
+              <a href="index.php?s=/Home/Selected/goods_info&good_id={$vo.good_id}<?php echo $GLOBALS['puid_url'];   ?>">
+                <img src="{$vo.good_cover}" alt="">
+              </a>
+                <h2>{$vo.good_name}</h2>
+                <p>{$vo.goods_producer} </p>
+                <span>{$vo.good_value}积分</span>
+
+              <img src="images/gouwuche1.png" alt="" onclick="change_display1({$vo.good_id})">
+            </li>
+            </volist>
+            <else />
+              <div class="cart-none order-none">
+              <p>暂无商品╭(╯ε╰)╮</p>
+              </div>
+            </notempty>
+          </ul>
+        </div>
+        <!-- 详情结束 -->
+        <!-- 弹出购物车 start -->
+          <input type="hidden"  id="goods_id" value="">
+          <input type="hidden" id="attr_number" value="">
+          <div class="alert-cart footer-max">
+          <div class="wrap footer-max">
+            <div class="title">
+              <img id="goods_img_cart" src="{$data.good_cover}" alt="">
+              <span id="price_main">{$data.true_price}</span>
+              <p id="has-choice">已选：<span id="attr_name_select"></span></p>
+              <i class="icon iconfont" id="close-cart">&#xe7cc;</i>
+            </div>
+
+
+            <div class="clearfix last-div">
+              <span class="pull-left">购买数量</span>
+              <div class="cart-integral pull-right">
+                <p class="clearfix">
+                  <span class="reduce">-</span>
+                  <span class="number">1</span>
+                  <span class="add">+</span>
+                </p>
+              </div>
+            </div>
+            <div class="cart-btn"><button onclick="submit_cart_type()">加入换物车</button></div>
+          </div>
+        </div>
+
+
+        <!--弹出加入购物车end-->
+        <!-- 页脚 -->
+        <div class="footer footer-max clearfix">
+          <?php  include "./Application/Home/View/Public/footer.php"; ?>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <!-- 滑动导航 -->
+    <script type="text/javascript" src="js/touchslider.js"></script>
+
+    <script type="text/javascript">
+    function change_display1(goods_id){
+      //var attr_array=NULL;
+      window.attr_str="";
+       window.attr_array=[];
+       window.goods_id="";
+      //console.log(window.attr_array);
+      var attr_array="";
+      $("#attr_name_select").html('');
+      $('#attr_number').val('');
+      $('#goods_id').val(goods_id);
+      $('#goods_img_cart').attr('src','');
+      $('#price_main').html('');
+      $.ajax({
+  			url: 'index.php?s=/Home/Selected/goods_info',
+  			type: 'get',
+  			dataType: 'json',
+  			data: {good_id: goods_id},
+  			success:function(data){
+          $('.wrap').show();
+          $("#attr_number").val(data.data.attr_number);
+          console.log(data);
+          $('#price_main').html(data.data.true_price);
+          $('#goods_img_cart').attr('src',data.data.good_cover);
+          $('.attribute').remove();
+          $('.number').html(1);
+          var attr=data.data.attr_data;
+          var attr_html="";
+          for (var key in attr) {
+            var attr_name="";
+            for (var k in attr[key].list) {
+              attr_name+='<span onclick="sel_attr('+attr[key].list[k].symbol+','+key+')" id="attr_'+attr[key].list[k].symbol+'"  attr_val="'+attr[key].list[k].symbol+'">'+attr[key].list[k].attr_value+'<INPUT TYPE="hidden" NAME="" id="'+attr[key].list[k].symbol+'" value="'+attr[key].list[k].symbol+'"> </span>';
+            }
+            attr_html+='<div class="attribute "><h2>'+attr[key].attr_name1+'</h2>'+attr_name+'</div>';
+            //console.log(attr_html);
+          }
+          $('.title').after(attr_html);
+          var documentHeight = $(document).height();
+      		$(".alert-cart").height(documentHeight);
+          //$('.alert-cart').show();
+
+  			}
+  		})
+      var documentHeight = $(document).height();
+  		$(".alert-cart").height(documentHeight);
+      //$('.alert-cart').show();
+    }
+      var t11 = new TouchSlider('slider1',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});
+      goTop ();
+      cart_choice();
+      indexJs();
+      product_detail();
+      add_reduce();
+      classification()
+    </script>
+    <script type="text/javascript" >
+    window.attr_array=[];
+    //console.log(window.attr_array.length);
+    function sel_attr(attr_val,type_val){
+      window.goods_id=$('#goods_id').val();
+      var goods_id=window.goods_id;
+      var attr_number=$("#attr_number").val();
+      $('#attr_'+window.attr_array[type_val]).removeClass('active')
+      $('#attr_'+attr_val).addClass("active")
+      //console.log(attr_val+'---'+type_val);
+      window.attr_array[type_val]=attr_val;
+      //console.log(attr_array);
+      var select_attr="";
+      for (var key in window.attr_array) {
+        if(select_attr==""){
+          select_attr='"'+$("#attr_"+window.attr_array[key]).text()+'"';
+        }else{
+          select_attr=select_attr+'"'+$("#attr_"+window.attr_array[key]).text()+'"';
+        }
+
+        var a=$("#attr_"+window.attr_array[key]).text()
+        //console.log(a);
+      }
+      //console.log(select_attr);
+      $("#attr_name_select").html(select_attr);
+      //获取属性的数量start
+      //console.log(window.attr_array.length+'------'+attr_number);
+      //console.log(window.attr_array);
+      //console.log(window.goods_id);
+      if(window.attr_array.length==attr_number){
+        window.attr_str="";
+        for (var k in window.attr_array) {
+          if (window.attr_str=="") {
+            window.attr_str=window.attr_array[k];
+          }else{
+            window.attr_str=window.attr_str+','+window.attr_array[k];
+          }
+        }
+        console.log(window.attr_str);
+  			$.ajax({
+  			      url: 'index.php?s=/Home/Selected/get_stock',
+  			      type: 'get',
+  			      dataType: 'json',
+  			      data: {goods_id:goods_id,attr:window.attr_str},
+  			      success:function(msg){
+  			      	//alert(123);
+  			        //console.log(msg);
+  			        $('#price_main').html(msg.data.item_sku_array.money+'积分'+'&nbsp;&nbsp;&nbsp;剩余库存:'+msg.data.item_sku_array.number);
+
+  			      }
+  			    });
+  		}
+      //获取属性的数量end
+    }
+    function submit_cart_type(){
+      var attr_number=$('#attr_number').val();
+      //console.log(attr_array);
+
+      $(".alert-cart").hide();
+      var number=Number($('.number').text());
+      console.log(window.goods_id+'----'+number+'------'+window.attr_str);
+      $.ajax({
+  		  url: 'index.php?s=/Home/Order/add_cart',
+  			type: 'post',
+  			dataType: 'json',
+  			data: {goods_id: window.goods_id,number: number,attr:window.attr_str},
+  			success:function (data) {
+  				//console.info(data);
+  				if(data.status==999){
+  					//top.location='index.php?s=/Home/User/login'+puid;
+            window.location.href='index.php?s=/Home/User/login<?php echo $GLOBALS["puid_url"];   ?>';
+  				}
+  				if(data.status==1){
+
+  					alert_msg('已加入购物车');
+            $(".alert-cart").hide();
+  				}else{
+  					if(data.msg!=""){
+  						alert_msg(data.msg);
+              $(".alert-cart").hide();
+  					}else{
+  						alert_msg('加入购物车失败');
+              $(".alert-cart").hide();
+  					}
+
+  				}
+          $(".alert-cart").hide();
+  			}
+  		})
+    }
+    //弹出提示通用方法
+    function alert_msg(msg){
+      $('#alert-message').remove();
+    	var alertMessage = "<div class='alert-message' id='alert-message' style='z-index:9999999'><p>"+msg+"</p></div>"
+    	$('body').append(alertMessage);
+    	if ($("#alert-message").css('dispaly') == 'block') {
+    		return false;
+    	} else{
+    		$("#alert-message").show();
+    	    setTimeout(function () {
+    	      $("#alert-message").hide();
+    	    }, 3000);
+    	}
+    }
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>收货地址管理</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5">
+    <div class="container" style="padding-bottom:100px;">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>收货地址管理</span>
+      </div>
+      <?php
+      $defaul_address =$address_lists['uid']['defaul_address'];
+      unset($address_lists['uid']);
+      ?>
+      <volist name='address_lists' id='vo' key="key" >
+
+         <div class="sumbit-order receipt-address">
+          <div>
+            <p class="receipt clearfix"><span>{$vo.consignee_name}</span><span>{$vo.consignee_phone}</span></p>
+            <p class="address"><span>{$vo.provinces}{$vo.address}</span></p>
+          </div>
+          <div class="clearfix">
+            <div class="pull-left clearfix">
+              <div class="checkboxFour">
+                    <input type="hidden" value="{$vo.address_id}">
+                    <input type="checkbox" id="checkboxFourInput{$key}" class="choice_address" />
+                    <label for="checkboxFourInput{$key}" <if condition="$defaul_address eq $vo['address_id']">class="checkColor"</if>></label>
+
+              </div>
+              <span class="pull-right" style="color: #666;">设为默认地址</span>
+            </div>
+            <div class="pull-right">
+              <a href="index.php?s=/Home/User/edit_address&id={$vo.address_id}<?php echo $GLOBALS['puid_url'];   ?>"><span>编辑</span></a>
+              <a href="index.php?s=/Home/User/delete_address&id={$vo.address_id}" class="delete"><span>删除</span></a>
+            </div>
+          </div>
+        </div>
+      </volist>
+
+
+      <!--<div class="sumbit-order receipt-address">
+        <div>
+          <p class="receipt clearfix"><span>明星</span><span>13800138000</span></p>
+          <p class="address"><span>结婚多久啊还是快点哈空间的贺卡和贷款</span></p>
+        </div>
+        <div class="clearfix">
+          <div class="pull-left clearfix">
+            <div class="checkboxFour">
+                  <input type="radio" id="checkboxFourInput2"/>
+                  <label for="checkboxFourInput2"></label>
+            </div>
+            <span class="pull-right" style="color: #666;">设为默认地址</span>
+          </div>
+          <div class="pull-right">
+            <a href=""><span>编辑</span></a>
+            <a href="javascript:void(0)" class="delete"><span>删除</span></a>
+          </div>
+        </div>
+      </div>-->
+
+      <!-- 没有地址的时候 -->
+      <?php
+        if(!$address_lists){
+      ?>
+      <div class="address-none">
+        <p>暂无收货地址，请添加地址</p>
+      </div>
+      <?php
+        }
+      ?>
+
+
+      <div class="public-footer footer-max">
+        <a href="index.php?s=/Home/User/add_address<?php echo $GLOBALS['puid_url'];   ?>">新增收货地址</a>
+      </div>
+
+      <!-- 页脚 -->
+      <div class="footer footer-max clearfix">
+        <?php  include "./Application/Home/View/Public/footer.php"; ?>
+      </div>
+      <!-- 页脚 -->
+    </div>
+
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/all.js"></script>
+    <script>
+      receiptAddress();
+    </script>
+    <?php
+     if(isset($_GET['add_status'])){
+       if(i('get.add_status')==1){
+         ?>
+         <script>
+           alert_msg('添加成功');
+         </script>  <?php
+       }
+       if(i('get.add_status')==0 ){
+         ?>
+         <script>
+           alert_msg('添加失败');
+         </script>
+           <?php
+       }
+     }
+    ?>
+	<!--修改地址返回处理start-->
+	<?php
+     if(isset($_GET['edit_address'])){
+       if(i('get.edit_address')==1){
+         ?>
+         <script>
+           alert_msg('修改成功');
+         </script>  <?php
+       }
+       if(i('get.edit_address')==0 ){
+         ?>
+         <script>
+           alert_msg('修改失败');
+         </script>
+           <?php
+       }
+     }
+    ?>
+  </body>
+</html>

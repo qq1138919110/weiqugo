@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <title>微趣GO_提交购物车</title>
+    
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5">
+    <div class="container-gray">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>确认订单</span>
+        <input type="hidden" name="address" value="{$address.address_id}" id="address" />
+      </div>
+      
+      <div class="sumbit-order">
+        <a href="index.php?s=/Home/User/address&cart_id={$cart_id}&url=submit_cart" class="clearfix">
+          <i class="icon iconfont" style="font-size: 22px;">&#xe606;</i>
+          <div>
+            <p class="receipt clearfix"><span>收货人：{$address.consignee_name}</span><span class="phone">{$address.consignee_phone}</span></p>
+            <p class="address">收货地址：<span>{$address.provinces}{$address.address}</span></p>
+          </div>
+          <i class="icon iconfont">&#xe61f;</i>
+        </a>
+      </div>
+
+      <div class="cart-main sumbit-main">
+        <ul>
+          <volist name="data" id="vo">
+            <?php $new_attr=$vo['attr_val'];   ?>
+            <li class="clearfix">
+              <div class="cart-img"><img src="{$vo.good_cover}" alt=""></div>
+              <div class="main-title">
+                <p>{$vo.good_name}</p>
+                <p>
+                  <volist name="new_attr" id="vo1" >
+                  {$vo1} &nbsp;&nbsp;
+                </volist>
+                </p>
+                <div class="cart-integral clearfix">
+                  <div><span class="fraction">{$vo.sum_money}</span> 积分</div>
+                  <span>&times;{$vo.amount}</span>
+                </div>
+              </div>
+            </li>
+          </volist>
+        </ul>
+      </div>
+  
+      <!-- 设置 -->
+      <div class="personal-set">
+        <div class="pull-left">配送方式</div>
+        <a href="" class="pull-right">安能快递</a>
+      </div>
+      
+      <div class="sumbit_footer footer-max">
+        <div class="pull-left">共{$sum_number}件，合计：<span>{$sum_money}</span>积分</div>
+        <div class="pull-right"><button onclick="submit_order()">提交订单</button></div>
+      </div>
+    </div>
+    
+  </body>
+  <script type="text/javascript">
+    function submit_order(){
+      var address= $("#address").val();
+      var cart_id="<?php echo  i('get.id'); ?>";
+      //console.log(address);
+      $.ajax({
+			url: 'index.php?s=/Home/Order/add_order',
+			//url: diy_url,
+			type: 'post',
+			dataType: 'json',
+			data: {address:address,cart_id:cart_id},
+			success:function (data) {
+				
+				console.log(data);
+			}
+		})
+    }
+  </script>
+</html>

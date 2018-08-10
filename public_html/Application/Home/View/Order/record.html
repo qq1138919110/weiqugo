@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-购务记录</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Personal/vip')}"><i class="iconfont">&#xe601;</i></a>
+        <span>购务记录</span>
+        <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span></div>
+      </div>
+      <div class="mobile-inner-nav">
+        <a href="{:U('Index/index')}">首页</a>
+        <volist name="good_type" id="goodtype">
+        <a href="{:U('Index/service',array('type_id'=>$goodtype['type_id']))}">{$goodtype.type_name}</a>
+       <!--  <a href="#">市场服务</a>
+        <a href="#">培训服务</a>
+        <a href="#">客服服务</a>
+        <a href="#">文案服务</a>
+        <a href="#">设计服务</a>
+        <a href="#">技术服务</a> -->
+        </volist>
+        <a href="{:U('Personal/vip')}">会员中心</a>
+      </div>
+    </div>
+    
+    <div class="cart-pd"></div>
+  <volist name="order" id="order">
+    <ul class="cart">
+      <li class="title clearfix">
+        <a href="javascript:void(0)">{:date('Y-m-d H:i:s',$order['booking_time'])}</a>
+        <span class="zhuantai"><if condition="$order['order_status'] eq 1">待处理<elseif condition="$order['order_status'] eq 2" />进行中<elseif condition="$order['order_status'] eq 3" />成功订单<elseif condition="$order['order_status'] eq 4" />失败订单</if></span>
+      </li>
+      <?php
+      $shop_detail = explode(',',$order['shop_detail']);
+      ?>
+      <volist name="shop_detail" id="shop_detail">
+      <?php
+      $good_name   =explode(':',$shop_detail);
+      $money       =explode('/',$good_name[1]);
+      $number      =explode(';',$money[1]);
+      ?>
+      <li class="main clearfix">
+        <p>{$good_name[0]}</p>
+        <span>&#215;<strong class="cart-number">{$number[1]}</strong></span>
+        <span><strong class="cart-price"><?php echo 
+    rtrim(rtrim($money[0], '0'), '.');  
+      ?></strong>π/{$number[0]}</span>
+      </li>
+      </volist>
+      <!-- <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span>&#215;<strong class="cart-number">3</strong></span>
+        <span><strong class="cart-price">320</strong>π/份</span>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span>&#215;<strong class="cart-number">1</strong></span>
+        <span><strong class="cart-price">180</strong>π/份</span>
+      </li> -->
+    </ul>
+</volist>
+   <!--  <ul class="cart">
+      <li class="title clearfix">
+        <a href="javascript:void(0)">2016-09-09 14:00:00</a>
+        <span class="zhuantai">订单进行中</span>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span>&#215;<strong class="cart-number">1</strong></span>
+        <span><strong class="cart-price">100</strong>π/份</span>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span>&#215;<strong class="cart-number">10</strong></span>
+        <span><strong class="cart-price">10</strong>π/份</span>
+      </li>
+    </ul> -->
+    
+    <div class="cart-pd2"></div>
+
+    <div class="static-footer">— {$set.copyright} —</div>
+
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+  </body>
+</html>

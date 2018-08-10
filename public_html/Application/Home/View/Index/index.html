@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href=""><i class="iconfont">&#xe601;</i></a>
+        <span>首页</span>
+        <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span></div>
+      </div>
+      <div class="mobile-inner-nav">
+        <a href="{:U('Index/index')}">首页</a>
+        <volist name="good_type" id="goodtype">
+        <a href="{:U('Index/service',array('type_id'=>$goodtype['type_id']))}">{$goodtype.type_name}</a>
+       <!--  <a href="#">市场服务</a>
+        <a href="#">培训服务</a>
+        <a href="#">客服服务</a>
+        <a href="#">文案服务</a>
+        <a href="#">设计服务</a>
+        <a href="#">技术服务</a> -->
+        </volist>
+        <a href="{:U('Personal/vip')}">会员中心</a>
+      </div>
+    </div>
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        </ol>
+        <?php
+         $logo = explode(',',$set['logo']);
+        ?>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="<if condition="$logo[0] neq ''">__UPLOADS__{$logo[0]}<else/>__IMAGES__banner1.jpg</if>" class="center-block" alt="...">
+          </div>
+          <div class="item">
+            <img src="<if condition="$logo[1] neq ''">__UPLOADS__{$logo[1]}<else/>__IMAGES__banner1.jpg</if>" class="center-block" alt="...">
+          </div>
+        </div>
+    </div>
+
+    <div class="idx-main clearfix">
+      <volist name="good_type" id="good_type">
+      <a href="{:U('Index/service',array('type_id'=>$good_type['type_id']))}"><img src="__UPLOADS__{$good_type['type_images']}" alt=""></a>
+     <!--  <a href=""><img src="__IMAGES__fuwu.png" alt=""></a>
+      <a href=""><img src="__IMAGES__peixun.png" alt=""></a>
+      <a href=""><img src="__IMAGES__kefu.png" alt=""></a>
+      <a href=""><img src="__IMAGES__wenan.png" alt=""></a>
+      <a href=""><img src="__IMAGES__sheji.png" alt=""></a>
+      <a href=""><img src="__IMAGES__jishu.png" alt=""></a>
+      <a href=""><img src="__IMAGES__huiyuan.png" alt=""></a> -->
+      </volist>
+    </div>
+    
+    <div class="idx-text clearfix">
+      <div>
+        <a href="">
+          <img src="__IMAGES__title1.png" alt="">
+          <h2>关于我们</h2>
+          <p>我们是专门帮助工厂、品牌、团队、消费者解决问题的服务商！</p>
+        </a> 
+      </div>
+      <div>
+        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$set.qq}&site=qq&menu=yes">
+          <img src="__IMAGES__title2.png" alt="">
+          <h2>联系我们</h2>
+          <p>若有疑问，欢迎咨询官方客服，微信号：pai_kf001</p>
+        </a>
+      </div>
+      <div>
+        <a href="">
+          <img src="__IMAGES__title3.png" alt="">
+          <h2>服务细则</h2>
+          <p>为保证双方权益，更好的合作，选择服务前请认真阅读服务细则。</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="static-footer">— {$set.copyright} —</div>
+    
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__bootstrap.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('.carousel').carousel();
+    }
+    </script>
+  </body>
+</html>

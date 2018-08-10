@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>免费兑换</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="container-idx">
+      <!-- 顶部滑动导航 -->
+      <?php include "./Application/Home/View/Public/header.html";  ?>
+      <!-- 搜索框 -->
+      <div class="search">
+        <FORM METHOD=POST ACTION="index.php?s=/Home/Selected/type_detail&<?php echo $GLOBALS["puid_url"];   ?>" >
+          <input type="text" value="" id="search-input" name="search" />
+          <div><img src="images/search.png"><span>搜索</span></div>
+          <input type="submit" style="display:none">
+        </FORM>
+
+      </div>
+
+      <!-- 手指滑动banner -->
+      <div class="slider">
+        <ul class="slides">
+         <volist name="banner" id="vo" key="key">
+            <li class="slide">
+              <div class="box"><a href="{$vo.link}"><img class="img-responsive center-block" src="{$vo.home_banner}" alt=""></a></div>
+            </li>
+          </volist>
+        </ul>
+      </div>
+
+      <!-- 产品滑动 -->
+      <div class="slide-product">
+        <ul id="slider2" class="clearfix">
+          <volist name="main_push" id="vo" key="key">
+            <?php //dump($vo); ?>
+            <li>
+              <a href='index.php?s=/Home/Selected/goods_info&good_id={$vo.good_id}<?php echo $GLOBALS["puid_url"];   ?>'>
+                <img src="{$vo.good_cover}" alt="" >
+                <h2>{$vo.good_name}</h2>
+                <p>{$vo.good_value}积分</p>
+              </a>
+            </li>
+          </volist>
+        </ul>
+      </div>
+
+      <!-- 试用装开始-->
+      <?php  //dump($goods_type); ?>
+      <?php $key_a=3; ?>
+      <volist name="goods_type" id="vo" key="key"  >
+
+      <div class="gray-mg"></div><!-- 占行 -->
+      <div class="product-wrap">
+        <a href="index.php?s=/Home/Selected/type_detail_two&type_id={$vo.type_id}<?php echo $GLOBALS['puid_url'];  ?>"><span>{$vo.type_name}</span><i class="icon iconfont">&#xe61f;</i></a>
+        <a href="{$vo.type_link}"><img src="{$vo.type_images}" class="img-responsive center-block" alt=""></a>
+      </div>
+       <?php $goods_lists=array();   $goods_lists=$vo['goods_list'];   ?>
+
+      <!-- 产品滑动 -->
+      <div class="slide-product">
+        <ul id="slider{$key_a}" class="clearfix">
+        <volist name="goods_lists" id="vo1" >
+            <li>
+            <a href="index.php?s=/Home/Selected/goods_info&good_id={$vo1.good_id}<?php echo $GLOBALS["puid_url"];   ?>">
+              <img src="{$vo1.good_cover}" alt="">
+              <h2>{$vo1.good_name}</h2>
+              <p>{$vo1.good_value}积分</p>
+            </a>
+          </li>
+        </volist>
+           <?php $key_a+=1; ?>
+        </ul>
+      </div>
+      </volist>
+
+    </div>
+
+
+    <!-- 灰色背景 -->
+    <div class="container-gray">
+      <!--导航描点详情start-->
+      <volist name="navigation" id="vo" >
+        <?php //dump($vo); ?>
+        <div class="product-show" id="{$vo.navigation_id}">
+          <?php $navigation_goods_lists=$vo['goods_list'];   ?>
+        <h2><span>{$vo.navigation_name}</span><i>
+        </i></h2>
+        <div class="clearfix">
+          <volist name="navigation_goods_lists" id="vo1">
+            <a href="index.php?s=/Home/Selected/goods_info&good_id={$vo1.good_id}<?php echo $GLOBALS['puid_url'];   ?>">
+            <img src="{$vo1.good_cover}" alt="">
+            <h2>{$vo1.good_name}</h2>
+            <p>{$vo1.goods_producer} </p>
+            <span>{$vo1.good_value}积分</span>
+          </a>
+          </volist>
+
+          <a class="last-a" href="index.php?s=/Home/Selected/type_detail&navigation_id={$vo.navigation_id}<?php echo $GLOBALS['puid_url'];   ?>" class="last-a">
+            <h3>更多{$vo.navigation_name}</h3>
+            <img src="images/more2.png" alt="">
+          </a>
+        </div>
+      </div>
+
+
+      </volist>
+
+
+      <!-- 详情结束 -->
+
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer footer-max clearfix">
+      <?php  include "./Application/Home/View/Public/footer.php"; ?>
+    </div>
+
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <!-- 滑动导航 -->
+    <script type="text/javascript" src="js/touchslider.js"></script>
+    <script type="text/javascript">
+      var t11 = new TouchSlider('slider1',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});
+      var t12 = new TouchSlider('slider2',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});
+      var t13 = new TouchSlider('slider3',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});
+      <?php
+        for($i=4;$i<=$key_a;$i++){
+          echo "var t1".$i." = new TouchSlider('slider".$i."',{duration:800, interval:3000, direction:0, autoplay:false, align:'left', mousewheel:false, mouse:true, fullsize:false});";
+        }
+
+      ?>
+    </script>
+
+    <!-- 滑动banner -->
+    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var aHeight = $(".product-show a").eq(1).height();
+        var lastHeight = $(".product-show .last-a").height();
+        $(".last-a").height(aHeight);
+        var stop = setInterval(test,1000);
+        //setTimeout(test,5000);
+        function test() {
+          var aHeight = $(".product-show a").eq(1).height();
+          var lastHeight = $(".product-show .last-a").height();
+          if (lastHeight != aHeight ) {
+            $(".last-a").height(aHeight);
+          } else if (lastHeight == aHeight ){
+            clearInterval(stop);
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+      var glide = $('.slider').glide({
+          //autoplay:true,//是否自动播放 默认值 true如果不需要就设置此值
+          animationTime:500, //动画过度效果，只有当浏览器支持CSS3的时候生效
+          arrows:false, //是否显示左右导航器
+          nav:true, //主导航器也就是本例中显示的小方块
+          navCenter:true, //主导航器位置是否居中
+          navClass:"slider-nav",//主导航器外部div类名
+          navItemClass:"slider-nav__item", //本例中小方块的样式
+          navCurrentItemClass:"slider-nav__item--current" //被选中后的样式
+        });
+
+      // 调用首页所需的JS
+      indexJs();
+      goTop();
+    </script>
+
+  </body>
+</html>

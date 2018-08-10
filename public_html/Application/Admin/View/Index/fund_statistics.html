@@ -1,0 +1,188 @@
+<include file="public:header"/>
+
+    <!-- Sidebar ends -->
+
+    <!-- Main bar -->
+    <div class="mainbar">
+      
+      <!-- Page heading -->
+      <div class="page-head">
+        <!-- Page heading -->
+        <h2 class="pull-left"> 
+          <!-- page meta -->
+          <span class="page-meta">资金统计</span>
+        </h2>
+
+
+        <!-- Breadcrumb -->
+        <div class="bread-crumb pull-right"></div>
+
+        <div class="clearfix"></div>
+
+      </div>
+      <!-- Page heading ends -->
+
+
+
+      <!-- Matter -->
+
+      <div class="matter">
+        <div class="container">
+
+          <div class="row">
+
+            <div class="col-md-12">
+
+
+              <div class="widget wgreen">
+                
+                <div class="widget-head">
+                  <div class="widget-icons pull-right">
+                    <a href="#" class="wminimize"><i class="icon-chevron-up"></i></a> 
+                    <a href="#" class="wclose"><i class="icon-remove"></i></a>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+
+                <div class="widget-content">
+                  <div class="padd">
+
+                    <!-- Form starts.  -->
+                    <form action="{:U('Index/fund_export')}" method="get" class="form-horizontal" role="form"id="form1111">
+                          <div class="form-group row">
+                            <label class="col-lg-1 control-label">时间段</label>
+                            <div class="col-lg-3">
+                              <div id="datetimepicker1" class="input-append nianyueri">
+                        <input data-format="yyyy-MM-dd" type="text" class="form-control dtpicker booking_time"name="start_date" value="{:date('Y-m-d',$last_time)}">
+                        <span class="add-on">
+                          <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="btn btn-info btn-lg"></i>
+                        </span>
+                      </div>
+                             </div> 
+                              <div class="col-lg-1" style="margin-left:-96px; margin-top:6px;">至</div>
+                            <div class="col-lg-3">  
+                             <div id="datetimepicker1" class="input-append nianyueri">
+                        <input data-format="yyyy-MM-dd" type="text" class="form-control dtpicker booking_time2"name="end_date" value="{:date('Y-m-d',time())}">
+                        <span class="add-on">
+                          <i data-time-icon="icon-time" data-date-icon="icon-calendar" class="btn btn-info btn-lg"></i>
+                        </span>
+                      </div>
+                            </div>   
+                          </div>
+
+
+                       
+
+                      <div class="form-group">
+                        <div style="margin-left:30px;" class="col-lg-9">
+                          <button type="button" class="btn btn-primary search">搜索</button>
+                          <button type="submit" class="btn btn-success derived">导出生成excel</button>
+                        </div>
+                      </div>
+
+                <div class="form-group xianxianxianshi">
+                   <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                          <th>日期</th>
+                          <th>总成金额</th>
+                        </tr>
+                      </thead>
+                      <tbody  class="dddddd">
+                      <?php
+                      for($i = strtotime(date("Y-m-d",$last_time)); $i <= strtotime(date("Y-m-d",time())); $i += 86400) {
+                      ?>
+                          <?php
+                          $count11 =$count1[$i];
+                          
+
+                          ?>
+                          <td>{:date('Y-m-d',$i)}</td>
+                          <td><if condition="$count11 eq ''">0<else />{$count11}</if></td>
+                        </tr>
+                    <?php
+                        }
+                    ?>
+                    <td>总计</td>
+                    <td>{$countcoun111}</td>
+                      </tbody>
+                    </table>
+                  </div>
+                  </form>
+
+                  </div>
+                </div>
+                  <div class="widget-foot">
+                    <!-- Footer goes here -->
+                  </div>
+              </div>  
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    <!-- Matter ends -->
+
+    </div>
+
+   <!-- Mainbar ends -->
+   <div class="clearfix"></div>
+   <script src="__JS__jquery-2.1.1.min.js"></script>
+     <script type="text/javascript">
+$(function(){
+  $(document).on('click','.chongzhizhi',function(){
+   $("input").val(""); 
+});
+  $(document).on('click','.search',function(){
+    var start =$('.booking_time').val();
+    var end   = $('.booking_time2').val();
+    $.ajax({
+      type:"GET",
+      url:"{:U('Index/fund_statistics_ajax')}",
+      data:{start:start,end:end},
+      dataType:'json',
+      success:function(data){
+        var list =data.user;
+        var dd ='';
+        //for($i = $start; $i <= $end; $i += 86400) {
+        for(var i=data.start;i<=data.end;i+= 86400){
+          dd +='<tr>';
+           var count11 =data.count1[i];
+           
+          dd +='<td>'+getLocalTime(i)+'</td>';
+          if(count11!=null){
+            dd +='<td>'+count11+'</td>';
+          }else{
+            dd +='<td>0</td>';
+          } 
+          
+           
+                          
+          dd +='</tr>';            
+        }
+         dd +='<td>总计</td>';
+         if(data.countcoun111!=null){
+          dd +='<td>'+data.countcoun111+'</td>';
+        }else{
+           dd +='<td>0</td>';
+        }
+         
+
+       $('.dddddd').html(dd);
+        }
+      
+    })
+  });
+function getLocalTime(nS) {
+    var bb = new Date(parseInt(nS) * 1000).toLocaleString().substr(0,10);
+    var reg = new RegExp("/","g");//g,表示全部替换。
+    var aa =bb.replace(reg,"-");
+    return aa;
+}  
+      });
+</script>
+</div>
+<include file="public:footer"/>

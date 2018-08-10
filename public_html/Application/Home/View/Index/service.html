@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-{$type.type_name}</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Index/index')}"><i class="iconfont">&#xe601;</i></a>
+        <span>{$type.type_name}</span>
+        <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span></div>
+      </div>
+      <div class="mobile-inner-nav">
+        <a href="{:U('Index/index')}">首页</a>
+        <volist name="good_type" id="goodtype">
+        <a href="{:U('Index/service',array('type_id'=>$goodtype['type_id']))}">{$goodtype.type_name}</a>
+       <!--  <a href="#">市场服务</a>
+        <a href="#">培训服务</a>
+        <a href="#">客服服务</a>
+        <a href="#">文案服务</a>
+        <a href="#">设计服务</a>
+        <a href="#">技术服务</a> -->
+        </volist>
+        <a href="{:U('Personal/vip')}">会员中心</a>
+      </div>
+    </div>
+
+    <div class="vip-top clearfix">
+      <div class="photo clearfix">
+        <img src="<if condition="$user['photo'] neq ''">__UPLOADS__{$user['photo']}<else/>__IMAGES__touxiang.jpg</if>" alt="">
+        <h3>{$user.name}</h3>
+        <p>π币：<span style="color:#ff0000;margin-right:2px;"><?php echo 
+    rtrim(rtrim($user['balance'], '0'), '.');  
+      ?></span>π</p>
+      </div>
+      <a href="{:U('Personal/vip')}">会员中心<i class="iconfont">&#xe601;</i></a>
+    </div>
+
+    <div class="service clearfix">
+      <a href="{:U('Personal/collection_service')}">
+        <span>{$collect}</span>
+        <span>收藏的服务</span>
+      </a>
+      <a href="{:U('Order/cart')}">
+        <span>{$cart}</span>
+        <span>购物车</span>
+      </a>
+      <a href="{:U('Order/record')}">
+        <span>{$order_nuber}</span>
+        <span>购买记录</span>
+      </a>
+    </div>
+
+    <div class="all-service clearfix">
+     <volist name="goods" id="goods">
+     <?php
+        $good_photo   =explode(',',$goods['good_photo']);
+     ?>
+      <a href="{:U('Index/details',array('type_id'=>$type['type_id'],'good_id'=>$goods['good_id']))}"><img src="__UPLOADS__{$good_photo[0]}" alt=""></a>
+     <!--  <a href=""><img src="__IMAGES__baozhuang.png" alt=""></a>
+      <a href=""><img src="__IMAGES__jixiangwu.png" alt=""></a>
+      <a href=""><img src="__IMAGES__xuanchuang.png" alt=""></a>
+      <a href=""><img src="__IMAGES__huodong.png" alt=""></a>
+      <a href=""><img src="__IMAGES__kaike.png" alt=""></a>
+      <a href=""><img src="__IMAGES__yilabao.png" alt=""></a>
+      <a href=""><img src="__IMAGES__hengfu.png" alt=""></a>
+      <a href=""><img src="__IMAGES__vi.png" alt=""></a>
+      <a href=""><img src="__IMAGES__wangye.png" alt=""></a>
+      <a href=""><img src="__IMAGES__qidai.png" alt=""></a> -->
+      </volist>
+    </div>
+
+    <div class="static-footer">— {$set.copyright} —</div>
+
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+  </body>
+</html>

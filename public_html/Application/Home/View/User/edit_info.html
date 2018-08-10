@@ -1,0 +1,76 @@
+<?php //dump($user_info); ?>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>微趣GO</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5">
+      <form METHOD=POST ACTION="" enctype="multipart/form-data" >
+           <div class="container">
+              <!-- 头部 -->
+              <div class="cart-title">
+                <a href="index.php?s=/Home/User/info<?php echo $GLOBALS['puid_url'].'#'.time();   ?>"><i class="icon iconfont">&#xe61f;</i></a>
+                <span>我的资料</span>
+              </div>
+
+              <div class="clearfix data-photo">
+                <span class="pull-left">头像</span>
+                <!-- <img class="" src="images/touxiang.png" alt=""/> -->
+                <div class="fileinput-button pull-right">
+                  <input type="file" id="file_id" name="head_img" />
+                  <img id="file_img" src="{$user_info.head_img}" />
+                </div>
+              </div>
+
+              <div class="data">
+                <ul>
+                  <li class="clearfix">
+                    <span class="pull-left">签名</span>
+                    <input id="sign" name="sign" class="pull-right" type="text" value="{$user_info.sign}"/>
+                  </li>
+                  <li class="clearfix">
+                    <span class="pull-left">名字</span>
+                    <input id="user_name" name="user_name" class="pull-right" type="text" value="{$user_info.user_name}"/>
+                  </li>
+                  <li class="clearfix">
+                    <span class="pull-left">微信号</span>
+                    <input id="wechat" name="wechat" class="pull-right" type="text" value="{$user_info.user_weixin}"/>
+                  </li>
+                  <li class="clearfix">
+                    <span class="pull-left">手机号</span>
+                    <input id="phone" readonly=true name="user_phone" class="pull-right" type="text" value="{$user_info.user_phone}"/>
+                  </li>
+                  <li class="clearfix">
+                    <span class="pull-left">收货地址</span>
+                    <div class="pull-right">
+                      <a href="index.php?s=/Home/User/address<?php echo $GLOBALS['puid_url'];   ?>">{$user_info.address}</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="personal-btn">
+                <button>保存</button>
+              </div>
+
+            </div>
+
+      </form>
+
+
+    <script src="js/uploadPreview.js"></script>
+  </body>
+</html>

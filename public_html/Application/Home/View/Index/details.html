@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-服务详情</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Index/service',array('type_id'=>$type['type_id']))}"><i class="iconfont">&#xe601;</i></a>
+        <span>详情</span>
+        <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span></div>
+      </div>
+      <div class="mobile-inner-nav">
+        <a href="{:U('Index/index')}">首页</a>
+        <volist name="good_type" id="goodtype">
+        <a href="{:U('Index/service',array('type_id'=>$goodtype['type_id']))}">{$goodtype.type_name}</a>
+       <!--  <a href="#">市场服务</a>
+        <a href="#">培训服务</a>
+        <a href="#">客服服务</a>
+        <a href="#">文案服务</a>
+        <a href="#">设计服务</a>
+        <a href="#">技术服务</a> -->
+        </volist>
+        <a href="{:U('Personal/vip')}">会员中心</a>
+      </div>
+    </div>
+
+    <div class="top-details clearfix">
+      <div class="top-details-left">
+      <?php
+      $good_photo   =explode(',',$goods['good_photo']);
+      ?>
+        <img src="__UPLOADS__{$good_photo[1]}" alt="">
+      </div>
+      
+      <div class="top-details-right">
+        <div class="price-detail">
+          <h3>【{$type.type_name}】{$goods.good_name}</h3>
+          <div class="price-detail2 clearfix">
+            <p>
+              <span><del>原价<?php echo 
+    rtrim(rtrim($goods['ori_cost'], '0'), '.');  
+      ?>π</del></span>
+              <span><?php echo 
+    rtrim(rtrim($goods['good_value'], '0'), '.');  
+      ?>π</span>
+            </p>
+            <p>
+              <span>{$goods.sales_amount}</span>
+              <span>成交量</span>
+            </p>
+            <p class="font-block">
+              <span>
+              <if condition="$collect">
+              <i class="iconfont" style="display:block">&#xe603;</i><i class="iconfont" style="display:none;">&#xe604;</i>
+              </span>
+              <span>已收藏</span>
+              <else />
+              <i class="iconfont" style="display:none">&#xe603;</i><i class="iconfont" style="display:block;">&#xe604;</i>
+              </span>
+              <span>收藏</span>
+              </if> 
+            </p>
+           </div>
+        </div>
+        <div class="shop-details clearfix">
+          <span>购务数量</span>
+          <div class="add clearfix">
+            <i class="add-i">+</i>
+            <span class="number">1</span>
+            <i class="minu-i">-</i>
+          </div>
+        </div>
+        <p>{$goods.discribe}</p>
+      </div>
+    </div>
+    
+    <div class="details-main">
+      <div class="clearfix">
+        <span class="active">服务详情</span>
+        <span>服务流程</span>
+      </div>
+      <div class="text-result">
+        <p>{$goods.details}</p>
+        <p>{$goods.process}</p>
+      </div>
+    </div>
+    
+    <button class="join-cart shopping_cart">加入购务车</button>
+    <input type="hidden" id="collection_service"value="{:U('collection_service')}">
+    <input type="hidden" id="delete_service"    value="{:U('delete_service')}">
+    <input type="hidden" id="service_id"  value="{$goods.good_id}">
+    <div class="alert-message">
+      <p></p>
+    </div>
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__bootstrap.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script type="text/javascript">
+    $(function(){
+      function alert_time() {
+      $(".alert-message").show();
+      setTimeout(function () {
+        $(".alert-message").hide();
+      }, 2000)
+    }
+      $(document).on('click','.shopping_cart',function(){
+        var goods_id  =$('#service_id').val();
+        if(goods_id==''){
+          location=location;
+        }
+        var number =$('.number').text();
+        if(number==''){
+          location=location;
+        }
+        $.ajax({
+          type:"POST",
+          url:"{:U('Index/add_cart')}",
+          data:{goods_id:goods_id,number:number},
+          dataType:'json',
+          success:function(data){
+            if(data==1){
+              location =location;
+            }else if(data==2){
+              alert_time();
+              $(".alert-message p").text('数量只能为数字');
+              return false;
+            }else if(data==3){
+              alert_time();
+              $(".alert-message p").text('加入购物车成功');
+              return false;
+            }else if(data==4){
+              location =location;
+            }
+          }
+        });
+      });
+    });
+    </script>
+  </body>
+</html>

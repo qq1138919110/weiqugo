@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>我的</title>
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+    <script type="text/javascript">
+      // 服务二维码
+      function kf (clickObject) {
+        var qq =$('#qq').val();
+      	var weChat = '<div class="chatImg footer-max"><div><img src="'+qq+'" alt=""><p>长按二维码添加客服</p><i class="iconfont">&#xe7cc;</i></div></div>'
+      	var windowHeight = $(window).height();//获取界面可视高度
+      	$("body").append(weChat);
+      	$(".chatImg").height($("body").height());
+      		$(".chatImg").show();
+      		var imgHeight = $(".chatImg div").height();
+      		$(".chatImg div").css('marginTop', windowHeight / 2 - imgHeight);
+      	$(".chatImg i").click(function(event) {
+      		$(".chatImg").hide();
+      	});
+      }
+      kf (".kf");
+    </script>
+  </head>
+
+  <body>
+    <div class="container-gray">
+      <!-- 个人中心顶部 -->
+      <div class="personal-name">
+        <!--<img src="images/touxiang.png" alt="">-->
+        <img src="{$data.head_img}" alt="">
+        <p>名称：<span>{$data.user_name}</span><a href="index.php?s=/Home/User/edit_info<?php echo $GLOBALS['puid_url'];   ?>"><i class="icon iconfont">&#xe7c4;</i></a></p>
+        <p>{$data.sign}</p>
+        <div>
+          <?php if($data['is_sign']==1){
+          ?>
+          <p id="sign" >已签到</p><p>积分：<span>{$data.score}</span></p>
+          <?php
+          }else{  ?>
+          <p id="sign" onClick="new_sign()">签&nbsp;&nbsp;到</p><p>积分：<span id="score">{$data.score}</span></p>
+          <?php
+          }   ?>
+
+        </div>
+      </div>
+
+      <!-- 我的订单 -->
+      <div class="personal-order">
+        <p class="clearfix order-title">
+          <span class="pull-left">
+            我的订单
+          </span>
+          <a class="pull-right" href="index.php?s=/Home/Order/get_order&page=1&status=999<?php echo $GLOBALS['puid_url'];   ?>">
+            全部订单<i class="icon iconfont">&#xe61f;</i>
+          </a>
+        </p>
+        <ul class="clearfix">
+          <li>
+            <a href="index.php?s=/Home/Order/get_order&page=1&status=0<?php echo $GLOBALS['puid_url'];   ?>">
+            <?php if($count_order['count_order_0']!=0){ ?>  <div class="dot"><span>{$count_order.count_order_0}</span></div><?php } ?>
+              <i class="icon iconfont">&#xe603;</i>
+              <span>待付款</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/Order/get_order&page=1&status=1<?php echo $GLOBALS['puid_url'];   ?>">
+            <?php if($count_order['count_order_1']!=0){ ?>  <div class="dot"><span>{$count_order.count_order_1}</span></div><?php } ?>
+              <i class="icon iconfont">&#xe613;</i>
+              <span>待发货</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/Order/get_order&page=1&status=2<?php echo $GLOBALS['puid_url'];   ?>">
+              <?php if($count_order['count_order_2']!=0){ ?><div class="dot"><span>{$count_order.count_order_2}</span></div><?php  } ?>
+              <i class="icon iconfont">&#xe6ae;</i>
+              <span>待收货</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/Order/get_order&page=1&status=998<?php echo $GLOBALS['puid_url'];   ?>">
+              <?php if($count_order['count_order_3']!=0){ ?><div class="dot"><span>{$count_order.count_order_3}</span></div><?php } ?>
+              <i class="icon iconfont">&#xe605;</i>
+              <span>待评价</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/Order/get_order&page=1&status=999<?php echo $GLOBALS['puid_url'];   ?>">
+              <?php if($count_order['count_order_5']!=0){ ?><div class="dot"><span>{$count_order.count_order_5}</span></div><?php } ?>
+              <i class="icon iconfont">&#xe643;</i>
+              <span>售后</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 我的订单结束 -->
+
+      <!-- 设置 -->
+      <div class="personal-set">
+        <div class="pull-left">设置</div>
+        <a href="index.php?s=/Home/User/address<?php echo $GLOBALS['puid_url'];   ?>" class="pull-right">
+          收货地址管理<i class="icon iconfont ">&#xe61f;</i>
+        </a>
+      </div>
+
+      <!-- 在线客服 -->
+      <a href="http://z11-pcok6.kuaishangkf.cn/bs/im.htm?cas=108582___913666&fi=110559"><div class="personal-service kf" >
+        <i class="icon iconfont">&#xe75c;</i>在线客服
+      </div></a>
+
+      <!-- 必备工具 -->
+      <div class="personal-order personal-tool">
+        <p class="clearfix order-title">
+          <span class="pull-left">
+            必备工具
+          </span>
+        </p>
+        <ul class="clearfix">
+          <li>
+            <a href="index.php?s=/Home/Order/cart<?php echo $GLOBALS['puid_url'];   ?>">
+              <i class="icon iconfont">&#xe611;</i>
+              <span>换物车</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/User/history<?php echo $GLOBALS['puid_url'];   ?>">
+              <i class="icon iconfont">&#xe612;</i>
+              <span>足迹</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.php?s=/Home/User/jifen<?php echo $GLOBALS['puid_url'];   ?>">
+              <i class="icon iconfont">&#xe66b;</i>
+              <span>赚积分</span>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="icon iconfont">&#xe620;</i>
+              <span>敬请期待</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- 必备工具结束 -->
+
+      <div class="personal-btn">
+        <a href="index.php?s=/Home/User/loginout"><button>注销帐号</button></a>
+      </div>
+      <!-- 页脚 -->
+      <div class="footer clearfix footer-max">
+         <?php  include "./Application/Home/View/Public/footer.php"; ?>
+      </div>
+      <!-- 页脚 -->
+    </div>
+<INPUT TYPE="hidden" NAME="qq" value="{$qq}" id="qq">
+    <!-- js -->
+
+    <script type="text/javascript">
+      function new_sign(){
+        $.ajax({
+    			url: 'index.php?s=/Home/User/sign',
+    			type: 'post',
+    			dataType: 'json',
+    			//data: {id: kk},
+    			success:function(msg){
+    				//console.info(msg);
+    				if(msg.status==1){
+    				  sign(msg.data);
+    				}
+
+    			}
+    		})
+        //alert(123456);
+
+      }
+      //wechatImg (".product-service","{$qq}");
+      //签到
+    </script>
+  </body>
+</html>

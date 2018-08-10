@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <title>微趣GO_提交购物车</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5">
+    <!----------------进来默认显示这里start------------------------->
+    <div class="container-gray" style="width:100%">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>确认订单</span>
+        <input type="hidden" name="address" value="{$address.address_id}" id="address" />
+      </div>
+
+      <div class="sumbit-order" id="address_html" onclick="checkout_address()">
+       <!-- <a href="index.php?s=/Home/User/address&cart_id={$cart_id}&url=submit_cart" class="clearfix">-->
+       <a href="javascript:" class="clearfix">
+          <i class="icon iconfont" style="font-size: 22px;">&#xe606;</i>
+          <div id="address_html_data">
+            <p class="receipt clearfix"><span>收货人：{$address.consignee_name}</span><span class="phone">{$address.consignee_phone}</span></p>
+            <p class="address">收货地址：<span>{$address.provinces}{$address.address}</span></p>
+          </div>
+          <i class="icon iconfont">&#xe61f;</i>
+        </a>
+      </div>
+
+      <div class="cart-main sumbit-main">
+        <ul>
+          <volist name="data" id="vo">
+            <?php $new_attr=$vo['attr_val'];   ?>
+            <li class="clearfix">
+              <div class="cart-img"><img src="{$vo.good_cover}" alt=""></div>
+              <div class="main-title">
+                <p>{$vo.good_name}</p>
+                <p>
+                  <volist name="new_attr" id="vo1" >
+                  {$vo1} &nbsp;&nbsp;
+                </volist>
+                </p>
+                <div class="cart-integral clearfix">
+                  <div><span class="fraction">{$vo.sum_money}</span> 积分</div>
+                  <span>&times;{$vo.amount}</span>
+                </div>
+              </div>
+            </li>
+          </volist>
+        </ul>
+      </div>
+
+      <!-- 设置 -->
+      <div class="personal-set">
+        <div class="pull-left">配送方式</div>
+        <a href="" class="pull-right">安能快递</a>
+      </div>
+
+      <div class="sumbit_footer footer-max"  style="width:100%">
+        <div class="pull-left">共{$sum_number}件，合计：<span>{$sum_money}</span>积分</div>
+        <div class="pull-right"><button onclick="submit_order()">提交订单</button></div>
+      </div>
+    </div>
+    <!----------------进来默认显示这里end------------------------->
+    <!----------------地址列表start------------------------->
+    <div class="container" style=" display:none;width:100%" id="address_lists_page">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href=""><i class="icon iconfont">&#xe61f;</i></a>
+        <span>收货地址管理</span>
+      </div>
+
+      <volist name='address_lists' id='vo' key="key" >
+         <div class="sumbit-order receipt-address">
+          <div id="address_detail_{$vo.address_id}" onclick="change_address({$vo.address_id})" >
+            <p class="receipt clearfix"><span>收货人：{$vo.consignee_name}</span><span class="phone">{$vo.consignee_phone}</span></p>
+            <p class="address"><span style="color:#000"> 收货地址：{$vo.provinces}{$vo.address}</span></p>
+          </div>
+          <div class="clearfix">
+            <div class="pull-left clearfix">
+              <div class="checkboxFour">
+                <input type="hidden" value="{$vo.address_id}">
+                    <input type="radio" id="checkboxFourInput{$key}" name="address"/>
+                    <label for="checkboxFourInput{$key}"<if condition="$defaul_address eq $vo['address_id']">class="checkColor"</if>></label>
+              </div>
+              <span class="pull-right" style="color: #666;">设为默认地址</span>
+            </div>
+            <div class="pull-right">
+              <a href="index.php?s=/Home/User/edit_address&id={$vo.address_id}"><span>编辑</span></a>
+              <a href="index.php?s=/Home/User/delete_address&id={$vo.address_id}" class="delete"><span>删除</span></a>
+            </div>
+          </div>
+        </div>
+      </volist>
+      <!----------------------------------------------->
+
+
+      <!----------------------------------------------->
+      <!-- 没有地址的时候 -->
+      <?php
+        if(!$address_lists){
+      ?>
+      <div class="address-none">
+        <p>暂无收货地址，请添加地址</p>
+      </div>
+      <?php
+        }
+      ?>
+
+
+      <div class="public-footer footer-max">
+        <a href="index.php?s=/Home/User/add_address&page=submit_cart&cart_id=<?php echo i('get.id');  ?>">新增收货地址</a>
+      </div>
+
+      <!-- 页脚 -->
+      <div class="footer footer-max clearfix">
+        <?php  include "./Application/Home/View/Public/footer.php"; ?>
+      </div>
+      <!-- 页脚 -->
+    </div>
+
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/all.js"></script>
+    <script>
+      receiptAddress();
+    </script>
+
+    <!----------------地址列表end------------------------->
+
+  </body>
+  <script type="text/javascript">
+  //location.reload();
+    function submit_order(){
+      var address= $("#address").val();
+      if(address==""){
+        alert_msg('请选择地址');
+        return false;
+      }
+      var cart_id="<?php echo  i('get.id'); ?>";
+      //console.log(address);
+      $.ajax({
+			url: 'index.php?s=/Home/Order/add_order',
+			//url: diy_url,
+			type: 'post',
+			dataType: 'json',
+			data: {address:address,cart_id:cart_id},
+			success:function (data) {
+			  //console.log(data);return false;
+        if(data.status==0){
+          alert_msg(data.msg);
+        }
+				if(data.status==1){
+				  window.location.href="index.php?s=/Home/Order/pay&id="+data.data;
+				}
+
+			}
+		})
+    }
+    //更改收货地址
+    function change_address(key){
+      var address_data=$("#address_detail_"+key).html();
+      $('#address_html_data').html(address_data);
+
+      $(".container-gray").css('display',"inline-block");
+      $("#address_lists_page").css('display','none');
+      $("#address").val(key);
+      //alert(key);
+    }
+    //显示地址列表
+    function checkout_address(){
+      $("#address_lists_page").css('display',"inline-block");
+      $(".container-gray").css('display','none');
+    }
+  </script>
+</html>

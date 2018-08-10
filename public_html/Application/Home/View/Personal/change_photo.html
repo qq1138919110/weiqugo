@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>修改头像</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <link href="__CSS__zyUpload.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Personal/vip')}"><i class="iconfont">&#xe601;</i></a>
+        <span>修改头像</span>
+        <a href="javascript:void(0)">&nbsp;</a>
+      </div>
+    </div>
+    <div class="res-pd"></div>
+   <form id="info_form" action="{:U('Personal/change_photo_ajax')}" method="post"enctype="multipart/form-data">
+    <div class="clearfix demo2">
+        <div class="convent_choice">
+          <div class="andArea andArea-me">
+            <span class="send-photo">上传头像：</span>
+            <div class="filePicker"></div>
+            <input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>
+          </div>
+        </div>
+        <div id="demo" class="demo clearfix">
+          <div class="upload_box">
+            <div class="upload_main">
+              <div class="upload_choose"></div>
+              <div id="preview" class="upload_preview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    </div>
+    
+    <div class="login-btn"><input type="submit" value="确认修改"></div>
+    </form>
+    <div class="alert-message">
+      <p></p>
+    </div>
+  
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script src="__JS__zyFile.js"></script>
+    <script src="__JS__zyUpload.js"></script>
+    <script src="__JS__jq22.js"></script>
+    <script>
+    $(document).ready(function(){
+      if($(".filePicker").length > 0){
+          $(".filePicker").bind("click", function(e){
+            if ($(".upload_append_list").length < 1) {
+                    $("#fileImage").click();
+                } else if ($(".upload_append_list").length < 2) {
+                  $(".alert-message p").text('一次只能上传一张头像');
+                  $(".alert-message").show();
+                  setTimeout(function () {
+                    $(".alert-message").hide();
+                  }, 3000)
+                }
+            })
+        }
+    });
+    </script>
+    <script type="text/javascript">
+    $(function(){
+      $("form").submit(function(){
+      var self = $(this);
+      $.ajax({
+        url:self.attr("action"),
+        type:"POST",
+        data:self.serialize(),
+        dataType:'json',
+        success:function(data){
+          if(data==1){
+             window.location=location;
+          }else if(data==2){
+           window.location="{:U('Personal/vip')}";
+          }else if(data==3){
+          $(".alert-message p").text('服务器延迟，请刷新后再试');
+          $(".alert-message").show();
+          setTimeout(function () {
+          $(".alert-message").hide();
+          }, 3000)
+          return false;
+          }
+        }
+      });
+      return false;
+     });
+    });
+    </script>
+  </body>
+</html>

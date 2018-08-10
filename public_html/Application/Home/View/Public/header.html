@@ -1,0 +1,17 @@
+<div class="slide-nav">
+        <ul id="slider1" class="clearfix">
+        	<li><a class="active" href="index.php?s=/Home/Selected<?php echo $GLOBALS['puid_url'];   ?>">推荐</a></li>
+          <?php
+          	foreach($navigation as $key=>$value){
+          	//dump($value);
+          ?>
+          	<li   ><a <?php if($value['navigation_id']==$_GET['navigation_id']){ echo  'class="active"'; } ?>  href="index.php?s=/Home/Selected/type_detail&navigation_id=<?php echo $value['navigation_id'];  ?><?php echo $GLOBALS['puid_url'];   ?>"><?php echo $value['navigation_name'];  ?></a></li>
+
+          <?php
+          	}
+
+          ?>
+          
+        </ul>
+      </div>
+      <?php //dump($navigation); ?>

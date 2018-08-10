@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>订单支付</title>
+    
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5">
+    <div class="container">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>订单支付</span>
+      </div>
+      
+      <div class="modify-address">
+        <h2>订单总额：<span>{$data.amount}积分</span></h2>
+        <div class="clearfix">
+          <p class="pull-left">共需支付：</p>
+          <p class="pull-right">{$data.amount}积分</p>
+        </div>
+      </div>
+      
+      <div class="pay-text">
+        <p>请在<span>{$data.term}</span>前完成支付，逾期将会自动取消订单。</p>
+      </div>
+      <div class="public-footer footer-max pay-footer">
+        <a href="index.php?s=/Home/Order/pay_two&id={$data.order_id}">确认支付</a>
+      </div>
+
+    </div>
+  </body>
+</html>

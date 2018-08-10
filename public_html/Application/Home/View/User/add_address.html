@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>添加收货地址</title>
+    
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #F5F5F5;">
+    <div class="container">
+      <!-- 头部 -->
+      <FORM METHOD=POST ACTION="" >
+	
+ 
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>添加收货地址</span>
+      </div>
+      
+      <div class="modify-address">
+        <ul>
+          <li class="clearfix">
+            <span>收货人姓名：</span><input type="text" name="consignee_name" />
+          </li>
+          <li class="clearfix">
+            <span>手机号码：</span><input type="text" name="consignee_phone"/>
+          </li>
+          <li class="clearfix">
+            <span>所在区域：</span>
+            <div class="express-area pull-left">
+                <a id="expressArea" href="javascript:void(0)">
+                    <p id="provinces_1"></p>
+                </a>
+            <input type="hidden" name="provinces" id="provinces" value="1" />
+            </div>
+          </li>
+          <li class="clearfix">
+            <span>详细地址：</span><input type="text" name="address" />
+          </li>
+        </ul>
+      </div>
+      
+      <div class="personal-btn address-btn">
+        <button>保存</button> 
+      </div>
+     </FORM>
+
+      <!--选择地区弹层-->
+      <section id="areaLayer" class="express-area-box footer-max" >
+        <header>
+          <h3>选择地区</h3>
+          <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+          <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+        </header>
+        <article id="areaBox">
+          <ul id="areaList" class="area-list"></ul>
+        </article>
+      </section>
+      <!--遮罩层-->
+      <div id="areaMask" class="mask"></div>
+
+    </div>
+
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/jquery.area.js"></script>
+  </body>
+</html>

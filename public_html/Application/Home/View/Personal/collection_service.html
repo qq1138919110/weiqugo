@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-服务收藏</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Personal/vip')}"><i class="iconfont">&#xe601;</i></a>
+        <span>收藏的服务</span>
+        <div class="mobile-inner-header-icon mobile-inner-header-icon-out"><span></span><span></span></div>
+      </div>
+      <div class="mobile-inner-nav">
+        <a href="{:U('Index/index')}">首页</a>
+        <volist name="good_type" id="goodtype">
+        <a href="{:U('Index/service',array('type_id'=>$goodtype['type_id']))}">{$goodtype.type_name}</a>
+       <!--  <a href="#">市场服务</a>
+        <a href="#">培训服务</a>
+        <a href="#">客服服务</a>
+        <a href="#">文案服务</a>
+        <a href="#">设计服务</a>
+        <a href="#">技术服务</a> -->
+        </volist>
+        <a href="{:U('Personal/vip')}">会员中心</a>
+      </div>
+    </div>
+    
+    <div class="cart-pd"></div>
+    <volist name="type_data" id="type_data">
+    <ul class="cart">
+      <li class="title clearfix">
+        <a href="{:U('Index/service',array('type_id'=>$type_data['type_id']))}">{$type_data['type_name']}<i class="iconfont">&#xe601;</i></a>
+      </li>
+      <volist name="type_data['list']" id="list">
+      <li class="main clearfix">
+        <p>{$list.good_name}</p>
+        <span><i class="iconfont icon-icon47"></i><input type="hidden" value="{$list['collect_id']}"></span>
+        <span><strong class="cart-price"><?php echo 
+    rtrim(rtrim($list['good_value'], '0'), '.');  
+      ?></strong>π/{$list.unit}</span>
+      </li>
+      </volist>
+     <!--  <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span><i class="iconfont icon-icon47"></i></span>
+        <span><strong class="cart-price">320</strong>π/份</span>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span><i class="iconfont icon-icon47"></i></span>
+        <span><strong class="cart-price">180</strong>π/份</span>
+      </li> -->
+    </ul>
+    </volist>
+
+   <!--  <ul class="cart">
+      <li class="title clearfix">
+        <a href="">市场服务<i class="iconfont">&#xe601;</i></a>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span><i class="iconfont icon-icon47"></i></span>
+        <span><strong class="cart-price">100</strong>π/份</span>
+        <div class="add clearfix">
+          <i class="minu-i">-</i>
+          <span class="number">10</span>
+          <i class="add-i">+</i>
+        </div>
+      </li>
+      <li class="main clearfix">
+        <p>品牌现状分析报告</p>
+        <span><i class="iconfont icon-icon47"></i></span>
+        <span><strong class="cart-price">10</strong>π/份</span>
+      </li>
+    </ul> -->
+    
+    <div class="cart-pd2"></div>
+    <div class="alert-message">
+      <p></p>
+    </div>
+    <div class="static-footer">— {$set.copyright} —</div>
+    <input type="hidden" id="delete_collect"value="{:U('delete_collect')}">
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+  </body>
+</html>

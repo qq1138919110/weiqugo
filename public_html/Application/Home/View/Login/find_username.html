@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>找回密码</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Login/login')}"><i class="iconfont">&#xe601;</i></a>
+        <span>找回密码</span>
+        <a href="javascript:void(0)">&nbsp;</a>
+      </div>
+    </div>
+    <div class="res-pd"></div>
+    <div class="personal-data clearfix">
+      <p class="clearfix phone"><span>账号：</span><input type="text" class="username"></p>
+    </div>
+    
+    <div class="login-btn"><input type="button" value="下一步" class="next_step"></div>
+
+    <div class="alert-message">
+      <p></p>
+    </div>
+  
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        //3秒后弹窗关闭
+    function alert_time() {
+      $(".alert-message").show();
+      setTimeout(function () {
+        $(".alert-message").hide();
+      }, 3000)
+    }
+      $(document).on('click','.next_step',function(){
+        var username =$('.username').val();
+        if(username==''){
+           alert_time();
+          $(".alert-message p").text('账号不能为空');
+          return false;
+        }
+        $.ajax({
+          type:"POST",
+          url:"{:U('Login/retrieve_ajax')}",
+          data:{username:username},
+          dataType:'json',
+          success:function(data){
+            if(data==1){
+            alert_time();
+            $(".alert-message p").text('该账号不存在');
+            return false;
+            }else if(data==2){
+              alert_time();
+            $(".alert-message p").text('该账号已被注销');
+            return false;
+            }else{
+               window.location.href="{:U('Login/find_password')}?adminid="+data.adminid;
+            }
+          }
+        })
+      });
+    });
+
+    </script>
+  </body>
+</html>

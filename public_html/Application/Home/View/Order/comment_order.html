@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>微趣GO</title>
+    
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <link href="css/zyUpload.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body style="background-color: #f5f5f5;">
+      <FORM METHOD=POST ACTION="">
+	
+  
+    <div class="container">
+      <!-- 头部 -->
+      <div class="cart-title">
+        <a href="javascript:history.go(-1);"><i class="icon iconfont">&#xe61f;</i></a>
+        <span>发表评价</span>
+      </div>
+
+      <div class="advice">
+        <textarea placeholder="请认真评价，以便我为您提供更好的的服务V(^_^)V" name="comment" ></textarea>
+        <div class="clearfix demo2">
+          <div style="margin-left:30px;" class="convent_choice">
+            <div class="andArea andArea-me">
+              <div class="filePicker"></div>
+              <input id="fileImage" type="file" size="30" name="fileselect[]" '+multiple+'>
+            </div>
+          </div>
+          <div id="demo" class="demo clearfix">
+            <div class="upload_box">
+              <div class="upload_main">
+                <div class="upload_choose"></div>
+                <div id="preview" class="upload_preview"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="comment-footer footer-max clearfix">
+        <div class="pull-left">
+          <div class="checkboxFour">
+            <input type="checkbox" id="checkboxFourInput1" name="checkbox1"/>
+            <label for="checkboxFourInput1"></label>
+          </div>
+          <span>匿名评价</span>
+        </div>
+        <div class="pull-right">
+          <button>发表评价</button>
+        </div>
+      </div>
+    </div>
+</FORM>
+    <div class="alert-message">
+      <p>大三大四</p>
+    </div>
+    
+    <script src="js/jquery-2.2.2.min.js"></script>
+    <script src="js/all.js"></script>
+    <script src="js/zyFile.js"></script>
+    <script src="js/zyUpload.js"></script>
+    <script src="js/jq22.js"></script>
+    <script>
+      chioce_comment();
+    </script>
+    <script>
+    $(document).ready(function(){
+      if($(".filePicker").length > 0){
+          $(".filePicker").bind("click", function(){
+            if ($(".upload_append_list").length < 5) {
+                    $("#fileImage").click();
+                } else if ($(".upload_append_list").length < 6) {
+                  $(".alert-message p").text('最多仅能上传5张评论图');
+                  $(".alert-message").show();
+                  setTimeout(function () {
+                    $(".alert-message").hide();
+                  }, 3000)
+                }
+            })
+        }
+    });
+    // function chioce_comment() {
+    // 	$(".comment-footer .checkboxFour > input").on('click', function() {
+    // 		if ($(this).siblings('label').hasClass('checkColor')) {
+    //           	$(this).siblings('label').removeClass('checkColor');
+    // 		} else{
+    //           	$(this).siblings('label').addClass('checkColor');
+    // 		}
+    // 	});
+    // }
+    </script>
+  </body>
+</html>

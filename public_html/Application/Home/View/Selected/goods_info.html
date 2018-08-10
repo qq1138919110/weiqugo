@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>微趣GO_{$data.good_name}</title>
+
+    <link href="css/reset.css" rel="stylesheet">
+    <link href="css/exchange.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container-gray">
+      <!-- 手指滑动banner -->
+      <div class="slider">
+        <ul class="slides">
+          <?php $banner=$data['banner'];   ?>
+          <volist name="banner" id="vo">
+            <li class="slide">
+              <div class="box"><a href=""><img class="img-responsive center-block" src="{$vo}" alt=""></a></div>
+            </li>
+          </volist>
+        </ul>
+      </div>
+
+      <div class="product-name clearfix">
+        <div class="pull-left">
+          <h2>{$data.good_name}</h2>
+          <p>{$data.good_value} 积分</p>
+        </div>
+        <i class="icon iconfont pull-right">&#xe60a;</i>
+      </div>
+
+
+
+      <!-- 配送 -->
+      <div class="distribution">
+        <div class="clearfix">
+          <div class="pull-left">库存剩余：&nbsp;<span>{$data.stock_amount}</span>&nbsp;{$data.unit}</div>
+          <div class="pull-right">已被取&nbsp;<span>{$data.sales_amount}</span>&nbsp;{$data.unit}</div>
+        </div>
+        <div class="clearfix">
+          <p class="pull-left">运费：<span>包邮  </span></p>
+          <span class="pull-right">安能快递</span>
+        </div>
+      </div>
+
+      <!-- 商品详情主要内容 -->
+      <div class="product-main">
+
+        <ul class="clearfix">
+          <li class="active">详情</li>
+          <li>评论</li>
+          <li>参数</li>
+        </ul>
+
+        <div class="main-detail">
+
+          <ul class="detail2">
+            {$data.discribe}
+            <!--<li><img src="images/11.jpg" alt=""></li>-->
+          </ul>
+
+          <ul class="comment">
+            <volist name="comment_data" id="vo" key="k">
+              <li>
+                <div class="comment-title clearfix">
+                  <img src="{$vo.head_img}" alt="">
+                  <span>{$vo.user_name}</span>
+                  <span>{$vo.add_time}</span>
+                </div>
+                <div class="text">{$vo.comment}</div>
+                <div class="photo">.
+                  <?php $comment_img=$vo['img']; ?>
+                  <volist name="comment_img" id="vo1">
+                  <?php
+                  if(!empty($vo1)){
+                  ?>
+                    <img src="{$vo1}" alt="">
+                    <?php
+                    }
+                    ?>
+                  </volist>
+
+                </div>
+                <div class="time">兑换日期：{$vo.booking_time}</div>
+              </li>
+            </volist>
+          </ul>
+
+          <ul class="clearfix parameter">
+            {$data.parameter}
+            <!--<li><span>品牌：</span><span>华为</span></li>-->
+          </ul>
+
+        </div>
+      </div>
+
+      <!-- 页脚 -->
+      <div class="product-footer footer-max">
+        <a href="index.php?s=/Home/Selected">
+          <i class="icon iconfont">&#xe614;</i>
+          <span>首页</span>
+        </a>
+        <a href="index.php?s=/Home/Order/cart">
+          <i class="icon iconfont">&#xe611;</i>
+          <span>换物车</span>
+        </a>
+        <a class="product-service" href="http://z11-pcok6.kuaishangkf.cn/bs/im.htm?cas=108582___913666&fi=110559">
+          <i class="icon iconfont">&#xe75c;</i>
+          <span>客服</span>
+        </a>
+        <a href="javascript:void(0)" id="join-cart">加入换物车</a>
+        <a id="redeem-now" href="javascript:void(0)">立刻兑换</a>
+      </div>
+    </div>
+
+    <!-- 弹出购物车 -->
+      <div class="alert-cart footer-max">
+      <div class="wrap footer-max">
+        <div class="title">
+          <img src="{$data.good_cover}" alt="">
+          <span id="price_main">{$data.true_price}</span>
+          <p id="has-choice">已选：<span></span></p>
+          <i class="icon iconfont" id="close-cart">&#xe7cc;</i>
+        </div>
+        <?php
+          foreach($attr_data as $key=>$value){
+          ?>
+          <div class="attribute">
+            <h2>{$value.attr_name1}</h2>
+            <?php
+             foreach($value['list'] as $k=>$val){
+               ?>
+               <span attr_val="{$val.symbol}"><?php echo $val['attr_value'];    ?><INPUT TYPE="hidden" NAME="" id="{$val.symbol}" value="{$val.symbol}"> </span>
+               <?php
+             }
+            ?>
+
+          </div>
+          <?php
+          }
+        ?>
+
+        <div class="clearfix last-div">
+          <span class="pull-left">购买数量</span>
+          <div class="cart-integral pull-right">
+            <p class="clearfix">
+              <span class="reduce">-</span>
+              <span class="number">1</span>
+              <span class="add">+</span>
+            </p>
+          </div>
+        </div>
+        <div class="cart-btn"><button>加入换物车</button></div>
+      </div>
+    </div>
+    <input type="hidden" name="attr_number" value="{$data.attr_number}" id="attr_number"   />
+  <INPUT TYPE="hidden" NAME="goods_id" value="{$data.good_id}" id="goods_id">
+    <div class="alert-share">
+      <img src="images/593344398733915527.png" alt="">
+    </div>
+
+<INPUT TYPE="hidden" NAME="page" value="1" id="page">
+<INPUT TYPE="hidden" NAME="qq" value="{$qq}" id="qq">
+    <!-- js -->
+    <input type="hidden" id="puid" value="<?php echo $GLOBALS['puid_url'];   ?>" />
+    <input type="hidden" id="diy_url" name="" value='{:U("Home/Order/add_cart",array("puid"=>$_COOKIE["login_user_id"]))}'/>
+
+    <script type="text/javascript" src="js/jquery-2.2.2.min.js"></script>
+    <script type="text/javascript" src="js/all.js"></script>
+    <!-- 滑动banner -->
+    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
+    <script type="text/javascript">
+    //console.log($('#diy_url').val());
+      var glide = $('.slider').glide({
+          //autoplay:true,//是否自动播放 默认值 true如果不需要就设置此值
+          animationTime:500, //动画过度效果，只有当浏览器支持CSS3的时候生效
+          arrows:false, //是否显示左右导航器
+          nav:true, //主导航器也就是本例中显示的小方块
+          navCenter:true, //主导航器位置是否居中
+          navClass:"slider-nav",//主导航器外部div类名
+          navItemClass:"slider-nav__item", //本例中小方块的样式
+          navCurrentItemClass:"slider-nav__item--current" //被选中后的样式
+        });
+
+      // 调用所需的JS
+      goTop();
+      wechatImg (".product-service","{$qq}");
+      product_detail();
+      add_reduce();
+    </script>
+  </body>
+</html>

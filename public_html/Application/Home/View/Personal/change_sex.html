@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <meta content="email=no" name="format-detection">
+    <title>{$set.name}-修改性别</title>
+
+    <link href="__CSS__bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__iconfont.css" rel="stylesheet">
+    <link href="__CSS__all.css" rel="stylesheet">
+    <!--[if IE]>
+      <script src=”http://html5shiv.googlecode.com/svn/trunk/html5.js”></script>
+    < ![endif]-->
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <div class="mobile-inner-header">
+        <a href="{:U('Personal/vip')}"><i class="iconfont">&#xe601;</i></a>
+        <span>性别</span>
+        <button class="btn-save savesavesex">保存</button>
+      </div>
+    </div>
+   
+    <ul class="vip-list change-sex">
+      <li class="clearfix">
+        <span>男</span>
+        <i class="iconfont"<if condition="$user['sex'] eq 1">style="display: block;"</if>>&#xe602;</i>
+      </li>
+      <li class="clearfix">
+        <span>女</span>
+        <i class="iconfont" <if condition="$user['sex'] eq 2">style="display: block;"</if>>&#xe602;</i>
+      </li>
+    </ul>
+
+    <div class="static-footer">— {$set.copyright} —</div>
+    <input type="hidden" class="sexsexsex" value="{$user.sex}">
+    <div class="alert-message">
+      <p></p>
+    </div>
+    <script src="__JS__jquery-2.2.2.min.js"></script>
+    <script src="__JS__all.js"></script>
+    <div class="alert-message">
+      <p></p>
+    </div>
+  <script type="text/javascript">
+    $(function(){
+        function alert_time() {
+      $(".alert-message").show();
+      setTimeout(function () {
+        $(".alert-message").hide();
+      }, 2000)
+    }
+       $(document).on('click','.savesavesex',function(){
+         var sex=$('.sexsexsex').val();
+         var re = /^[1-2]\d*$/;
+        //验证
+        if (!re.test(sex))
+        {    
+            location =location;
+            return false;
+        }
+        $.ajax({
+          type:'POST',
+          url:"{:U('Personal/change_sex_ajax')}",
+          data:{sex:sex},
+          dataType:'json',
+          success:function(data){
+            if(data==1){
+              location=location;
+            }else if(data==2){
+              window.location.href="{:U('Personal/vip')}";
+            }else{
+              alert_time();
+              $(".alert-message p").text('服务器延迟，请刷新后再试');
+              return false;
+            }
+          }
+        })
+      });
+    });
+    </script>
+  </body>
+</html>

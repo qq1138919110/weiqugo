@@ -1,0 +1,26 @@
+<div class="slide-nav">
+        <ul id="slider1" class="clearfix">
+        	<li><a class="active" href="">推荐</a></li>
+          <?php 
+          	foreach($navigation as $key=>$value){
+          	//dump($value);
+          ?>
+          	<li   ><a href="index.php?s=/Home/Selected/type_detail&cid=<?php echo $value['navigation_id'];  ?>"><?php echo $value['navigation_name'];  ?></a></li>
+          	
+          <?php
+          	}
+          
+          ?>
+          <!--<li><a class="active" href="">推荐</a></li>
+          <li><a href="">食品</a></li>
+          <li><a href="">时尚</a></li>
+          <li><a href="">彩妆</a></li>
+          <li><a href="">旅行</a></li>
+          <li><a href="">推荐</a></li>
+          <li><a href="">食品</a></li>
+          <li><a href="">时尚</a></li>
+          <li><a href="">彩妆</a></li>
+          <li><a href="">旅行</a></li>-->
+        </ul>
+      </div>
+      <?php //dump($navigation); ?>
